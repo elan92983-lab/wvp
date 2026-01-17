@@ -1,0 +1,25 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# 环境与配置
+.env
+venv/
+env/
+.vscode/
+
+# 数据集 (大文件不应上传)
+data/
+*.h5
+*.pt
+*.pth
+*.csv
+*.pdf
+*.npy
+
+# 日志与输出
+logs/
+*.log
+results/
