@@ -44,11 +44,10 @@ def main():
     output_dir = "data/raw/dataset_v1"
     os.makedirs(output_dir, exist_ok=True)
 
-    print(f"🚀 启动并行数据工厂...")
     print(f"目标：生成 {num_samples} 个 FALQON 教师样本")
     
     # 获取 CPU 核心数，保留 1-2 个核心以防服务器死机
-    num_cores = max(1, multiprocessing.cpu_count() - 2)
+    num_cores = 6
     print(f"使用核心数: {num_cores}")
 
     results = []
