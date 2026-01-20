@@ -23,11 +23,11 @@ class FALQONTransformer(nn.Module):
     def __init__(self, 
                  max_nodes=12, 
                  output_len=30, 
-                 d_model=128, 
+                 d_model=64, 
                  nhead=4, 
                  num_layers=3, 
                  dim_feedforward=512, 
-                 dropout=0.1):
+                 dropout=0.2):
         super().__init__()
         
         self.model_type = 'Transformer'

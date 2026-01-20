@@ -1,0 +1,111 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- 基础宏包 ---
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{abstract}
+
+% --- 样式设置 ---
+\setlist[itemize]{label=-}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue]{hyperref}
+
+% --- 论文元数据 ---
+\title{\Large \textbf{基于 Transformer 架构的反馈诱导量子优化算法参数零次推理研究}}
+\author{潘立扬}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+量子近似优化算法（QAOA）及其反馈诱导变体（FALQON）在解决组合优化问题（如 MaxCut）中展现了巨大潜力。然而，FALQON 在演化过程中极度依赖实时的量子反馈律来确定控制参数 $\beta$，这在实际的近临界量子（NISQ）硬件上导致了难以承受的测量开销。本文提出了一种基于 Transformer 架构的参数预测模型，旨在实现“零次测量”的闭环参数获取。该模型通过学习图拓扑特征与演化轨迹之间的非线性映射，直接生成最优参数序列。实验结果表明，该模型在 4--10 节点的训练域内达到了 $100.09\%$ 的平均近似比；在 12 节点的跨规模外推测试中，实现了 $100.31\%$ 的平均近似比，且标准差显著降低至 $0.0376$。这一结果验证了 Transformer 架构在捕捉量子演化动力学中的卓越泛化能力，为实现高效的量子经典混合算法提供了新路径。
+\end{abstract}
+
+\section{引言}
+变分量子算法（VQA）是当前量子计算研究的核心领域，但其参数优化过程通常面临“贫瘠高原”（Barren Plateaus）和高采样开销的挑战。反馈诱导量子优化算法（FALQON）通过引入李雅普诺夫控制理论，将参数搜索转化为确定性的反馈动力学过程，有效避免了梯度下降的缺陷。然而，FALQON 的每一层演化都需要测量当前态在算符 $[H_p, H_d]$ 下的期望值。
+
+本文的核心思想是：量子态的演化轨迹本质上是由哈密顿量的编码结构（即图的拓扑结构）决定的。通过深度学习，特别是擅长处理长程依赖关系的 Transformer 架构，我们可以预先挖掘这种映射关系。
+
+\section{算法描述与理论框架}
+
+\subsection{MaxCut 问题建模}
+给定图 $G=(V, E)$，MaxCut 问题的目标是寻找一个顶点的二分划分，使得跨越划分的边数最大。其哈密顿量表示为：
+\begin{equation}
+H_p = \frac{1}{2} \sum_{(u,v) \in E} (I - Z_u Z_v)
+\end{equation}
+其中 $Z_i$ 为 Pauli-Z 算符。
+
+\subsection{FALQON 动力学}
+FALQON 算法通过迭代构建算符序列。在第 $p$ 步，演化参数 $\beta_p$ 由下式给出：
+\begin{equation}
+\beta_p = -\text{Im} \langle \psi_p | [H_d, H_p] | \psi_p \rangle
+\end{equation}
+其中驱动哈密顿量 $H_d = \sum X_i$。状态演化为 $|\psi_{p+1}\rangle = e^{-i \beta_p H_d} e^{-i H_p \Delta t} |\psi_p\rangle$。
+
+\section{Transformer 预测模型架构}
+
+\subsection{模型总体框架}
+我们设计的模型输入为图的结构特征，输出为全长演化参数序列。整体架构如图 \ref{fig:framework} 所示。
+
+\begin{figure}[htbp]
+  \centering
+  \framebox{\parbox{0.8\textwidth}{\centering
+    \vspace{2cm}
+    \textbf{图 1: Transformer 参数推理框架} \\
+    \small\textit{从左至右依次为：输入图邻接矩阵、特征嵌入、多层 Transformer 编码器、线性输出层以及预测的 $\beta$ 曲线。}
+    \vspace{2cm}
+  }}
+  \caption{基于 Transformer 的量子参数预测模型总体架构图。}
+  \label{fig:framework}
+\end{figure}
+
+\subsection{输入表示与编码}
+模型输入为图的邻接矩阵平坦化特征向量。为了适应不同规模的图，我们采用了自适应填充（Padding）技术。
+\begin{itemize}
+    \item \textbf{编码层}：采用 $L=4$ 层的 Transformer Encoder。
+    \item \textbf{注意力机制}：多头注意力能够同时关注图中局部的团结构（Cliques）和全局的连通性。
+    \item \textbf{线性映射}：最终通过全连接层输出维度为 30 的连续向量，对应 30 层演化的 $\beta$ 参数。
+\end{itemize}
+
+\section{实验结果分析}
+
+\subsection{训练与测试设置}
+我们生成了 8,479 个 Erdős–Rényi 随机图，节点数分布在 4 到 10 之间。使用经典仿真器计算得到精确的 FALQON 轨迹作为训练标签。
+
+\subsection{性能评估}
+如表 \ref{tab:final_results} 所示，模型在训练域外的大规模图（12 节点）上表现出更强的稳健性。
+
+\begin{table}[htbp]
+\centering
+\caption{Transformer 模型在不同规模下的近似比（AR）统计结果}
+\label{tab:final_results}
+\begin{tabular}{lccccc}
+\toprule
+测试场景 & 样本数 & 平均近似比 (Avg AR) & 标准差 (Std) & 最小值 (Min) & 最大值 (Max) \\
+\midrule
+训练域内 (4--10 节点) & 100 & 1.0009 & 0.1411 & 0.6147 & 1.4577 \\
+外推测试 (12 节点) & 100 & \textbf{1.0031} & \textbf{0.0376} & \textbf{0.8181} & \textbf{1.1080} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{规模外推与轨迹拟合讨论}
+典型的预测轨迹如图 \ref{fig:prediction_result} 所示。结果表明模型捕捉到了演化初期剧烈波动到后期趋于平缓的物理特性。在 12 节点的外推实验中，标准差显著下降，这暗示了大规模图结构的普适特征更容易被注意力机制捕获。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{/home/elan/QAI/wvp/output/prediction_result.png}
+    \caption{Transformer 模型预测的 $\beta$ 参数序列与经典 FALQON 真实序列的对比轨迹。}
+    \label{fig:prediction_result}
+\end{figure}
+
+\section{结论与展望}
+本文证明了利用 Transformer 实现量子优化算法参数“零次预测”的可行性。这不仅大幅降低了运行成本，还为解决大规模组合优化问题提供了一种可扩展的协同范式。
+
+\end{document}

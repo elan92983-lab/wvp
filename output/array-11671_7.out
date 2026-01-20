@@ -1,0 +1,83 @@
+Running task array ID: 7, starting from index: 70
+🚀 子任务启动 | 范围: 70 到 80 | 核心数: 32
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+开始 FALQON 演化 (n_qubits=12, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.0020, Energy =  0.0125
+  层数  5: Beta =  0.1560, Energy =  0.0152
+  层数  5: Beta =  0.1468, Energy =  0.1961
+  层数  5: Beta =  0.2423, Energy = -0.8180
+  层数  5: Beta =  0.0569, Energy = -0.0035
+  层数  5: Beta =  0.0105, Energy =  0.1061
+  层数  5: Beta = -0.2652, Energy = -0.0037
+  层数  5: Beta = -0.2130, Energy = -0.1554
+  层数  5: Beta = -0.1968, Energy =  0.2333
+  层数  5: Beta =  0.1132, Energy =  0.2421
+  层数 10: Beta = -0.0303, Energy =  0.1001
+  层数 10: Beta =  0.1241, Energy = -0.0445
+  层数 10: Beta =  0.0329, Energy =  0.1621
+  层数 10: Beta = -0.0801, Energy =  0.0772
+  层数 10: Beta = -0.2485, Energy = -0.0796
+  层数 10: Beta =  0.0142, Energy =  0.0825
+  层数 10: Beta =  0.4129, Energy = -0.0660
+  层数 10: Beta =  0.0817, Energy =  0.1832
+  层数 10: Beta = -0.1331, Energy =  0.0945
+  层数 10: Beta =  1.1168, Energy =  0.7849
+  层数 15: Beta = -0.0785, Energy =  0.1129
+  层数 15: Beta =  0.0063, Energy =  0.0838
+  层数 15: Beta = -0.0333, Energy =  0.0468
+  层数 15: Beta = -0.1774, Energy =  0.2740
+  层数 15: Beta =  0.0733, Energy =  0.0240
+  层数 15: Beta = -0.1105, Energy =  0.0460
+  层数 15: Beta =  0.0354, Energy =  0.0881
+  层数 15: Beta = -0.0044, Energy =  0.2199
+  层数 15: Beta = -0.0868, Energy =  0.1164
+  层数 15: Beta = -0.1414, Energy =  0.0328
+  层数 20: Beta = -0.0136, Energy =  0.1310
+  层数 20: Beta =  0.0321, Energy =  0.0613
+  层数 20: Beta = -0.2338, Energy = -0.0186
+  层数 20: Beta = -0.1298, Energy =  0.3175
+  层数 20: Beta = -0.1123, Energy =  0.0144
+  层数 20: Beta = -0.0160, Energy =  0.1207
+  层数 20: Beta = -0.0484, Energy =  0.1462
+  层数 20: Beta =  0.1029, Energy =  0.0996
+  层数 20: Beta =  0.0981, Energy =  0.2211
+  层数 20: Beta = -0.0166, Energy =  0.0113
+  层数 25: Beta =  0.0191, Energy =  0.1413
+  层数 25: Beta =  0.0384, Energy =  0.0278
+  层数 25: Beta = -0.0443, Energy =  0.3189
+  层数 25: Beta =  0.0153, Energy =  0.1399
+  层数 25: Beta = -0.0179, Energy = -0.0228
+  层数 25: Beta = -0.0516, Energy =  0.1794
+  层数 25: Beta = -0.0536, Energy =  0.1798
+  层数 25: Beta = -0.0195, Energy =  0.1625
+  层数 25: Beta =  0.2467, Energy =  0.1516
+  层数 25: Beta = -0.0891, Energy =  0.0171
+  层数 29: Beta = -0.0233, Energy =  0.1412
+  层数 29: Beta =  0.0380, Energy =  0.0283
+  层数 29: Beta =  0.0482, Energy =  0.2829
+  层数 29: Beta = -0.2422, Energy =  0.1686
+  层数 29: Beta =  0.0321, Energy = -0.0480
+  层数 29: Beta =  0.0073, Energy =  0.1506
+  层数 29: Beta = -0.0186, Energy =  0.2339
+  层数 29: Beta = -0.0288, Energy =  0.1521
+  层数 29: Beta = -0.0211, Energy =  0.1993
+  层数 29: Beta = -0.2456, Energy =  0.0670
+💾 片段计算完成，结果保存至: output/ar_parts/part_70.npy
