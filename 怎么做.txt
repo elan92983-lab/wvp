@@ -1,0 +1,30 @@
+2. 引入“谱位置编码” (Spectral Positional Encoding)
+这是论文的核心创新点。在模型中引入图拉普拉斯矩阵的特征向量作为位置嵌入，这能直接响应随机矩阵理论中的谱分布特性 。
++2
+
+3. 理论实验补全
+您需要在代码中增加对比实验，用于后续论文写作：
+
+
+对比实验 1：在 src/evaluate_parallel.py 中，加入与标准 GNN (TransformerConv) 的精度对比 。
++2
+
+
+验证实验 2：在大规模随机正则图（N>20）上测试预测曲线的聚类现象，并用 Wigner 半圆律 进行物理解释 。
+（可直接落地的做法）
+1) 先绕开“经典 Teacher 的 statevector 指数爆炸”问题：N>20 时不做 Teacher 对照，只看 Student 输出的 beta 曲线是否在同一图分布上自发聚类（这是你要的“普适曲线/聚类”现象）。
+2) 用随机正则图的谱分布做物理解释：对每个图取缩放邻接矩阵 $A/\sqrt{d-1}$ 的非平凡谱（去掉最大特征值），画直方图并叠加半圆律参考曲线。谱分布在大 N 下趋于稳定 ⇒ 曲线输入的“全局谱统计量”高度集中 ⇒ 预测 beta 曲线也会集中/聚类。
+3) 直接运行脚本生成图+推理+聚类+画谱图：
+	python -m src.validate_regular_clustering --n 24 --d 3 --num_graphs 200 --model_type gnn --model_path models/checkpoints/gnn_model_tmp.pth
+	输出在 output/regular_clustering/ 下：curves_overlay.png（聚类曲线叠图）、pca_scatter.png（曲线降维聚类）、spectrum_density.png（谱密度 vs 半圆参考）。
+您的论文源码位于 essay/main.tex。建议在实验运行期间，使用 Vim 开始撰写以下章节：
+
+
+Methodology：重点论述为什么 Sequence Transformer 的全局感受野（Global Receptive Field）比 GNN 更适合捕捉决定参数曲线的宏观谱统计特征 。
++3
+
+
+Theoretical Insight：引用随机矩阵理论（Kesten-McKay Law），解释参数曲线在 3-正则图上呈现普适性（Common Profile）的原因 。
++2
+
+下一步立即行动建议：

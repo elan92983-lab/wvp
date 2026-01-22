@@ -1,0 +1,368 @@
+Task ID: 13 generating graphs from index 650 to 700
+🚀 [任务 ID 13] 启动: 处理范围 650 -> 700 (共 50 个)
+🖥️  运行节点: cn2
+🔥 使用核心数: 32
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=6, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.2900, Energy =  0.6882
+  层数  5: Beta =  0.6226, Energy =  0.1827
+  层数  5: Beta =  0.0951, Energy = -0.0864
+  层数  5: Beta =  0.0707, Energy =  0.0481
+  层数  5: Beta = -0.2596, Energy =  0.0648
+  层数  5: Beta =  0.4110, Energy =  0.4565
+  层数  5: Beta = -0.3308, Energy =  0.0844
+  层数  5: Beta =  0.6226, Energy =  0.1827
+  层数  5: Beta = -0.0048, Energy =  0.1464
+  层数  5: Beta =  0.6226, Energy =  0.1827
+  层数  5: Beta = -0.0312, Energy =  0.3096
+  层数  5: Beta =  0.0087, Energy = -0.2704
+  层数  5: Beta = -0.1422, Energy =  0.3423
+  层数  5: Beta =  0.7612, Energy =  0.6017
+  层数  5: Beta = -0.3653, Energy = -0.2468
+  层数  5: Beta = -0.3138, Energy =  0.2149
+  层数  5: Beta =  0.2430, Energy =  0.2812
+  层数  5: Beta =  0.1211, Energy = -0.1315
+  层数  5: Beta = -0.1840, Energy = -0.2288
+  层数  5: Beta =  0.3465, Energy = -0.1113
+  层数  5: Beta = -0.1903, Energy =  0.0876
+  层数  5: Beta = -0.1682, Energy =  0.2381
+  层数  5: Beta =  0.6226, Energy =  0.1827
+  层数 10: Beta =  0.1226, Energy =  0.2592
+  层数 10: Beta =  0.1139, Energy = -0.1676
+  层数  5: Beta =  0.0707, Energy =  0.0481
+  层数  5: Beta = -0.0312, Energy =  0.3096
+  层数  5: Beta =  0.0582, Energy =  0.0844
+  层数 10: Beta =  0.1594, Energy =  0.5572
+  层数  5: Beta = -0.3138, Energy =  0.2149
+  层数  5: Beta =  0.2430, Energy =  0.2812
+  层数 10: Beta = -0.3767, Energy =  0.7077
+  层数  5: Beta =  0.0707, Energy =  0.0481
+  层数 10: Beta =  0.0556, Energy =  0.2202
+  层数 10: Beta =  0.5200, Energy =  0.0078
+  层数  5: Beta =  0.8142, Energy =  0.2008
+  层数 10: Beta =  0.6413, Energy =  0.2060
+  层数 10: Beta =  0.0556, Energy =  0.2202
+  层数 10: Beta = -1.0194, Energy = -0.3218
+  层数 10: Beta = -0.2813, Energy = -0.0411
+  层数 10: Beta = -0.4508, Energy =  0.2437
+  层数 10: Beta =  0.2720, Energy =  0.8682
+  层数 10: Beta =  0.0347, Energy = -0.5438
+  层数 10: Beta = -0.2258, Energy =  0.0122
+  层数 10: Beta = -0.5955, Energy =  0.3556
+  层数 10: Beta =  0.4459, Energy =  0.1622
+  层数 10: Beta =  0.1836, Energy = -0.2464
+  层数 15: Beta = -0.0305, Energy = -0.2290
+  层数 10: Beta =  0.1723, Energy =  0.0959
+  层数 10: Beta =  0.0556, Energy =  0.2202
+  层数 10: Beta = -0.0477, Energy =  0.6624
+  层数 10: Beta = -0.4624, Energy =  0.6274
+  层数 10: Beta = -0.2254, Energy =  0.4520
+  层数 15: Beta =  0.8631, Energy =  0.4635
+  层数 10: Beta =  0.0556, Energy =  0.2202
+  层数 10: Beta =  0.4459, Energy =  0.1622
+  层数 15: Beta =  0.8537, Energy = -0.0882
+  层数 10: Beta = -0.2813, Energy = -0.0411
+  层数 15: Beta = -0.7113, Energy =  0.3760
+  层数 15: Beta = -0.2336, Energy =  0.0716
+  层数 10: Beta =  0.1594, Energy =  0.5572
+  层数 15: Beta = -0.3304, Energy = -0.3040
+  层数 15: Beta = -0.3304, Energy = -0.3040
+  层数 15: Beta =  0.6925, Energy =  0.3515
+  层数 15: Beta = -0.2811, Energy = -0.5169
+  层数 15: Beta =  0.6399, Energy =  0.0934
+  层数 15: Beta = -0.0126, Energy =  0.4881
+  层数 15: Beta = -0.1724, Energy = -0.1500
+  层数 15: Beta =  0.1944, Energy = -0.0185
+  层数 10: Beta = -0.0693, Energy =  0.0719
+  层数 10: Beta =  0.1594, Energy =  0.5572
+  层数 10: Beta =  0.2215, Energy = -0.0717
+  层数 15: Beta = -0.7062, Energy =  0.0013
+  层数 15: Beta = -0.1387, Energy =  0.4274
+  层数 15: Beta =  0.1813, Energy =  0.3297
+  层数 20: Beta = -0.4860, Energy =  0.0220
+  层数 15: Beta =  0.7225, Energy =  0.4033
+  层数 15: Beta =  0.4594, Energy =  1.0187
+  层数 10: Beta = -0.2254, Energy =  0.4520
+  层数 15: Beta =  0.0137, Energy = -0.6309
+  层数 15: Beta = -0.2254, Energy =  0.3709
+  层数 20: Beta =  0.5116, Energy =  0.4739
+  层数 20: Beta = -0.1452, Energy = -0.0386
+  层数 20: Beta =  0.2541, Energy =  0.3003
+  层数 15: Beta =  0.7225, Energy =  0.4033
+  层数 15: Beta = -0.1402, Energy =  0.1079
+  层数 20: Beta = -0.2470, Energy = -0.3010
+  层数 20: Beta = -0.2443, Energy =  0.7877
+  层数 20: Beta = -0.1452, Energy = -0.0386
+  层数 20: Beta =  0.0032, Energy =  0.0061
+  层数 20: Beta =  0.0922, Energy = -0.4445
+  层数 20: Beta = -0.7370, Energy =  1.0142
+  层数 20: Beta =  0.0599, Energy =  0.6758
+  层数 20: Beta =  0.6476, Energy =  0.8106
+  层数 20: Beta =  0.7656, Energy = -0.4860
+  层数 15: Beta = -0.3304, Energy = -0.3040
+  层数 15: Beta = -0.1682, Energy = -0.0122
+  层数 15: Beta = -0.3304, Energy = -0.3040
+  层数 15: Beta =  0.8537, Energy = -0.0882
+  层数 20: Beta =  0.1691, Energy =  0.5104
+  层数 25: Beta = -0.3478, Energy =  0.0627
+  层数 15: Beta =  0.6399, Energy =  0.0934
+  层数 15: Beta =  0.8537, Energy = -0.0882
+  层数 20: Beta =  0.0802, Energy = -0.3424
+  层数 20: Beta = -0.8152, Energy = -0.0388
+  层数 20: Beta = -0.9278, Energy = -0.2320
+  层数 20: Beta = -0.4965, Energy =  0.6810
+  层数 25: Beta =  1.2688, Energy =  1.2728
+  层数 20: Beta =  0.3339, Energy = -0.1354
+  层数 15: Beta = -0.2274, Energy =  0.2964
+  层数 25: Beta =  0.1713, Energy =  0.6895
+  层数 25: Beta =  0.3753, Energy = -0.0190
+  层数 20: Beta =  0.5184, Energy =  0.1306
+  层数 20: Beta = -0.9278, Energy = -0.2320
+  层数 25: Beta = -0.4413, Energy = -0.7358
+  层数 25: Beta = -0.8384, Energy =  0.1621
+  层数 25: Beta = -0.2104, Energy = -0.2370
+  层数 25: Beta = -0.0762, Energy =  0.0281
+  层数 25: Beta =  0.5257, Energy =  0.0854
+  层数 25: Beta =  0.5613, Energy =  0.1618
+  层数 20: Beta = -0.1502, Energy =  0.2799
+  层数 25: Beta =  0.0315, Energy = -0.4161
+  层数 25: Beta =  0.3753, Energy = -0.0190
+  层数 25: Beta = -1.3808, Energy =  0.3938
+  层数 20: Beta = -0.1452, Energy = -0.0386
+  层数 20: Beta =  0.1903, Energy = -0.0146
+  层数 29: Beta =  0.6413, Energy = -0.4702
+  层数 29: Beta =  0.1846, Energy =  0.3736
+  层数 20: Beta =  0.2541, Energy =  0.3003
+  层数 15: Beta = -0.2254, Energy =  0.3709
+  层数 20: Beta = -0.1452, Energy = -0.0386
+  层数 29: Beta = -0.0203, Energy =  0.1830
+  层数 25: Beta = -0.2591, Energy =  0.3728
+  层数 25: Beta = -0.1607, Energy = -0.0161
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数 25: Beta = -0.2095, Energy =  0.4110
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数 29: Beta =  0.3449, Energy =  0.3806
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数 25: Beta = -0.2591, Energy =  0.3728
+  层数 29: Beta =  0.3631, Energy =  0.5103
+  层数 29: Beta =  0.6130, Energy =  0.0023
+  层数 29: Beta =  1.1385, Energy =  0.1667
+  层数 29: Beta = -0.0203, Energy =  0.1830
+  层数 25: Beta = -0.0600, Energy =  0.1118
+  层数 29: Beta = -0.2103, Energy =  0.4669
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数 25: Beta = -0.3136, Energy =  0.1395
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数 29: Beta = -0.0276, Energy =  0.1730
+  层数 20: Beta =  0.2541, Energy =  0.3003
+  层数 25: Beta =  1.2840, Energy = -0.1556
+  层数 29: Beta = -0.1068, Energy =  0.3548
+  层数 29: Beta =  0.1848, Energy =  0.0789
+  层数  0: Beta = -0.0000, Energy = -0.0000
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数 25: Beta =  0.3753, Energy = -0.0190
+  层数 29: Beta = -0.2578, Energy =  0.5212
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数 20: Beta =  0.0032, Energy =  0.0061
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数 25: Beta =  0.7273, Energy =  0.3209
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数 29: Beta =  0.7392, Energy =  0.2185
+  层数 20: Beta =  0.3219, Energy = -0.3931
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数 25: Beta = -0.0762, Energy =  0.0281
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数 25: Beta =  0.3753, Energy = -0.0190
+  层数 29: Beta =  0.7392, Energy =  0.2185
+  层数 25: Beta = -0.6036, Energy = -0.0853
+  层数 29: Beta = -0.2326, Energy =  0.1805
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数 25: Beta =  0.4898, Energy =  0.5794
+  层数  0: Beta = -0.0000, Energy =  0.0000
+开始 FALQON 演化 (n_qubits=9, alpha=0.5)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数 29: Beta = -0.0737, Energy =  0.5042
+  层数 29: Beta = -0.8515, Energy =  0.0468
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数 29: Beta = -0.7188, Energy = -0.5646
+  层数 29: Beta =  0.2441, Energy =  0.3089
+  层数 29: Beta = -0.0203, Energy =  0.1830
+  层数 29: Beta = -0.2578, Energy =  0.5212
+  层数 20: Beta =  0.5184, Energy =  0.1306
+  层数 25: Beta = -0.0762, Energy =  0.0281
+  层数 29: Beta = -0.3311, Energy =  0.4542
+  层数 25: Beta = -0.8384, Energy =  0.1621
+  层数 29: Beta = -0.0203, Energy =  0.1830
+  层数 29: Beta =  0.5418, Energy = -0.2208
+  层数 29: Beta =  0.3519, Energy =  0.5693
+  层数 25: Beta =  0.2442, Energy =  0.0967
+  层数 29: Beta = -0.2578, Energy =  0.5212
+  层数 29: Beta =  0.3631, Energy =  0.5103
+  层数 25: Beta =  0.7273, Energy =  0.3209
+  层数 29: Beta = -0.5543, Energy =  0.0248
+  层数 29: Beta = -0.3311, Energy =  0.4542
+  层数  5: Beta =  0.1238, Energy = -0.0220
+  层数  5: Beta =  0.0253, Energy =  0.1509
+  层数  5: Beta =  0.1548, Energy =  0.2388
+  层数  5: Beta = -0.0497, Energy = -0.1738
+  层数  5: Beta =  0.4564, Energy = -0.0395
+  层数  5: Beta = -0.0203, Energy = -0.0382
+  层数  5: Beta =  0.0379, Energy =  0.1321
+  层数  5: Beta =  0.1717, Energy =  0.1993
+  层数  5: Beta = -0.0707, Energy =  0.6658
+  层数  5: Beta =  0.4091, Energy =  0.4265
+  层数  5: Beta =  0.0112, Energy =  0.3312
+  层数  5: Beta = -1.8324, Energy =  0.0171
+  层数  5: Beta = -0.7579, Energy = -0.0066
+  层数  5: Beta = -0.2804, Energy = -0.1572
+  层数  5: Beta = -0.7811, Energy =  0.4730
+  层数 10: Beta =  0.5413, Energy =  0.3019
+  层数 10: Beta =  0.1810, Energy = -0.0481
+  层数 10: Beta =  0.1051, Energy = -0.1615
+  层数 10: Beta = -0.3131, Energy =  0.2057
+  层数 10: Beta = -0.5136, Energy =  0.3975
+  层数 10: Beta =  0.0688, Energy =  0.1266
+  层数 10: Beta =  0.2752, Energy =  0.0401
+  层数 10: Beta =  0.3688, Energy = -0.0085
+  层数 10: Beta = -0.3483, Energy =  0.3145
+  层数 10: Beta =  0.1556, Energy =  0.3552
+  层数 10: Beta =  0.0517, Energy =  0.0477
+  层数 10: Beta =  0.0980, Energy =  0.2915
+  层数 10: Beta =  0.3024, Energy =  0.4093
+  层数 10: Beta = -0.2374, Energy =  0.2586
+  层数 10: Beta = -0.0930, Energy =  0.3014
+  层数 15: Beta =  0.2402, Energy =  0.1603
+  层数 20: Beta =  0.0944, Energy =  0.2227
+  层数 15: Beta =  0.3553, Energy =  0.2749
+  层数 15: Beta = -0.0010, Energy = -0.1869
+  层数 15: Beta =  0.0439, Energy = -0.0576
+  层数 15: Beta =  0.2410, Energy =  0.2782
+  层数 15: Beta = -0.1517, Energy =  0.3818
+  层数 15: Beta =  0.4976, Energy =  0.2246
+  层数 15: Beta =  0.0583, Energy =  0.2599
+  层数 15: Beta = -0.3252, Energy =  0.3778
+  层数 25: Beta =  0.0933, Energy =  0.1849
+  层数 15: Beta =  0.2558, Energy = -0.0859
+  层数 15: Beta = -0.2859, Energy =  0.2213
+  层数 15: Beta = -0.0731, Energy =  0.2179
+  层数 15: Beta =  0.2177, Energy =  0.2097
+  层数 15: Beta = -0.1772, Energy =  0.1494
+  层数 29: Beta =  0.0586, Energy =  0.2115
+  层数 15: Beta = -0.3536, Energy =  0.2386
+  层数 20: Beta = -0.1361, Energy = -0.1753
+  层数 20: Beta =  0.0750, Energy =  0.1430
+  层数 20: Beta =  0.3291, Energy =  0.3287
+  层数 20: Beta =  0.4980, Energy =  0.0752
+  层数 20: Beta = -0.0815, Energy = -0.0205
+  层数 20: Beta =  0.0225, Energy =  0.2454
+  层数 20: Beta =  0.2159, Energy =  0.4833
+  层数 20: Beta =  0.3838, Energy =  0.4277
+  层数 20: Beta =  0.1438, Energy =  0.4073
+  层数 20: Beta = -0.2507, Energy =  0.0734
+  层数 25: Beta =  0.0020, Energy = -0.1251
+  层数 25: Beta =  0.0466, Energy =  0.4707
+  层数 20: Beta =  0.2175, Energy =  0.0703
+  层数 25: Beta =  0.1624, Energy =  0.3535
+  层数 20: Beta =  0.1272, Energy =  0.2548
+  层数 20: Beta =  0.4318, Energy = -0.0442
+  层数 20: Beta = -0.5306, Energy =  0.3427
+  层数 25: Beta =  0.0120, Energy =  0.2303
+  层数 25: Beta =  0.0135, Energy =  0.2396
+  层数 25: Beta =  0.3867, Energy =  0.3434
+  层数 25: Beta = -0.2260, Energy =  0.1449
+  层数 25: Beta = -0.2372, Energy =  0.1773
+  层数 29: Beta =  0.2264, Energy =  0.3787
+  层数 29: Beta =  0.1983, Energy = -0.1181
+  层数 29: Beta = -0.5821, Energy =  0.2859
+  层数 29: Beta = -0.4152, Energy =  0.2530
+  层数 29: Beta =  0.2327, Energy =  0.2026
+  层数 29: Beta = -0.1938, Energy =  0.4706
+  层数 29: Beta =  0.1273, Energy =  0.3030
+  层数 25: Beta =  0.4845, Energy =  0.1883
+  层数 29: Beta =  0.0651, Energy =  0.0949
+  层数 25: Beta = -0.1455, Energy =  0.2737
+  层数 25: Beta =  0.0054, Energy = -0.1198
+  层数 25: Beta =  0.0895, Energy =  0.2898
+  层数 25: Beta =  0.3027, Energy = -0.1239
+  层数 25: Beta = -0.0368, Energy =  0.0934
+  层数 29: Beta = -0.1299, Energy =  0.3931
+  层数 29: Beta =  0.0641, Energy =  0.4217
+  层数 29: Beta =  0.5891, Energy =  0.5546
+  层数 29: Beta = -0.2451, Energy =  0.0752
+  层数 29: Beta =  0.1927, Energy =  0.1161
+  层数 29: Beta = -0.2355, Energy =  0.1786
+
+✅ [任务 ID 13] 完成！
+📊 有效样本数: 45
+💾 已保存: data/raw/dataset_v1/parts/part_13.npz

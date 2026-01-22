@@ -1,0 +1,10 @@
+Job Start: Thu Jan 22 12:42:23 AM CST 2026
+Node: cn2
+Task ID: 12 processing samples [600, 650)
+GNN disabled: no GNN_MODEL_PATH and no models/checkpoints/gnn_model.pth
+🚀 开始评估 | 处理样本索引: 600 到 650 (共 50) | 核心数: 32
+💾 Transformer 片段保存至: output/ar_parts/part_600.npy (有效 50 条)
+✅ Avg AR (Transformer, this part): 1.268408
+✅ Std  (Transformer, this part): 1.711602
+✅ Avg AR (Classical FALQON, this part): 1.000000
+Job End: Thu Jan 22 12:42:46 AM CST 2026

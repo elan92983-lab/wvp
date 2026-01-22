@@ -12,8 +12,8 @@ class GadgetTokenizedTransformer(nn.Module):
         decoder_layer = nn.TransformerDecoderLayer(d_model=model_dim, nhead=nhead)
         self.transformer_decoder = nn.TransformerDecoder(decoder_layer, num_layers=num_layers)
         
-        # 输出层：预测每一层的 Beta 值
-        self.fc_out = nn.Linear(model_dim, 1) 
+        # 输出层：预测每一层的 Beta 值，输出序列长度为 seq_len
+        self.fc_out = nn.Linear(model_dim, seq_len)
         self.seq_len = seq_len
 
     def forward(self, graph_features):
@@ -23,4 +23,6 @@ class GadgetTokenizedTransformer(nn.Module):
         # 生成预测序列
         # 这里的逻辑对应于“教师-学生”模型中的参数预测
         output = self.transformer_decoder(embed, embed) # 简化版自回归
-        return self.fc_out(output).squeeze()
+        out = self.fc_out(output)  # shape: (1, batch, seq_len)
+        out = out.squeeze(0)       # shape: (batch, seq_len)
+        return out

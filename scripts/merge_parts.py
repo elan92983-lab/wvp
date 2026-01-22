@@ -8,7 +8,8 @@ def main():
     
     # 找到所有 part_*.npz 文件
     files = sorted(glob.glob(os.path.join(parts_dir, "part_*.npz")))
-    print(f"找到 {len(files)} 个分片文件，开始合并...")
+    files = [f for f in files if 0 <= int(os.path.basename(f).split("_")[1].split(".")[0]) <= 19]
+    print(f"找到 {len(files)} 个分片文件(0-19)，开始合并...")
     
     if len(files) == 0:
         print("❌ 没找到数据文件，请检查任务是否运行成功！")

@@ -1,0 +1,9 @@
+Job Start: Thu Jan 22 12:28:28 AM CST 2026
+Node: cn2
+Task ID: 4 processing samples [200, 250)
+🚀 开始评估 | 处理样本索引: 200 到 250 (共 50) | 核心数: 32
+💾 Transformer 片段保存至: output/ar_parts/part_200.npy (有效 50 条)
+✅ Avg AR (Transformer, this part): 0.918434
+✅ Std  (Transformer, this part): 0.200324
+✅ Avg AR (Classical FALQON, this part): 1.000000
+Job End: Thu Jan 22 12:28:38 AM CST 2026

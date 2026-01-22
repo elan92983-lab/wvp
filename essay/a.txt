@@ -1,0 +1,6 @@
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{/home/elan/QAI/wvp/output/prediction_result.png}
+    \caption{Transformer 模型预测的 $\beta$ 参数序列与经典 FALQON 真实序列的对比轨迹。}
+    \label{fig:prediction_result}
+\end{figure}

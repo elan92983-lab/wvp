@@ -3,6 +3,13 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 import os
+import sys
+
+# 确保从任意路径运行时也能找到 src 包
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
 from src.models.transformer import FALQONTransformer
 from src.algorithms.falqon_core import FALQON
 

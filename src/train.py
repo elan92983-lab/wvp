@@ -6,6 +6,12 @@ import numpy as np
 import os
 import time
 import argparse
+import sys
+
+# 确保从任意路径运行时也能找到 src 包
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 # 引入我们自己写的模块
 from src.data.dataset import FALQONDataset
@@ -55,7 +61,8 @@ def main():
     parser.add_argument("--epochs", type=int, default=100, help="训练轮数")
     parser.add_argument("--batch_size", type=int, default=64, help="批次大小")
     parser.add_argument("--lr", type=float, default=1e-3, help="学习率")
-    parser.add_argument("--data_path", type=str, default="data/raw/dataset_v1/train_data_final.npz")
+    default_data_path = os.path.join(PROJECT_ROOT, "data/raw/dataset_v1/train_data_final.npz")
+    parser.add_argument("--data_path", type=str, default=default_data_path)
     parser.add_argument("--save_dir", type=str, default="models/checkpoints")
     args = parser.parse_args()
 
