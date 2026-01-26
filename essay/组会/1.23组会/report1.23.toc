@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{研究背景与动机}{2}{0}{1}
+\beamer@sectionintoc {2}{理论方法与公式}{4}{0}{2}
+\beamer@sectionintoc {3}{代码实现细节}{10}{0}{3}
+\beamer@sectionintoc {4}{实验结果与评估}{14}{0}{4}
+\beamer@sectionintoc {5}{总结与后续计划}{19}{0}{5}

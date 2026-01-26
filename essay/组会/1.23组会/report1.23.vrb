@@ -1,0 +1,21 @@
+\frametitle{代码实现：教师数据生成流水线}
+利用 Python 多进程构建大规模“图-控制轨迹”对数据集。
+    代码位置: \texttt{scripts/generate\_dataset\_v2.py}
+
+\begin{lstlisting}[language=Python]
+def generate_single_instance(instance_id):
+    # 1. 生成随机图 (Erdos-Renyi)
+    num_nodes = np.random.randint(4, 11)
+    g = nx.erdos_renyi_graph(num_nodes, p=0.5)
+
+    # 2. 运行经典 FALQON 算法 (教师)
+    # 这一步计算量最大，需要模拟量子态演化
+    falqon = FALQON(g, alpha=0.5)
+    betas, energies = falqon.train(max_layers=30)
+
+    # 3. 返回训练样本 (Input: Adj, Label: Betas)
+    return {
+        "adj": nx.to_numpy_array(g),
+        "betas": np.array(betas)
+    }
+\end{lstlisting}
