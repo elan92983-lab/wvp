@@ -1,0 +1,29 @@
+\section{提升理论深度：从经验拟合到物理定律}
+为了满足用户“提升理论深度”的要求，本章节将经验性的实验结果提升到理论物理的高度，构建一个严谨的解释框架。
+
+\subsection{量子李雅普诺夫控制（QLC）的收敛性分析}
+FALQON 的理论根基是李雅普诺夫稳定性理论。这里明确具体的收敛性证明逻辑，并分析学生模型误差对收敛性的影响。
+
+\textbf{定理（FALQON 收敛性）：}
+定义李雅普诺夫函数 $V(\boldsymbol{\beta}) = \langle \psi(\boldsymbol{\beta}) | H_P | \psi(\boldsymbol{\beta}) \rangle$。
+根据薛定谔方程 $i\frac{\partial}{\partial t}|\psi\rangle = H(t)|\psi\rangle$，其中 $H(t) = H_P + \beta(t)H_d$（设 $\hbar=1$），我们有目标函数的导数：
+\begin{equation}
+\frac{d}{dt}\langle H_P \rangle = i \langle \psi | [H(t), H_P] | \psi \rangle = i \beta(t) \langle \psi | [H_d, H_P] | \psi \rangle
+\end{equation}
+设定反馈律 $\beta(t) = -\alpha \cdot i \langle [H_d, H_P] \rangle$（其中 $\alpha > 0$），由于 $H_d, H_P$ 均为厄米算符，其对易子的期望值为纯虚数，故 $i \langle [H_d, H_P] \rangle$ 为实数。代入后得：
+\begin{equation}
+\frac{d}{dt}\langle H_P \rangle = - \alpha \left( i \langle [H_d, H_P] \rangle \right)^2 \le 0
+\end{equation}
+这保证了能量随演化时间单调非递增，即系统必然流向 $H_P$ 的低能子空间。
+
+\textbf{理论提升点：}
+学生模型的预测值 $\hat{\beta} = \beta_{teacher} + \epsilon$。只要预测误差 $\epsilon$ 不足以改变反馈项的符号（Sign），即 $\text{sgn}(\hat{\beta}) = \text{sgn}(\beta_{teacher})$，则导数项 $\frac{d}{dt}\langle H_P \rangle$ 依然保持非正。这解释了为什么学生模型即使存在回归误差（MSE $> 0$），其最终生成的能量效果（AR）依然很高。
+\textbf{结论：FALQON 对幅度误差具有鲁棒性，但对符号误差敏感}\cite{ref2,ref13}。这也进一步印证了解决谱特征符号歧义（Sign Ambiguity）的重要性。
+
+\subsection{局部子图同构与参数可迁移性}
+除了全局的 Kesten-McKay 解释外，还应引入基于局部子图的解释，这在 QAOA 文献中更为常见。
+\begin{itemize}
+    \item \textbf{光锥（Lightcone）原理}：在深度为 $p$ 的量子电路中，一个量子比特的可观测量的期望值仅取决于其在图上距离为 $p$ 以内的邻居节点。
+    \item \textbf{树状近似（Tree-like Approximation）}：对于稀疏随机图，当 $N$ 很大时，几乎所有节点的局部 $p$-邻域都是一棵树（无环）。这意味着对于较小的 $p$，所有节点的局部环境在统计上是同构的（都是 $d$-正则树）\cite{ref12}。
+    \item \textbf{推论}：因此，对于浅层电路，最优参数仅取决于度数 $d$，而与图的具体大小 $N$ 无关。这为“零次推理”提供了坚实的微观理论支撑：模型学习的是 $d$-正则树上的最优控制协议。只有当深度 $p$ 增大到足以“看到”图中的环（Loops）时，这种简单的迁移才会逐渐失效。
+\end{itemize}

@@ -1,0 +1,87 @@
+\section{物理分析：泛化能力与跨规模稳健性}
+
+\subsection{谱密度与泛化基础}
+从物理直觉上，FALQON 的反馈律由对易子期望值驱动，而对易子的统计行为与 $H_p$（由图结构决定）的谱性质密切相关。对于 Erd\H{o}s--R\'{e}nyi 随机图，随着规模增大，其邻接/拉普拉斯谱分布在统计意义上趋于稳定；因此我们提出一种可检验的假说：\emph{当谱统计在不同规模间保持相近时，学生模型更可能实现跨规模泛化}。
+
+\subsection{近似比分析与 12 节点外推示例}
+在一个 12 节点外推测试样本集（示例：100 个样本）上，我们观察到 Transformer 的 Avg AR 为 1.0031，Std 为 0.0376（表 \ref{tab:extrap_12_results}）。需要强调：外推结论需要在固定规模的独立测试集上按同一口径复现实验。
+
+\begin{table}[htbp]
+\centering
+\caption{示例：Transformer 在训练域内与 12 节点外推测试上的 AR 统计（含 Min/Max）}
+\label{tab:extrap_12_results}
+\begin{tabular}{lccccc}
+\toprule
+测试场景 & 样本数 & 平均近似比 (Avg AR) & 标准差 (Std) & 最小值 (Min) & 最大值 (Max) \\
+\midrule
+训练域内 (4--10 节点) & 100 & 1.0009 & 0.1411 & 0.6147 & 1.4577 \\
+外推测试 (12 节点) & 100 & \textbf{1.0031} & \textbf{0.0376} & \textbf{0.8181} & \textbf{1.1080} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Transformer vs. GNN 对比（同口径 AR，分片示例）}
+为了给出与局部消息传递基线的直接对照，我们在同一评估口径下统计了 Transformer、GNN 与经典 FALQON 的近似比（AR）。在一次评估分片上得到的统计量为：Transformer 的 Avg AR 为 1.025287、Std 为 0.070539；GNN 的 Avg AR 为 0.995718、Std 为 0.014080；经典 FALQON 作为基准按定义为 1.0。
+
+\begin{table}[htbp]
+\centering
+\caption{Transformer / GNN / Classical 的近似比（AR）对比（单次评估分片统计）}
+\label{tab:ar_compare_part}
+\begin{tabular}{lcc}
+\toprule
+方法 & 平均近似比 (Avg AR) & 标准差 (Std) \\
+\midrule
+Transformer & 1.025287 & 0.070539 \\
+GNN (Baseline) & 0.995718 & 0.014080 \\
+Classical FALQON & 1.000000 & 0.000000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{备注：}上述为“分片”统计结果；若使用数组任务跑完整测试集，应对所有分片合并后再报告全局均值与方差。
+
+\subsection{大规模随机正则图上的预测曲线聚类现象}
+为了在 $N>20$ 的规模上验证“预测参数曲线的聚类（common profile）”现象，我们在随机 $d$-正则图分布上进行零次推理测试，并仅分析学生模型输出的 $\beta$ 序列形状统计（此处不再运行经典 Teacher 的全量 statevector 反馈仿真，以避免 $N$ 增大带来的指数资源开销）。
+
+实验设置为：固定节点数 $N=24$、度数 $d=3$，随机采样 3-正则图，对每个图预测长度 $P=30$ 的参数序列 $\vec{\beta}$。随后对这些曲线做层次聚类，并用 PCA 将曲线嵌入到二维平面观察聚类结构。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{picture/regular_clustering_curves_zoom.png}
+    \caption{随机 3-正则图（$N=24$）上预测的 $\beta$ 曲线聚类结果。图中展示各簇均值曲线（为突出细微差异，绘图时对早期极端尖峰步骤做了缩放/截取）。可见在固定分布下，预测曲线会集中到少数几类“共同轮廓”。}
+    \label{fig:regular_curve_cluster}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{picture/regular_clustering_pca.png}
+    \caption{对预测的 $\beta$ 曲线做 PCA 降维后的散点图（颜色表示聚类标签）。聚类在低维嵌入空间中依然可分，说明曲线差异具有低维结构。}
+    \label{fig:regular_curve_pca}
+\end{figure}
+
+\paragraph{理论洞察：Kesten-McKay 定律与轨迹普适性}
+参数曲线出现聚类（Common Profile）现象的根本原因在于图谱统计的收敛性。FALQON 的每步反馈值 $\beta_p \propto \langle [H_d, H_p] \rangle$ 非线性地依赖于哈密顿量 $H_p$ 的各阶谱矩（Spectral Moments） $\mu_k = \frac{1}{N}\text{Tr}(H_p^k) = \int \lambda^k \rho(\lambda) d\lambda$。
+
+根据随机矩阵理论，对于随机 $d$-正则图，当 $N \to \infty$ 时，其邻接矩阵特征值的经验谱密度 $\rho_N(\lambda)$ 依概率弱收敛于 Kesten-McKay 分布（亦称作相关随机游走谱分布）\cite{ref10,ref11}：
+\begin{equation}
+\rho_{\text{KM}}(\lambda) = \begin{cases} 
+\frac{d \sqrt{4(d-1) - \lambda^2}}{2\pi (d^2 - \lambda^2)} & |\lambda| \le 2\sqrt{d-1}, \\
+0 & \text{otherwise}.
+\end{cases}
+\label{eq:kesten_mckay}
+\end{equation}
+这解释了图 \ref{fig:regular_curve_cluster} 中的聚类现象：尽管具体的图实例 $G$ 不同，但它们在热力学极限（$N \gg 1$）下共享相同的极限谱分布 $\rho_{\text{KM}}$。既然控制动力学的 $\beta$ 序列是谱分布的泛函 $\vec{\beta} = \mathcal{G}[\rho(\lambda)]$，那么谱分布的普适性（Universality）必然导致控制轨迹的普适性。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{picture/regular_clustering_spectrum.png}
+    \caption{随机 3-正则图（$N=24$）的缩放邻接矩阵谱密度（去除最大特征值后）与 Wigner 半圆律参考曲线的对照。谱密度在 bulk 区域呈稳定形态，为“预测曲线聚类”的随机矩阵解释提供直觉支撑。}
+    \label{fig:regular_spectrum_semicircle}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{picture/prediction_result.png}
+    \caption{预测的 $\beta$ 参数序列（红虚线）与经典 FALQON 真实序列（蓝实线）的对比轨迹。}
+    \label{fig:prediction_result}
+\end{figure}

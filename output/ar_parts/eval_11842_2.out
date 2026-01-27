@@ -1,8 +1,0 @@
-Job Start: Wed Jan 21 05:41:01 PM CST 2026
-Node: cn1
-Task ID: 2 processing samples [100, 150)
-🚀 开始评估 | 处理样本索引: 100 到 150 (共 50) | 核心数: 32
-💾 片段结果保存至: output/ar_parts/part_100.npy (有效 50 条)
-✅ Avg AR (this part): 1.015677
-✅ Std  (this part): 0.164751
-Job End: Wed Jan 21 05:41:13 PM CST 2026

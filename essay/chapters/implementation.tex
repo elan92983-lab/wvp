@@ -1,0 +1,7 @@
+\section{模型实现与训练细节}
+
+\subsection{Transformer 学生：全局建模}
+项目主模型将展平后的邻接矩阵视为输入特征，通过线性层映射到 $d_{\text{model}}=64$ 的嵌入空间，并用多层 Transformer 解码器回归长度 $P=30$ 的 $\beta$ 序列。尽管代码中将“图特征”压缩为单 token 进行解码，这仍可视为一种全局表示学习：模型用注意力机制对整图统计进行建模，输出整段轨迹。
+
+\subsection{GNN 基线：局部消息传递}
+为提供对照，我们实现了一个不依赖外部图库的轻量 GNN：输入为 padding 后的邻接矩阵与 mask；加入 self-loop 并做 $\tilde{A}=D^{-1/2}(A+I)D^{-1/2}$；消息传递为 $H^{(\ell+1)}=\sigma(\tilde{A}H^{(\ell)}W^{(\ell)})$；读出采用 mask 加权的 mean pooling + MLP 输出 $\beta$ 序列。

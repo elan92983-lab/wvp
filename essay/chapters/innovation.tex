@@ -1,0 +1,48 @@
+\section{充实内容与创新点建议：架构演进路线}
+针对进一步充实内容的需求，本章节提出了四个具体的、高价值的创新方向，旨在解决当前的理论隐患并将研究推向该领域的前沿。
+
+\subsection{创新点一：引入符号不变网络（SignNet/BasisNet）}
+\textbf{痛点解决}：彻底解决使用拉普拉斯特征向量时存在的谱特征符号歧义（Sign Ambiguity）与基底歧义（Basis Ambiguity）问题。
+
+\textbf{具体方案}：
+不直接将特征向量 $V$ 输入 Transformer，而是通过一个\textbf{符号不变编码器（Sign-Invariant Encoder）}进行预处理。根据 Lim 等人 (2023) 的工作\cite{ref8}，可以构建如下映射：
+\begin{equation}
+f(V) = \rho \left( \sum_{i} \phi(v_i) \right)
+\end{equation}
+其中 $\phi$ 是一个点级（Point-wise）神经网络（如 MLP），设计为偶函数以满足 $f(v) = f(-v)$。
+
+\textbf{效果}：无论线性代数求解器输出的特征向量符号是 $v$ 还是 $-v$，编码器的输出完全一致。将此模块作为 Transformer 的 Tokenizer，将显著降低训练 Loss 的方差，并提升在同构图上的测试稳定性。
+
+\subsection{创新点二：物理信息驱动的无监督微调（Physics-Informed Fine-tuning）}
+\textbf{痛点解决}：目前模型依赖于经典 FALQON 生成的标签（Ground Truth），生成这些标签极其耗时（需要全波函数模拟 $O(2^N)$），限制了训练集只能覆盖小图。
+
+\textbf{具体方案}：利用\textbf{可微量子模拟器}（如 PennyLane 或 JAX-Quantum），构建一个无需教师标签的物理损失函数：
+\begin{equation}
+\mathcal{L}(\theta) = \langle \psi(\beta_\theta) | H_P | \psi(\beta_\theta) \rangle
+\end{equation}
+其中 $\beta_\theta$ 是学生网络的输出。
+\textbf{流程}：
+\begin{enumerate}
+    \item \textbf{预训练（Pre-training）}：在小图（$N \le 12$）上使用有监督学习（MSE Loss），让模型快速学会 FALQON 的基本轨迹形状。
+    \item \textbf{微调（Fine-tuning）}：在大图（$N > 20$）上，不再运行经典 FALQON，而是直接通过可微模拟器计算能量并对网络参数进行梯度下降。
+\end{enumerate}
+\textbf{价值}：这将使模型能够探索出比贪婪 FALQON \textbf{更优}的轨迹（AR $> 1.0$ 的现象将不再是偶然，而是目标），并突破训练数据生成的算力瓶颈。
+
+\subsection{创新点三：通用谱控制器（Universal Spectral Controller）}
+\textbf{痛点解决}：处理大规模图（$N \gg 1000$）时，即便是推理过程，计算特征分解（$O(N^3)$）也可能过于昂贵。
+
+\textbf{具体方案}：基于 Kesten-McKay 理论，既然参数主要由谱矩（Spectral Moments）决定，我们可以设计一个极其轻量级的 MLP 模型。
+\begin{itemize}
+    \item \textbf{输入}：仅输入图的前 $k$ 阶谱矩 $\mu_k = \text{Tr}(A^k)$（可以通过随机迹估计法在 $O(N)$ 时间内估算，无需特征分解）。
+    \item \textbf{输出}：预测参数序列 $\vec{\beta}$。
+\end{itemize}
+\textbf{实验验证}：对比 Full Transformer 和 Moment-MLP 的性能。如果两者接近，则证明了“参数由谱统计量决定”的物理假设。
+
+\subsection{创新点四：噪声感知的鲁棒推理（Noise-Resilient Inference）}
+\textbf{痛点解决}：NISQ 设备充满噪声。经典的 FALQON 因为闭环反馈，会将测量噪声引入下一层的参数，导致误差累积（Random Walk Drift）。
+\textbf{具体方案}：将学生模型重新定义为一种\textbf{量子误差缓解（QEM）}工具\cite{ref4}。
+\begin{itemize}
+    \item \textbf{训练策略}：在无噪声模拟环境下训练，目标是理想 FALQON 轨迹。
+    \item \textbf{应用场景}：在有噪声的量子硬件上，不运行实时的 FALQON 反馈回路，而是直接应用学生模型预测的“理想参数”。
+\end{itemize}
+\textbf{预期结果}：由于学生模型是在无噪数据上训练的，它实施的是\textbf{开环控制（Open-Loop Control）}，完全规避了硬件上的反馈测量噪声累积。实验有望证明：随着硬件噪声增加，学生模型的性能将显著优于标准 FALQON。

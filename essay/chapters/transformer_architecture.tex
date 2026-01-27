@@ -1,0 +1,25 @@
+\section{Transformer 模型架构与创新点}
+
+\subsection{输入特征嵌入与谱位置编码}
+模型将展平后的邻接矩阵作为 Token 输入。为使模型感知拓扑，我们引入了归一化拉普拉斯算子 $L = I - D^{-1/2} A D^{-1/2}$ 的特征分解，提取其特征向量作为谱位置编码（Spectral Positional Encoding）。这使得模型能够直接学习与哈密顿量谱统计相关的结构特征。
+
+\subsection{编码器结构与注意力机制}
+核心组件为多头注意力机制（Multi-Head Attention）：
+\begin{equation}
+\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V.
+\end{equation}
+\textbf{物理直觉：}全局注意力机制允许模型同时分析图中的局部簇与长程连通性。
+
+\subsection{预测头与输出}
+编码后的图级表示可通过池化/读出汇聚为向量，并经由 MLP 直接回归长度 $P=30$ 的连续参数序列。该“整段轨迹回归”对应一次前向推理输出全层参数，从而在推理阶段避免逐层反馈测量。
+
+\subsection{方法论分析：为何 Transfomer 优于 GNN 捕捉宏观谱统计}
+图神经网络（GNN）通常基于消息传递机制（MPNN），其 $L$ 层聚合仅能覆盖 $L$-跳邻域。若要捕捉决定 FALQON 演化轨迹的全局谱特征（如 $H_p$ 的高阶矩 $\text{Tr}(A^k)$ 或特征值分布），MPNN 需要堆叠至图直径深度，这常导致过平滑（Over-smoothing）问题，使得节点表示趋同而丢失结构信息：
+\begin{equation}
+\lim_{L \to \infty} \mathbf{H}^{(L)} \approx \mathbf{1} \mathbf{c}^T.
+\end{equation}
+相比之下，Sequence Transformer 具有全局感受野（Global Receptive Field）。通过自注意力机制：
+\begin{equation}
+\text{Attn}(\mathbf{X})_i = \sum_{j=1}^N \frac{\exp(\mathbf{x}_i^T \mathbf{x}_j / \sqrt{d_k})}{\sum_{k=1}^N \exp(\mathbf{x}_i^T \mathbf{x}_k / \sqrt{d_k})} \mathbf{v}_j,
+\end{equation}
+任意节点对 $(i, j)$ 无论拓扑距离多远，其交互路径长度均为 1。这种完全图式的连接使其能直接聚合全图信息来逼近全局谱统计量（Global Spectral Statistics），从而更准确地建立 $A(G) \to \vec{\beta}$ 的非线性映射，避免了局部算子在重构长程关联时的指数级衰减。

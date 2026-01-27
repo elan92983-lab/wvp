@@ -1,0 +1,30 @@
+\section{并行评估：Transformer vs. GNN vs. Classical}
+
+\subsection{评估流程}
+评估脚本读取 \texttt{train\_data\_final.npz} 中的样本，分别对 Transformer 与 GNN 前向得到 $\beta$ 序列，并在同一 $H_p,H_d$ 下重放演化得到 $\mathrm{Cut}_{\mathrm{AI}}$；再用样本内保存的教师能量（或缺失时重新跑教师）得到 $\mathrm{Cut}_{\mathrm{FALQON}}$，计算 $\mathrm{AR}$。
+
+\subsection{Slurm 数组并行与结果汇总}
+在 CPU 节点上，评估采用数组任务把样本区间分成若干块，每块内部使用多进程池并行计算，并将每块结果保存为 \texttt{output/ar\_parts/part\_\{start\}.npy}（GNN 额外保存 \texttt{part\_\{start\}\_gnn.npy}）。
+
+最终用合并脚本计算全局均值与标准差：
+\begin{lstlisting}
+python3 scripts/merge_ar_parts.py --parts_dir output/ar_parts --kind transformer
+python3 scripts/merge_ar_parts.py --parts_dir output/ar_parts --kind gnn
+\end{lstlisting}
+
+\subsection{实验统计结果与讨论}
+表 \ref{tab:dataset_results} 汇总了当前项目流水线在训练/评估数据集上的统计口径。需要强调：由于训练数据分布为 4--10 节点随机图，若要讨论 12/20 节点外推，应另行生成对应规模的数据集并重复相同评估流程。
+
+\begin{table}[htbp]
+\centering
+\caption{训练/评估数据集（4--10 节点随机图）上的 AR 统计结果}
+\label{tab:dataset_results}
+\begin{tabular}{lcccc}
+\toprule
+测试场景 & 样本数 & 平均近似比 (Avg AR) & 标准差 (Std) & 备注 \\
+\midrule
+训练/评估数据集 (4--10 节点) & 744 & 1.0132 & 0.4834 & Transformer Aggregated \\
+GNN (Baseline) & 5 & 0.9957 & 0.0141 & 仅含部分分片示例 \\
+\bottomrule
+\end{tabular}
+\end{table}

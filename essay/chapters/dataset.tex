@@ -1,0 +1,14 @@
+\section{数据集构建与可复现实验流水线}
+
+\subsection{教师数据生成：并行分片与合并}
+数据由“随机图 + 教师 FALQON 轨迹”组成，每个样本包含：节点数、邻接矩阵 $A$、$P=30$ 层的 $\beta$ 序列与能量序列。生成脚本支持 Slurm Job Array 分片：每个数组任务生成一段索引范围并写入 \texttt{part\_k.npz}。
+
+典型调用方式如下（与项目脚本一致）：
+\begin{lstlisting}
+python -u scripts/generate_dataset_v2.py --start 0 --end 50 --part_id 0
+\end{lstlisting}
+
+所有分片最终通过合并脚本汇总为一个压缩文件（\texttt{train\_data\_final.npz}）。
+
+\subsection{数据格式与 Padding}
+训练与评估统一使用最大节点数 $N_{\max}=12$ 进行 padding：将不同规模的邻接矩阵填充到 $12\times 12$，并使用 mask 指示真实节点位置。该处理与训练入口保持一致，从而避免推理时输入分布不匹配。

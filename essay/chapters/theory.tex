@@ -1,0 +1,30 @@
+\section{理论推导与算法框架}
+
+\subsection{反馈动力学的李雅普诺夫导出}
+考虑由问题哈密顿量 $H_p$ 和驱动哈密顿量 $H_d$ 描述的系统。目标是最小化成本函数 $C(t)=\langle\psi(t)|H_p|\psi(t)\rangle$。根据薛定谔方程，其对时间的导数为：
+\begin{equation}
+\frac{d C(t)}{dt} = i \beta(t) \langle \psi(t) | [H_d, H_p] | \psi(t) \rangle.
+\end{equation}
+为了确保成本函数随时间单调递减（即 $dC/dt\le 0$），构造反馈控制律：
+\begin{equation}
+\beta(t) = -\alpha\,\langle \psi(t) | i[H_d, H_p] | \psi(t) \rangle.
+\end{equation}
+在 FALQON 的离散化实现中，状态演化算符为 $U_p=e^{-i\beta_p H_d}e^{-iH_p\Delta t}$。
+
+\paragraph{与实现的一致性} 项目实现中首先预计算 $A=i(H_d H_p - H_p H_d)$（见算法文件），并在每层更新
+\[
+\beta_p = -\alpha\,\langle \psi_p|A|\psi_p\rangle,\quad \psi_{p+1}=e^{-i\beta_p H_d}e^{-iH_p}\,\psi_p.
+\]
+这使得我们可以把“反馈生成的 $\beta$ 序列”看作一个监督信号，用于训练学生模型回归整段轨迹。
+
+\subsection{图结构的哈密顿量编码}
+对于 $n$ 节点的 MaxCut 问题，问题哈密顿量定义为：
+\begin{equation}
+H_p = \sum_{(i,j) \in E} w_{ij} \frac{I - Z_i Z_j}{2}.
+\end{equation}
+由于 $H_p$ 完全由图的邻接矩阵 $A$ 决定，参数轨迹 $\vec{\beta}$ 是矩阵 $A$ 的非线性函数。本文假设存在映射 $\mathcal{F}:A\mapsto\vec{\beta}$，并利用神经网络进行逼近。
+
+\paragraph{Cut 与能量的换算} 在代码评估中，我们以能量期望 $E=\langle H_p\rangle$ 换算切割值：
+\begin{equation}
+\mathrm{Cut} = \frac{|E(G)| - 2E}{2},\qquad \mathrm{AR}=\frac{\mathrm{Cut}_{\mathrm{AI}}}{\mathrm{Cut}_{\mathrm{FALQON}}}.
+\end{equation}

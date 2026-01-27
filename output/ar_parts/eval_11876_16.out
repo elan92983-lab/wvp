@@ -1,6 +1,0 @@
-Job Start: Thu Jan 22 12:36:34 AM CST 2026
-Node: cn1
-Task ID: 16 processing samples [800, 850)
-GNN disabled: no GNN_MODEL_PATH and no models/checkpoints/gnn_model.pth
-Error: invalid start/end range: start=800, end=850, total=789
-Job End: Thu Jan 22 12:36:38 AM CST 2026
