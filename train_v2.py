@@ -1,3 +1,9 @@
+def temporal_gradient_loss(pred, target, mask):
+    """鼓励模型学习 β 的变化趋势"""
+    pred_diff = pred[:, 1:] - pred[:, :-1]
+    target_diff = target[:, 1:] - target[:, :-1]
+    mask_diff = mask[:, 1:] * mask[:, :-1]
+    return ((pred_diff - target_diff) ** 2 * mask_diff).sum() / (mask_diff.sum() + 1e-6)
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -28,9 +34,12 @@ def train_one_epoch(model, loader, criterion, optimizer, device):
         preds = model(evals, evecs, time_idx)
         
         # 计算 Loss (只计算 mask 为 1 的部分)
-        loss = criterion(preds * mask, targets * mask)
+        loss_main = criterion(preds * mask, targets * mask)
         # 归一化 loss，防止因为 pad 里的 0 拉低 loss
-        loss = loss / (mask.sum() + 1e-6) * mask.numel()
+        loss_main = loss_main / (mask.sum() + 1e-6) * mask.numel()
+        # temporal gradient loss
+        loss_temp = temporal_gradient_loss(preds, targets, mask)
+        loss = loss_main + 0.5 * loss_temp
         
         loss.backward()
         optimizer.step()
@@ -41,8 +50,7 @@ def train_one_epoch(model, loader, criterion, optimizer, device):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs", type=int, default=100)
-    # === 修改点 1: 减小 Batch Size (128 -> 32) ===
+    parser.add_argument("--epochs", type=int, default=500)  # 增加默认训练轮数
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--data_path", type=str, default="data/processed/spectral_data_v2.npz")
     args = parser.parse_args()
@@ -64,18 +72,17 @@ def main():
     val_loader = DataLoader(val_ds, batch_size=args.batch_size)
     
     # 2. 初始化模型
-    model = SpectralTemporalTransformer(max_nodes=20, d_model=128, max_seq_len=40).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
-    # === 修改点 2: 换成 HuberLoss ===
-    # criterion = nn.MSELoss(reduction='sum') 
-    criterion = nn.HuberLoss(reduction='sum', delta=1.0) 
+    model = SpectralTemporalTransformer(max_nodes=20, d_model=256, nhead=8, num_layers=6, max_seq_len=40).to(device)
+    optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=1e-4)  # 降低学习率
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
+    criterion = nn.HuberLoss(reduction='sum', delta=1.0)
     
     # 3. 训练循环
     print("开始训练 Spectral-Temporal Transformer...")
     for epoch in range(args.epochs):
         train_loss = train_one_epoch(model, train_loader, criterion, optimizer, device)
-        print(f"Epoch {epoch+1}: Train Loss = {train_loss:.6f}")
-        
+        scheduler.step()
+        print(f"Epoch {epoch+1}: Train Loss = {train_loss:.6f} | LR = {scheduler.get_last_lr()[0]:.6e}")
         # 保存中间结果
         if (epoch + 1) % 10 == 0:
             torch.save(model.state_dict(), f"models/spectral_transformer_ep{epoch+1}.pth")

@@ -11,20 +11,21 @@ from src.physics.simulator import DiffQuantumSimulator
 
 # --- 1. 简易的数据生成器 (只生成图，不需要标签) ---
 class UnlabeledGraphDataset(Dataset):
-    def __init__(self, num_samples=1000, min_n=10, max_n=14):
+    def __init__(self, num_samples=500, min_n=10, max_n=14):
         self.data = []
-        print(f"Generating {num_samples} unlabeled graphs for physics fine-tuning...")
-        for _ in range(num_samples):
+        print(f"Generating {num_samples} unlabeled graphs for Physics Fine-tuning...")
+        from tqdm import tqdm
+        for _ in tqdm(range(num_samples)):
             n = np.random.randint(min_n, max_n + 1)
-            # 随机正则图或 ER 图
+            # 50% 正则图，50% ER图
             if np.random.rand() > 0.5 and (n*3)%2==0:
                 g = nx.random_regular_graph(3, n)
             else:
                 g = nx.erdos_renyi_graph(n, 0.6)
-                
             adj = nx.to_numpy_array(g)
             evals, evecs = self.get_spectral(adj)
-            
+            # <--- 急救：进一步放大特征值信号，打破平均化！--->
+            evals = evals * 30.0
             # Padding
             evals_pad = np.zeros(20, dtype=np.float32)
             evals_pad[:n] = evals
@@ -32,14 +33,12 @@ class UnlabeledGraphDataset(Dataset):
             evecs_pad[:n, :n] = evecs
             adj_pad = np.zeros((20, 20), dtype=np.float32)
             adj_pad[:n, :n] = adj
-            
             self.data.append({
                 'evals': torch.from_numpy(evals_pad),
                 'evecs': torch.from_numpy(evecs_pad),
                 'adj': torch.from_numpy(adj_pad),
                 'n': n
             })
-            
     def get_spectral(self, adj):
         deg = np.sum(adj, axis=1)
         d_inv_sqrt = np.power(deg, -0.5, where=deg!=0)
@@ -48,10 +47,8 @@ class UnlabeledGraphDataset(Dataset):
         L = np.eye(len(adj)) - D_inv @ adj @ D_inv
         evals, evecs = scipy.linalg.eigh(L)
         return evals.astype(np.float32), evecs.astype(np.float32)
-
     def __len__(self):
         return len(self.data)
-    
     def __getitem__(self, idx):
         return self.data[idx]
 
@@ -85,7 +82,7 @@ def main():
     dataset = UnlabeledGraphDataset(num_samples=500, min_n=target_N, max_n=target_N)
     loader = DataLoader(dataset, batch_size=32, shuffle=True)
     
-    optimizer = optim.Adam(model.parameters(), lr=1e-4) # 微调学习率要小
+    optimizer = optim.Adam(model.parameters(), lr=1e-4) # 急救：调大学习率
     
     # 4. 训练循环
     print("🚀 Starting Physics-Informed Fine-tuning (PALQO Strategy)...")
@@ -106,6 +103,8 @@ def main():
             
             # (A) 学生模型预测 Beta
             pred_betas = model(evals, evecs, time_idx) # [B, 40]
+            # 急救：加噪声，帮助模型跳出死线
+            pred_betas = pred_betas + 0.05 * torch.randn_like(pred_betas)
             
             # (B) 物理模拟器计算能量 (Physics Loss)
             # 注意: 这里的模拟器是可微的！

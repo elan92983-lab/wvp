@@ -77,7 +77,7 @@ def generate_single_instance(instance_id):
 def main():
     parser = argparse.ArgumentParser(description="Generate spectral dataset for FALQON.")
     parser.add_argument("--start", type=int, default=0, help="Start index of samples.")
-    parser.add_argument("--end", type=int, default=5000, help="End index of samples.")
+    parser.add_argument("--end", type=int, default=20000, help="End index of samples.")
     parser.add_argument("--part_id", type=int, default=0, help="Part ID for file naming.")
     parser.add_argument("--output_dir", type=str, default="data/raw/dataset_v2", help="Output directory.")
     parser.add_argument("--cores", type=int, default=32, help="Number of CPU cores to use.")

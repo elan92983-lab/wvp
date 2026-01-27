@@ -16,7 +16,7 @@ def visualize():
     
     data_path = os.path.join(root_dir, "data/processed/spectral_data_v2.npz")
     model_dir = os.path.join(root_dir, "models")
-    model_path = os.path.join(model_dir, "spectral_transformer_ep100.pth") 
+    model_path = os.path.join(model_dir, "spectral_transformer_finetuned.pth") 
     
     # 如果找不到 ep100，尝试找一下目录里存在的模型
     if not os.path.exists(model_path):
@@ -56,10 +56,10 @@ def visualize():
             time_idx = data['time_indices'].unsqueeze(0).to(device)
             real_beta = data['betas'].numpy()
             mask = data['mask'].numpy()
-            
             # 预测
             pred_beta = model(evals, evecs, time_idx).cpu().numpy()[0]
-            
+            # === 反标准化 ===
+            pred_beta = pred_beta * dataset.beta_std + dataset.beta_mean
             # 只画 mask=1 的部分（真实层数）
             valid_len = int(mask.sum())
             ax = axes[i]

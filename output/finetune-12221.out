@@ -1,0 +1,28 @@
+Job Start: Tue Jan 27 07:17:59 PM CST 2026
+Node: cn2
+Using device: cuda
+Loading pretrained model: models/spectral_transformer_ep100.pth
+Generating 500 unlabeled graphs for Physics Fine-tuning...
+🚀 Starting Physics-Informed Fine-tuning (PALQO Strategy)...
+Epoch 1: Physics Loss (Energy) = 13.8122
+Epoch 2: Physics Loss (Energy) = 13.5356
+Epoch 3: Physics Loss (Energy) = 13.4327
+Epoch 4: Physics Loss (Energy) = 13.4488
+Epoch 5: Physics Loss (Energy) = 13.4684
+Epoch 6: Physics Loss (Energy) = 13.4604
+Epoch 7: Physics Loss (Energy) = 13.4150
+Epoch 8: Physics Loss (Energy) = 13.4295
+Epoch 9: Physics Loss (Energy) = 13.4653
+Epoch 10: Physics Loss (Energy) = 13.4555
+Epoch 11: Physics Loss (Energy) = 13.4549
+Epoch 12: Physics Loss (Energy) = 13.4303
+Epoch 13: Physics Loss (Energy) = 13.4485
+Epoch 14: Physics Loss (Energy) = 13.4026
+Epoch 15: Physics Loss (Energy) = 13.3974
+Epoch 16: Physics Loss (Energy) = 13.4052
+Epoch 17: Physics Loss (Energy) = 13.2209
+Epoch 18: Physics Loss (Energy) = 12.9798
+Epoch 19: Physics Loss (Energy) = 12.9066
+Epoch 20: Physics Loss (Energy) = 12.8437
+✅ Fine-tuning complete!
+Job End: Tue Jan 27 07:21:12 PM CST 2026
