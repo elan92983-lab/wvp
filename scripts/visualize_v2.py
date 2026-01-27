@@ -55,6 +55,8 @@ def visualize():
             evecs = data['evecs'].unsqueeze(0).to(device)
             time_idx = data['time_indices'].unsqueeze(0).to(device)
             real_beta = data['betas'].numpy()
+            # === 修复：Ground Truth 也要反标准化 ===
+            real_beta = real_beta * dataset.beta_std + dataset.beta_mean
             mask = data['mask'].numpy()
             # 预测
             pred_beta = model(evals, evecs, time_idx).cpu().numpy()[0]

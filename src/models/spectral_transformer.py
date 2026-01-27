@@ -67,57 +67,40 @@ class SpectralTemporalTransformer(nn.Module):
     def __init__(self, max_nodes=20, d_model=128, nhead=4, num_layers=3, max_seq_len=40):
         super().__init__()
         self.d_model = d_model
-        
+        self.max_seq_len = max_seq_len
         # --- 1. 谱编码模块 (Spectral Encoder) ---
-        # 特征值编码
         self.eval_encoder = nn.Linear(max_nodes, d_model)
-        # 特征向量编码 (SignNet)
         self.sign_net = SignNet(max_nodes, d_model, d_model)
-        # 融合层
         self.fusion = nn.Linear(d_model * 2, d_model)
-        
         # --- 2. 时序解码模块 (Temporal Decoder) ---
         self.time_encoding = SinusoidalPositionalEncoding(d_model, max_len=max_seq_len + 10)
-        
+        # === 新增：可学习的 Query 嵌入 ===
+        self.query_embed = nn.Parameter(torch.randn(1, max_seq_len, d_model) * 0.02)
+        # === 新增：图全局特征投影到 Query ===
+        self.graph_to_query = nn.Linear(d_model, d_model)
         decoder_layer = nn.TransformerDecoderLayer(d_model=d_model, nhead=nhead, batch_first=True)
         self.transformer_decoder = nn.TransformerDecoder(decoder_layer, num_layers=num_layers)
-        
         # --- 3. 输出头 ---
         self.head = nn.Sequential(
             nn.Linear(d_model, 64),
             nn.ReLU(),
-            nn.Linear(64, 1) # 输出标量 beta
+            nn.Linear(64, 1)
         )
 
     def forward(self, evals, evecs, time_indices):
-        """
-        Args:
-            evals: [Batch, N] 特征值 (需补零对齐到 max_nodes)
-            evecs: [Batch, N, N] 特征向量
-            time_indices: [Batch, P] 时间步索引 (0, 1, ..., P-1)
-        """
+        B = evals.shape[0]
         # --- 1. 构建 Memory (图谱信息) ---
-        # 补零处理已经在 Dataset 中做完，假设输入固定维度
-        
-        # 编码特征值
-        h_eval = self.eval_encoder(evals) # [B, d_model]
-        h_eval = h_eval.unsqueeze(1).expand(-1, evecs.shape[1], -1) # [B, N, d_model]
-        
-        # 编码特征向量
-        h_evec = self.sign_net(evecs) # [B, N, d_model]
-        
-        # 融合: 这里的 Memory 长度是 N (节点数)，代表谱空间的模态
-        memory = self.fusion(torch.cat([h_eval, h_evec], dim=-1)) # [B, N, d_model]
-        
-        # --- 2. 构建 Query (时间信息) ---
-        # Target 是时间序列
-        tgt = self.time_encoding(time_indices) # [B, P, d_model]
-        
+        h_eval = self.eval_encoder(evals)  # [B, d_model]
+        h_eval_expanded = h_eval.unsqueeze(1).expand(-1, evecs.shape[1], -1)  # [B, N, d_model]
+        h_evec = self.sign_net(evecs)  # [B, N, d_model]
+        memory = self.fusion(torch.cat([h_eval_expanded, h_evec], dim=-1))  # [B, N, d_model]
+        # --- 2. 构建 Query (时间 + 图全局特征) ---
+        graph_global = memory.mean(dim=1)  # [B, d_model]
+        graph_query = self.graph_to_query(graph_global)  # [B, d_model]
+        time_pe = self.time_encoding(time_indices)  # [B, P, d_model]
+        tgt = self.query_embed.expand(B, -1, -1) + time_pe + graph_query.unsqueeze(1)
         # --- 3. Transformer 解码 ---
-        # Cross-Attention: Query=Time, Key/Value=Spectral Memory
-        out = self.transformer_decoder(tgt, memory) # [B, P, d_model]
-        
+        out = self.transformer_decoder(tgt, memory)  # [B, P, d_model]
         # --- 4. 预测参数 ---
-        beta_pred = self.head(out).squeeze(-1) # [B, P]
-        
+        beta_pred = self.head(out).squeeze(-1)  # [B, P]
         return beta_pred

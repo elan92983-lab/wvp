@@ -72,7 +72,7 @@ def main():
     val_loader = DataLoader(val_ds, batch_size=args.batch_size)
     
     # 2. 初始化模型
-    model = SpectralTemporalTransformer(max_nodes=20, d_model=256, nhead=8, num_layers=6, max_seq_len=40).to(device)
+    model = SpectralTemporalTransformer(max_nodes=20, d_model=128, nhead=4, num_layers=4, max_seq_len=40).to(device)
     optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=1e-4)  # 降低学习率
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
     criterion = nn.HuberLoss(reduction='sum', delta=1.0)

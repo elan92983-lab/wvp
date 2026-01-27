@@ -63,7 +63,14 @@ def main():
     
     if os.path.exists(pretrained_path):
         print(f"Loading pretrained model: {pretrained_path}")
-        model.load_state_dict(torch.load(pretrained_path, map_location=device))
+        pretrained_dict = torch.load(pretrained_path, map_location=device)
+        model_dict = model.state_dict()
+        # 只加载匹配的权重
+        matched = {k: v for k, v in pretrained_dict.items() if k in model_dict and v.shape == model_dict[k].shape}
+        model_dict.update(matched)
+        model.load_state_dict(model_dict)
+        print(f"✅ 成功加载 {len(matched)}/{len(model_dict)} 个预训练权重")
+        print(f"⚠️ 新增参数将随机初始化: query_embed, graph_to_query")
     else:
         print("⚠️ Warning: No pretrained model found. Training from scratch (Hard!)")
         
