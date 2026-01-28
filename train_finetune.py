@@ -20,6 +20,21 @@ def temporal_gradient_loss(pred, target, mask):
     mask_diff = mask[:, 1:] * mask[:, :-1]
     return ((pred_diff - target_diff) ** 2 * mask_diff).sum() / (mask_diff.sum() + 1e-6)
 
+def sample_difficulty_weight(target, mask, tail_ratio=0.5, scale=2.0, base=1.0):
+    """为后段振荡较大的样本提供更高权重，鼓励模型关注难样本。"""
+    B, P = target.shape
+    start = int(P * (1 - tail_ratio))
+    tail_mask = mask[:, start:]
+    if tail_mask.sum() < 1:
+        return torch.ones((B, 1), device=target.device)
+    tail = target[:, start:]
+    denom = tail_mask.sum(dim=1, keepdim=True).clamp_min(1.0)
+    mean = (tail * tail_mask).sum(dim=1, keepdim=True) / denom
+    var = ((tail - mean) ** 2 * tail_mask).sum(dim=1, keepdim=True) / denom
+    std = var.sqrt()
+    weights = base + scale * std
+    return weights
+
 def tail_variance_loss(pred, target, mask, tail_ratio=0.5):
     """约束后半段方差，避免尾部塌缩成直线"""
     P = pred.shape[1]
@@ -166,8 +181,10 @@ def main():
             # 只计算 mask=1 的部分 (有效时间步)
             loss_mse = (pred_betas - real_betas) ** 2
             time_w = make_time_weights(loss_mse.shape[1], WEIGHT_TAIL, loss_mse.device).unsqueeze(0)
-            weighted_mask = mask * time_w
-            loss_mse = (loss_mse * weighted_mask).sum() / weighted_mask.sum().clamp_min(1.0)
+            difficulty_w = sample_difficulty_weight(real_betas, mask)
+            weighted_mask = mask * time_w * difficulty_w
+            denom = weighted_mask.sum().clamp_min(1.0)
+            loss_mse = (loss_mse * weighted_mask).sum() / denom
             
             # (C) Loss 2: Physics (辅助)
             # 只挑选 batch 中 N == target_N_sim 的样本计算物理 Loss

@@ -1,0 +1,14 @@
+Job Start: Wed Jan 28 09:27:34 PM CST 2026
+Using device: cuda
+模型参数量: 6,907,651
+Epoch 1: Loss=3.120520, LR=9.99e-05
+Epoch 2: Loss=2.225227, LR=9.96e-05
+Epoch 3: Loss=1.887738, LR=9.91e-05
+Epoch 4: Loss=1.679606, LR=9.84e-05
+Epoch 5: Loss=1.601751, LR=9.76e-05
+Epoch 6: Loss=1.480351, LR=9.65e-05
+Epoch 7: Loss=1.464400, LR=9.52e-05
+Epoch 8: Loss=1.372639, LR=9.38e-05
+Epoch 9: Loss=1.373996, LR=9.22e-05
+Epoch 10: Loss=1.366497, Val Corr=0.6917, LR=9.05e-05
+Job End: Wed Jan 28 09:27:49 PM CST 2026

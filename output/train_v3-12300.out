@@ -1,0 +1,101 @@
+Job Start: Wed Jan 28 09:29:51 PM CST 2026
+Using device: cuda
+模型参数量: 6,907,651
+Epoch 1: Loss=2.989021, LR=9.99e-05
+Epoch 2: Loss=2.201848, LR=9.96e-05
+Epoch 3: Loss=1.817594, LR=9.91e-05
+Epoch 4: Loss=1.644418, LR=9.84e-05
+Epoch 5: Loss=1.579639, LR=9.76e-05
+Epoch 6: Loss=1.495527, LR=9.65e-05
+Epoch 7: Loss=1.418629, LR=9.52e-05
+Epoch 8: Loss=1.362812, LR=9.38e-05
+Epoch 9: Loss=1.329795, LR=9.22e-05
+Epoch 10: Loss=1.297024, Val Corr=0.6601, LR=9.05e-05
+  🌟 新最佳模型! Corr=0.6601
+Epoch 11: Loss=1.222871, LR=8.85e-05
+Epoch 12: Loss=1.202144, LR=8.64e-05
+Epoch 13: Loss=1.210993, LR=8.42e-05
+Epoch 14: Loss=1.161967, LR=8.19e-05
+Epoch 15: Loss=1.164025, LR=7.94e-05
+Epoch 16: Loss=1.156292, LR=7.68e-05
+Epoch 17: Loss=1.109711, LR=7.41e-05
+Epoch 18: Loss=1.096134, LR=7.13e-05
+Epoch 19: Loss=1.054979, LR=6.84e-05
+Epoch 20: Loss=1.049963, Val Corr=0.7022, LR=6.55e-05
+  🌟 新最佳模型! Corr=0.7022
+Epoch 21: Loss=1.042365, LR=6.24e-05
+Epoch 22: Loss=1.036362, LR=5.94e-05
+Epoch 23: Loss=1.011488, LR=5.63e-05
+Epoch 24: Loss=0.977440, LR=5.31e-05
+Epoch 25: Loss=0.981254, LR=5.00e-05
+Epoch 26: Loss=0.967763, LR=4.69e-05
+Epoch 27: Loss=0.959317, LR=4.37e-05
+Epoch 28: Loss=0.949680, LR=4.06e-05
+Epoch 29: Loss=0.930713, LR=3.76e-05
+Epoch 30: Loss=0.924871, Val Corr=0.7116, LR=3.45e-05
+  🌟 新最佳模型! Corr=0.7116
+Epoch 31: Loss=0.932387, LR=3.16e-05
+Epoch 32: Loss=0.907570, LR=2.87e-05
+Epoch 33: Loss=0.902442, LR=2.59e-05
+Epoch 34: Loss=0.885766, LR=2.32e-05
+Epoch 35: Loss=0.890668, LR=2.06e-05
+Epoch 36: Loss=0.869922, LR=1.81e-05
+Epoch 37: Loss=0.873188, LR=1.58e-05
+Epoch 38: Loss=0.862294, LR=1.36e-05
+Epoch 39: Loss=0.877755, LR=1.15e-05
+Epoch 40: Loss=0.885232, Val Corr=0.7124, LR=9.55e-06
+  🌟 新最佳模型! Corr=0.7124
+Epoch 41: Loss=0.850634, LR=7.78e-06
+Epoch 42: Loss=0.870514, LR=6.18e-06
+Epoch 43: Loss=0.864188, LR=4.76e-06
+Epoch 44: Loss=0.845099, LR=3.51e-06
+Epoch 45: Loss=0.852610, LR=2.45e-06
+Epoch 46: Loss=0.857447, LR=1.57e-06
+Epoch 47: Loss=0.848704, LR=8.86e-07
+Epoch 48: Loss=0.855479, LR=3.94e-07
+Epoch 49: Loss=0.851302, LR=9.87e-08
+Epoch 50: Loss=0.838456, Val Corr=0.7096, LR=1.00e-04
+Epoch 51: Loss=0.930934, LR=1.00e-04
+Epoch 52: Loss=0.888190, LR=9.99e-05
+Epoch 53: Loss=0.896930, LR=9.98e-05
+Epoch 54: Loss=0.885301, LR=9.96e-05
+Epoch 55: Loss=0.870733, LR=9.94e-05
+Epoch 56: Loss=0.860062, LR=9.91e-05
+Epoch 57: Loss=0.870382, LR=9.88e-05
+Epoch 58: Loss=0.853783, LR=9.84e-05
+Epoch 59: Loss=0.852034, LR=9.80e-05
+Epoch 60: Loss=0.820643, Val Corr=0.7039, LR=9.76e-05
+Epoch 61: Loss=0.822121, LR=9.70e-05
+Epoch 62: Loss=0.766966, LR=9.65e-05
+Epoch 63: Loss=0.796186, LR=9.59e-05
+Epoch 64: Loss=0.768071, LR=9.52e-05
+Epoch 65: Loss=0.766811, LR=9.46e-05
+Epoch 66: Loss=0.762133, LR=9.38e-05
+Epoch 67: Loss=0.788068, LR=9.30e-05
+Epoch 68: Loss=0.743405, LR=9.22e-05
+Epoch 69: Loss=0.728125, LR=9.14e-05
+Epoch 70: Loss=0.748900, Val Corr=0.6959, LR=9.05e-05
+Epoch 71: Loss=0.723309, LR=8.95e-05
+Epoch 72: Loss=0.697935, LR=8.85e-05
+Epoch 73: Loss=0.701870, LR=8.75e-05
+Epoch 74: Loss=0.685510, LR=8.64e-05
+Epoch 75: Loss=0.681288, LR=8.54e-05
+Epoch 76: Loss=0.675639, LR=8.42e-05
+Epoch 77: Loss=0.660238, LR=8.31e-05
+Epoch 78: Loss=0.646600, LR=8.19e-05
+Epoch 79: Loss=0.653287, LR=8.06e-05
+Epoch 80: Loss=0.631067, Val Corr=0.7073, LR=7.94e-05
+Epoch 81: Loss=0.639146, LR=7.81e-05
+Epoch 82: Loss=0.639431, LR=7.68e-05
+Epoch 83: Loss=0.625300, LR=7.55e-05
+Epoch 84: Loss=0.617288, LR=7.41e-05
+Epoch 85: Loss=0.595563, LR=7.27e-05
+Epoch 86: Loss=0.594953, LR=7.13e-05
+Epoch 87: Loss=0.582305, LR=6.99e-05
+Epoch 88: Loss=0.583292, LR=6.84e-05
+Epoch 89: Loss=0.568187, LR=6.69e-05
+Epoch 90: Loss=0.583885, Val Corr=0.6955, LR=6.55e-05
+早停: 50 epochs 无改进
+
+训练完成! 最佳验证 Corr: 0.7124
+Job End: Wed Jan 28 09:31:36 PM CST 2026

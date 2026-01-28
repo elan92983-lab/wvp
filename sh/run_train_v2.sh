@@ -20,11 +20,11 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)
 mkdir -p models
 mkdir -p output
 
-# 运行训练脚本
-# 数据路径默认是 data/processed/spectral_data_v2.npz
+# 运行训练脚本 (新教师强制版本)
+# 训练默认 500 epoch，如需缩短可在命令行调整
 python -u train_v2.py \
-    --epochs 200 \
-    --batch_size 128 \
+    --epochs 500 \
+    --batch_size 32 \
     --data_path data/processed/spectral_data_v2.npz
 
 echo "Job End: $(date)"

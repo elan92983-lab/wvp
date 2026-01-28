@@ -1,0 +1,90 @@
+Job Start: Wed Jan 28 06:42:04 PM CST 2026
+Node: cn1
+Using device: cuda
+Loading labeled dataset for Supervised + Physics training...
+Dataset Stats: Mean=-0.0837, Std=1.2627
+✅ 预训练权重已加载 (匹配 79/79)。
+⚠️ 预训练中多余参数数量: 18
+🚀 Starting Supervised + Physics Fine-tuning...
+Epoch 1: Total Loss=2.1449 | MSE=0.3625
+Epoch 2: Total Loss=1.9127 | MSE=0.3261
+Epoch 3: Total Loss=1.7480 | MSE=0.2957
+Epoch 4: Total Loss=1.5383 | MSE=0.2609
+Epoch 5: Total Loss=1.5526 | MSE=0.2632
+Epoch 6: Total Loss=1.4404 | MSE=0.2439
+Epoch 7: Total Loss=1.4907 | MSE=0.2545
+Epoch 8: Total Loss=1.2994 | MSE=0.2206
+Epoch 9: Total Loss=1.1939 | MSE=0.2031
+Epoch 10: Total Loss=1.0908 | MSE=0.1844
+Epoch 11: Total Loss=1.1608 | MSE=0.1993
+Epoch 12: Total Loss=1.1830 | MSE=0.2018
+Epoch 13: Total Loss=1.4548 | MSE=0.2500
+Epoch 14: Total Loss=1.2099 | MSE=0.2060
+Epoch 15: Total Loss=1.3767 | MSE=0.2373
+Epoch 16: Total Loss=1.2580 | MSE=0.2115
+Epoch 17: Total Loss=1.1156 | MSE=0.1900
+Epoch 18: Total Loss=1.0536 | MSE=0.1795
+Epoch 19: Total Loss=1.0943 | MSE=0.1870
+Epoch 20: Total Loss=1.1332 | MSE=0.1926
+Epoch 21: Total Loss=1.2524 | MSE=0.2146
+Epoch 22: Total Loss=1.3287 | MSE=0.2266
+Epoch 23: Total Loss=1.4655 | MSE=0.2523
+Epoch 24: Total Loss=1.3316 | MSE=0.2291
+Epoch 25: Total Loss=1.4042 | MSE=0.2405
+Epoch 26: Total Loss=1.3790 | MSE=0.2356
+Epoch 27: Total Loss=1.1695 | MSE=0.1995
+Epoch 28: Total Loss=1.2526 | MSE=0.2132
+Epoch 29: Total Loss=1.1782 | MSE=0.2002
+Epoch 30: Total Loss=1.1101 | MSE=0.1888
+Epoch 31: Total Loss=1.1483 | MSE=0.1951
+Epoch 32: Total Loss=1.1454 | MSE=0.1948
+Epoch 33: Total Loss=1.0592 | MSE=0.1798
+Epoch 34: Total Loss=1.0688 | MSE=0.1819
+Epoch 35: Total Loss=1.1577 | MSE=0.1968
+Epoch 36: Total Loss=1.2290 | MSE=0.2092
+Epoch 37: Total Loss=1.3797 | MSE=0.2370
+Epoch 38: Total Loss=1.1895 | MSE=0.2019
+Epoch 39: Total Loss=1.3655 | MSE=0.2337
+Epoch 40: Total Loss=1.2858 | MSE=0.2193
+Epoch 41: Total Loss=1.4420 | MSE=0.2471
+Epoch 42: Total Loss=1.4755 | MSE=0.2524
+Epoch 43: Total Loss=1.2792 | MSE=0.2175
+Epoch 44: Total Loss=1.4207 | MSE=0.2454
+Epoch 45: Total Loss=1.5741 | MSE=0.2680
+Epoch 46: Total Loss=1.4809 | MSE=0.2537
+Epoch 47: Total Loss=1.8724 | MSE=0.3213
+Epoch 48: Total Loss=1.5978 | MSE=0.2726
+Epoch 49: Total Loss=1.4517 | MSE=0.2482
+Epoch 50: Total Loss=1.3615 | MSE=0.2322
+Epoch 51: Total Loss=1.3628 | MSE=0.2325
+Epoch 52: Total Loss=1.3941 | MSE=0.2379
+Epoch 53: Total Loss=1.5395 | MSE=0.2611
+Epoch 54: Total Loss=1.4145 | MSE=0.2406
+Epoch 55: Total Loss=1.3269 | MSE=0.2260
+Epoch 56: Total Loss=1.3133 | MSE=0.2234
+Epoch 57: Total Loss=1.6227 | MSE=0.2809
+Epoch 58: Total Loss=1.7614 | MSE=0.3020
+Epoch 59: Total Loss=1.5722 | MSE=0.2681
+Epoch 60: Total Loss=1.3671 | MSE=0.2326
+Epoch 61: Total Loss=1.3716 | MSE=0.2340
+Epoch 62: Total Loss=1.4481 | MSE=0.2449
+Epoch 63: Total Loss=1.2900 | MSE=0.2189
+Epoch 64: Total Loss=1.3502 | MSE=0.2300
+Epoch 65: Total Loss=1.2812 | MSE=0.2176
+Epoch 66: Total Loss=1.4268 | MSE=0.2435
+Epoch 67: Total Loss=1.5364 | MSE=0.2615
+Epoch 68: Total Loss=1.4332 | MSE=0.2437
+Epoch 69: Total Loss=1.3973 | MSE=0.2378
+Epoch 70: Total Loss=1.3686 | MSE=0.2337
+Epoch 71: Total Loss=1.3656 | MSE=0.2320
+Epoch 72: Total Loss=1.4141 | MSE=0.2404
+Epoch 73: Total Loss=1.2462 | MSE=0.2123
+Epoch 74: Total Loss=1.3149 | MSE=0.2238
+Epoch 75: Total Loss=1.4035 | MSE=0.2382
+Epoch 76: Total Loss=1.3546 | MSE=0.2304
+Epoch 77: Total Loss=1.2823 | MSE=0.2173
+Epoch 78: Total Loss=1.3467 | MSE=0.2286
+Epoch 79: Total Loss=1.3177 | MSE=0.2237
+Epoch 80: Total Loss=1.2868 | MSE=0.2185
+✅ Fine-tuning complete! Model learned from teacher (MSE).
+Job End: Wed Jan 28 06:43:03 PM CST 2026

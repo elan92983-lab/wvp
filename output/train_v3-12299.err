@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/ztc2025/plyproj/wvp/train_v3.py", line 212, in <module>
+    main()
+  File "/home/ztc2025/plyproj/wvp/train_v3.py", line 194, in main
+    torch.save(model.state_dict(), best_model_path)
+  File "/home/ztc2025/miniconda3/envs/quantum_lab/lib/python3.10/site-packages/torch/serialization.py", line 966, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+  File "/home/ztc2025/miniconda3/envs/quantum_lab/lib/python3.10/site-packages/torch/serialization.py", line 828, in _open_zipfile_writer
+    return container(name_or_buffer)  # type: ignore[arg-type]
+  File "/home/ztc2025/miniconda3/envs/quantum_lab/lib/python3.10/site-packages/torch/serialization.py", line 792, in __init__
+    torch._C.PyTorchFileWriter(
+RuntimeError: File /home/ztc2025/plyproj/wvp/models/spectral_transformer_v2_best.pth cannot be opened.
