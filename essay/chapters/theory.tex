@@ -17,6 +17,30 @@
 \]
 这使得我们可以把“反馈生成的 $\beta$ 序列”看作一个监督信号，用于训练学生模型回归整段轨迹。
 
+\subsection{FALQON 的动力学方程组 (ODE)}
+将反馈律代回薛定谔方程，我们可以得到一个闭环的、非线性的自主微分方程组：
+\begin{equation}
+\frac{d}{dt} |\psi(t)\rangle = -i \left( H_P - \alpha \langle \psi(t) | i[H_d, H_P] | \psi(t) \rangle H_d \right) |\psi(t)\rangle
+\end{equation}
+这个方程揭示了 FALQON 参数序列的本质：
+\begin{itemize}
+	\item \textbf{非线性性}：哈密顿量不再是外加的，而是依赖于状态 $|\psi(t)\rangle$ 本身。
+	\item \textbf{动力学轨迹}：我们在离散算法中看到的参数序列 $\vec{\beta}$，实际上是对连续函数 $\beta(t)$ 的时间序列采样。
+	\item \textbf{初值依赖性}：整个轨迹完全由初始状态 $|\psi_0\rangle$ 和系统的哈密顿量 $H_P$ 决定。
+\end{itemize}
+
+\subsection{库普曼算子理论与序列可预测性}
+为了解释为何 Transformer 能有效预测该序列，我们引入库普曼算子（Koopman Operator）理论。对于非线性动力系统，库普曼算子 $\mathcal{K}$ 定义为作用在可观测量函数 $g$ 上的线性算子：$\mathcal{K} g(x_t) = g(x_{t+1})$。
+在 FALQON 中，控制参数 $\beta_t$ 本身就是一个可观测量：
+\begin{equation}
+\beta_t = g(|\psi_t\rangle) = -\alpha \langle \psi_t | i[H_d, H_P] | \psi_t \rangle
+\end{equation}
+根据库普曼模态分解定理，$\beta_t$ 可以展开为：
+\begin{equation}
+\beta_t \approx \sum_{k=1}^K a_k(H_P) \cdot \lambda_k^t
+\end{equation}
+这表明，参数时间序列本质上是由一组特定的本征频率（$\lambda_k$）控制的线性叠加。Transformer 的自注意力机制实际上充当了谱滤波器（Spectral Filter）的角色，从输入的图嵌入中提取出驱动动力学演化的关键模态系数 $a_k(H_P)$，从而实现对整个轨迹的精确重构。
+
 \subsection{图结构的哈密顿量编码}
 对于 $n$ 节点的 MaxCut 问题，问题哈密顿量定义为：
 \begin{equation}

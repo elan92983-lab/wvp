@@ -17,6 +17,7 @@ def debug():
     time_idx = data['time_indices'].unsqueeze(0).to(device)
     targets = data['betas'].unsqueeze(0).to(device)
     mask = data['mask'].unsqueeze(0).to(device)
+    num_nodes = data['num_nodes'].unsqueeze(0).to(device)
     
     # 2. 模型
     model = SpectralTemporalTransformer(max_nodes=20, d_model=128, max_seq_len=40).to(device)
@@ -26,7 +27,9 @@ def debug():
     print("开始单样本过拟合测试 (Target: Loss -> 0)...")
     for epoch in range(500): # 跑 500 轮，死磕这一个数据
         optimizer.zero_grad()
-        preds = model(evals, evecs, time_idx)
+        prev_betas = torch.zeros_like(targets)
+        prev_betas[:, 1:] = targets[:, :-1]
+        preds = model(evals, evecs, time_idx, num_nodes=num_nodes, prev_betas=prev_betas)
         loss = criterion(preds * mask, targets * mask)
         loss.backward()
         optimizer.step()

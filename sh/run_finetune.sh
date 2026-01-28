@@ -20,8 +20,16 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)
 mkdir -p models
 mkdir -p output
 
-# 运行微调脚本
-# train_finetune.py 会加载 models/spectral_transformer_ep100.pth
-python -u train_finetune.py
+# Train finetune script
+python -u train_finetune.py \
+	--epochs 80 \
+	--lr 3e-4 \
+	--pretrained_path models/spectral_transformer_ep200.pth \
+	--weight_mse 5.0 \
+	--weight_temp 0.5 \
+	--weight_tail 2.0 \
+	--ss_start 0.0 \
+	--ss_end 0.5 \
+	--weight_tail_var 0.2
 
 echo "Job End: $(date)"

@@ -4,6 +4,11 @@ def temporal_gradient_loss(pred, target, mask):
     target_diff = target[:, 1:] - target[:, :-1]
     mask_diff = mask[:, 1:] * mask[:, :-1]
     return ((pred_diff - target_diff) ** 2 * mask_diff).sum() / (mask_diff.sum() + 1e-6)
+
+def make_time_weights(seq_len, weight_tail, device):
+    if weight_tail <= 1.0:
+        return torch.ones(seq_len, device=device)
+    return torch.linspace(1.0, weight_tail, steps=seq_len, device=device)
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -16,7 +21,7 @@ from tqdm import tqdm
 from src.data_utils.dataset import SpectralDataset
 from src.models.spectral_transformer import SpectralTemporalTransformer
 
-def train_one_epoch(model, loader, criterion, optimizer, device):
+def train_one_epoch(model, loader, criterion, optimizer, device, epoch, epochs, ss_start, ss_end, weight_tail):
     model.train()
     total_loss = 0
     
@@ -31,12 +36,26 @@ def train_one_epoch(model, loader, criterion, optimizer, device):
         optimizer.zero_grad()
         
         # 前向推理
-        preds = model(evals, evecs, time_idx)
+        num_nodes = batch['num_nodes'].to(device)
+        ss_prob = ss_start + (ss_end - ss_start) * (epoch / max(epochs - 1, 1))
+        ss_prob = float(max(0.0, min(1.0, ss_prob)))
+
+        prev_tf = torch.zeros_like(targets)
+        prev_tf[:, 1:] = targets[:, :-1]
+
+        with torch.no_grad():
+            pred_tf = model(evals, evecs, time_idx, num_nodes=num_nodes, prev_betas=prev_tf)
+
+        ss_mask = torch.rand_like(targets[:, 1:]) < ss_prob
+        prev_betas = prev_tf.clone()
+        prev_betas[:, 1:] = torch.where(ss_mask, pred_tf[:, :-1], targets[:, :-1])
+        preds = model(evals, evecs, time_idx, num_nodes=num_nodes, prev_betas=prev_betas)
         
         # 计算 Loss (只计算 mask 为 1 的部分)
-        loss_main = criterion(preds * mask, targets * mask)
-        # 归一化 loss，防止因为 pad 里的 0 拉低 loss
-        loss_main = loss_main / (mask.sum() + 1e-6) * mask.numel()
+        time_w = make_time_weights(preds.shape[1], weight_tail, preds.device).unsqueeze(0)
+        weighted_mask = mask * time_w
+        loss_main = criterion(preds * weighted_mask, targets * weighted_mask)
+        loss_main = loss_main / (weighted_mask.sum() + 1e-6) * weighted_mask.numel()
         # temporal gradient loss
         loss_temp = temporal_gradient_loss(preds, targets, mask)
         loss = loss_main + 0.5 * loss_temp
@@ -53,6 +72,9 @@ def main():
     parser.add_argument("--epochs", type=int, default=500)  # 增加默认训练轮数
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--data_path", type=str, default="data/processed/spectral_data_v2.npz")
+    parser.add_argument("--weight_tail", type=float, default=2.0)
+    parser.add_argument("--ss_start", type=float, default=0.0)
+    parser.add_argument("--ss_end", type=float, default=0.5)
     args = parser.parse_args()
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -80,7 +102,18 @@ def main():
     # 3. 训练循环
     print("开始训练 Spectral-Temporal Transformer...")
     for epoch in range(args.epochs):
-        train_loss = train_one_epoch(model, train_loader, criterion, optimizer, device)
+        train_loss = train_one_epoch(
+            model,
+            train_loader,
+            criterion,
+            optimizer,
+            device,
+            epoch,
+            args.epochs,
+            args.ss_start,
+            args.ss_end,
+            args.weight_tail
+        )
         scheduler.step()
         print(f"Epoch {epoch+1}: Train Loss = {train_loss:.6f} | LR = {scheduler.get_last_lr()[0]:.6e}")
         # 保存中间结果

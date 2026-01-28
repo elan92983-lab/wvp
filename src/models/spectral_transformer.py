@@ -12,25 +12,21 @@ class SignNet(nn.Module):
         super().__init__()
         self.phi = nn.Sequential(
             nn.Linear(in_dim, hidden_dim),
-            nn.ReLU(),
+            nn.GELU(),
             nn.Linear(hidden_dim, hidden_dim),
-            nn.ReLU(),
+            nn.GELU(),
             nn.Linear(hidden_dim, out_dim)
         )
         # 最后的聚合层
         self.rho = nn.Linear(out_dim, out_dim)
 
     def forward(self, evecs):
-        # evecs shape: [Batch, N, N] -> 视为 [Batch, N, feature_dim=N]
-        # 我们对每一行（每个节点的特征向量分量）进行编码
-        
-        # 这里的 SignNet 变体：我们希望对整个特征向量矩阵具备符号不变性
-        # 简化版：对每个特征向量 v_i (列) 进行处理
-        # 实际上，DeepSets 思想: Phi(v) + Phi(-v)
-        
-        # 维度变换: [B, N, N] -> [B*N, N]
-        B, N, _ = evecs.shape
-        flat_evecs = evecs.view(B * N, N)
+        # evecs shape: [Batch, M, N] (M 为选择的特征向量个数, N 为节点数)
+        # 这里对每个特征向量 v 进行编码，保证 f(v) = f(-v)
+
+        # 维度变换: [B, M, N] -> [B*M, N]
+        B, M, N = evecs.shape
+        flat_evecs = evecs.reshape(B * M, N)
         
         # Phi(v) + Phi(-v)
         h1 = self.phi(flat_evecs)
@@ -39,7 +35,7 @@ class SignNet(nn.Module):
         
         h = self.rho(h)
         # 还原维度 [B, N, dim]
-        return h.view(B, N, -1)
+        return h.view(B, M, -1)
 
 class SinusoidalPositionalEncoding(nn.Module):
     """
@@ -64,43 +60,128 @@ class SpectralTemporalTransformer(nn.Module):
     """
     对应 1.26.md 报告中的核心架构。
     """
-    def __init__(self, max_nodes=20, d_model=128, nhead=4, num_layers=3, max_seq_len=40):
+    def __init__(self, max_nodes=20, d_model=128, nhead=4, num_layers=3, max_seq_len=40, num_modes=None):
         super().__init__()
         self.d_model = d_model
         self.max_seq_len = max_seq_len
+        self.max_nodes = max_nodes
+        self.num_modes = num_modes or max_nodes
         # --- 1. 谱编码模块 (Spectral Encoder) ---
-        self.eval_encoder = nn.Linear(max_nodes, d_model)
+        self.eval_encoder = nn.Sequential(
+            nn.Linear(1, d_model),
+            nn.GELU(),
+            nn.Linear(d_model, d_model)
+        )
         self.sign_net = SignNet(max_nodes, d_model, d_model)
         self.fusion = nn.Linear(d_model * 2, d_model)
         # --- 2. 时序解码模块 (Temporal Decoder) ---
         self.time_encoding = SinusoidalPositionalEncoding(d_model, max_len=max_seq_len + 10)
         # === 新增：可学习的 Query 嵌入 ===
         self.query_embed = nn.Parameter(torch.randn(1, max_seq_len, d_model) * 0.02)
-        # === 新增：图全局特征投影到 Query ===
-        self.graph_to_query = nn.Linear(d_model, d_model)
+        # === 新增：图全局特征的专属 Token ===
+        self.graph_token_embed = nn.Parameter(torch.randn(1, 1, d_model))
+        # === 新增：前一步 beta 嵌入（自回归） ===
+        self.beta_embed = nn.Sequential(
+            nn.Linear(1, d_model),
+            nn.GELU(),
+            nn.Linear(d_model, d_model)
+        )
         decoder_layer = nn.TransformerDecoderLayer(d_model=d_model, nhead=nhead, batch_first=True)
         self.transformer_decoder = nn.TransformerDecoder(decoder_layer, num_layers=num_layers)
         # --- 3. 输出头 ---
         self.head = nn.Sequential(
             nn.Linear(d_model, 64),
-            nn.ReLU(),
+            nn.GELU(),
             nn.Linear(64, 1)
         )
 
-    def forward(self, evals, evecs, time_indices):
+    def forward(self, evals, evecs, time_indices, num_nodes=None, prev_betas=None):
         B = evals.shape[0]
-        # --- 1. 构建 Memory (图谱信息) ---
-        h_eval = self.eval_encoder(evals)  # [B, d_model]
-        h_eval_expanded = h_eval.unsqueeze(1).expand(-1, evecs.shape[1], -1)  # [B, N, d_model]
-        h_evec = self.sign_net(evecs)  # [B, N, d_model]
-        memory = self.fusion(torch.cat([h_eval_expanded, h_evec], dim=-1))  # [B, N, d_model]
-        # --- 2. 构建 Query (时间 + 图全局特征) ---
-        graph_global = memory.mean(dim=1)  # [B, d_model]
-        graph_query = self.graph_to_query(graph_global)  # [B, d_model]
+        # --- 1. 构建 Memory (谱模态信息) ---
+        num_modes = min(self.num_modes, evals.shape[1])
+        evals = evals[:, :num_modes]
+        evecs = evecs[:, :, :num_modes]
+
+        # evals: [B, M] -> [B, M, 1] -> [B, M, d_model]
+        h_eval = self.eval_encoder(evals.unsqueeze(-1))
+        # evecs: [B, N, M] -> [B, M, N]
+        h_evec = self.sign_net(evecs.transpose(1, 2))
+        
+        # --- 1.5 将图的全局信息作为一个特殊的 Token 加入 Memory ---
+        if num_nodes is not None:
+            valid_modes = torch.clamp(num_nodes, max=num_modes)
+            mode_ids = torch.arange(num_modes, device=evals.device).unsqueeze(0)
+            mode_mask = (mode_ids < valid_modes.unsqueeze(1)).unsqueeze(-1)
+            # 基于有效 mode 计算 memory
+            mode_memory = self.fusion(torch.cat([h_eval, h_evec], dim=-1))
+            masked_sum = (mode_memory * mode_mask).sum(dim=1)
+            denom = mode_mask.sum(dim=1).clamp_min(1.0)
+            graph_global = masked_sum / denom
+        else:
+            mode_memory = self.fusion(torch.cat([h_eval, h_evec], dim=-1))
+            graph_global = mode_memory.mean(dim=1)
+
+        # 将全局图特征与可学习的 token 嵌入结合，并扩展到 batch size
+        graph_token = self.graph_token_embed.expand(B, -1, -1) + graph_global.unsqueeze(1)
+        
+        # 最终的 memory 是 mode memory 和 graph token 的拼接
+        memory = torch.cat([graph_token, mode_memory], dim=1)
+
+        # 处理 padding：基于 num_nodes 生成 memory_key_padding_mask
+        # 注意：graph_token 永远不被 mask
+        memory_key_padding_mask = None
+        if num_nodes is not None:
+            num_nodes = num_nodes.to(evals.device)
+            valid_modes = torch.clamp(num_nodes, max=num_modes)
+            mode_ids = torch.arange(num_modes, device=evals.device).unsqueeze(0)
+            mode_mask = mode_ids >= valid_modes.unsqueeze(1)
+            # graph_token 对应的 mask 是 False
+            graph_token_mask = torch.zeros((B, 1), dtype=torch.bool, device=evals.device)
+            memory_key_padding_mask = torch.cat([graph_token_mask, mode_mask], dim=1)
+
+        # --- 2. 构建 Query (只包含时序信息) ---
         time_pe = self.time_encoding(time_indices)  # [B, P, d_model]
-        tgt = self.query_embed.expand(B, -1, -1) + time_pe + graph_query.unsqueeze(1)
+
+        beta_pe = 0
+        if prev_betas is not None:
+            beta_pe = self.beta_embed(prev_betas.unsqueeze(-1))  # [B, P, d_model]
+
+        tgt = self.query_embed.expand(B, -1, -1) + time_pe + beta_pe
+
         # --- 3. Transformer 解码 ---
-        out = self.transformer_decoder(tgt, memory)  # [B, P, d_model]
+        P = time_indices.shape[1]
+        tgt_mask = torch.triu(
+            torch.full((P, P), float('-inf'), device=evals.device),
+            diagonal=1
+        )
+        out = self.transformer_decoder(
+            tgt,
+            memory,
+            tgt_mask=tgt_mask,
+            memory_key_padding_mask=memory_key_padding_mask
+        )  # [B, P, d_model]
         # --- 4. 预测参数 ---
-        beta_pred = self.head(out).squeeze(-1)  # [B, P]
+        beta_delta = self.head(out).squeeze(-1)  # [B, P]
+        if prev_betas is not None:
+            beta_pred = beta_delta + prev_betas
+        else:
+            beta_pred = beta_delta
         return beta_pred
+
+    @torch.no_grad()
+    def generate(self, evals, evecs, time_indices, num_nodes=None):
+        """自回归生成 beta 序列（推理用）"""
+        B, P = time_indices.shape
+        device = time_indices.device
+        preds = torch.zeros((B, P), device=device)
+        for t in range(P):
+            # === CRITICAL FIX: Shift preds right to align with training logic ===
+            # Training: prev_betas[:, t] = real_betas[:, t-1]
+            # Inference: We must shift our current accumulated preds so that
+            #            input index t contains the prediction from t-1.
+            prev = torch.zeros_like(preds)
+            prev[:, 1:] = preds[:, :-1]
+            
+            out = self.forward(evals, evecs, time_indices, num_nodes=num_nodes, prev_betas=prev)
+            preds[:, t] = out[:, t]
+        return preds

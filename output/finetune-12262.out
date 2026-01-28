@@ -1,0 +1,10 @@
+Job Start: Wed Jan 28 02:50:18 PM CST 2026
+Node: cn1
+Using device: cuda
+Loading labeled dataset for Supervised + Physics training...
+Dataset Stats: Mean=-0.0837, Std=1.2627
+✅ 预训练权重已加载 (匹配 69/79)。
+⚠️ 未加载(形状不匹配或不存在)参数数量: 10
+⚠️ 预训练中多余参数数量: 2
+🚀 Starting Supervised + Physics Fine-tuning...
+Job End: Wed Jan 28 02:50:24 PM CST 2026

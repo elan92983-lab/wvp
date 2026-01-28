@@ -1,5 +1,0 @@
-Job Start: Tue Jan 27 07:30:07 PM CST 2026
-Node: cn1
-Using device: cuda
-Loading pretrained model: models/spectral_transformer_ep100.pth
-Job End: Tue Jan 27 07:30:11 PM CST 2026

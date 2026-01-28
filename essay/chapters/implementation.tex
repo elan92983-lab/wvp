@@ -1,7 +1,15 @@
 \section{模型实现与训练细节}
 
 \subsection{Transformer 学生：全局建模}
-项目主模型将展平后的邻接矩阵视为输入特征，通过线性层映射到 $d_{\text{model}}=64$ 的嵌入空间，并用多层 Transformer 解码器回归长度 $P=30$ 的 $\beta$ 序列。尽管代码中将“图特征”压缩为单 token 进行解码，这仍可视为一种全局表示学习：模型用注意力机制对整图统计进行建模，输出整段轨迹。
+
+为了体现“时间序列”和“图结构”的双重特性，我们设计了“谱-时序 Transformer”（Spectral-Temporal Transformer）。该架构包含两个核心模块：
+
+\begin{enumerate}
+	\item \textbf{谱编码器（Spectral Encoder）}：输入图的拉普拉斯特征值与特征向量。为了解决特征向量的符号模糊性（Sign Ambiguity），我们采用了符号不变网络（SignNet）进行预处理，输出图的全局谱嵌入 $h_{graph}$。
+	\item \textbf{时序解码器（Temporal Decoder）}：采用 Decoder-Only 结构。输入时间步索引 $t$ 的正弦位置编码作为 Query，通过交叉注意力（Cross-Attention）机制查询 $h_{graph}$。这模拟了库普曼算子根据当前时间步调用特定谱模态的过程，从而生成时刻 $t$ 的控制参数 $\beta_t$。
+\end{enumerate}
+
+此外，为了解决大规模数据生成的瓶颈，我们引入了物理信息微调策略。在小规模图上进行预训练后，在大规模图上直接利用 FALQON 的动力学方程构建物理损失函数 $\mathcal{L}_{Physics} = \langle \psi_P(\hat{\beta}) | H_P | \psi_P(\hat{\beta}) \rangle$，通过可微量子模拟器进行自监督更新。
 
 \subsection{GNN 基线：局部消息传递}
 为提供对照，我们实现了一个不依赖外部图库的轻量 GNN：输入为 padding 后的邻接矩阵与 mask；加入 self-loop 并做 $\tilde{A}=D^{-1/2}(A+I)D^{-1/2}$；消息传递为 $H^{(\ell+1)}=\sigma(\tilde{A}H^{(\ell)}W^{(\ell)})$；读出采用 mask 加权的 mean pooling + MLP 输出 $\beta$ 序列。

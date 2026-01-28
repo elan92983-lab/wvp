@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "/home/ztc2025/plyproj/wvp/train_finetune.py", line 129, in <module>
-    main()
-  File "/home/ztc2025/plyproj/wvp/train_finetune.py", line 66, in main
-    model.load_state_dict(torch.load(pretrained_path, map_location=device))
-  File "/home/ztc2025/miniconda3/envs/quantum_lab/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2629, in load_state_dict
-    raise RuntimeError(
-RuntimeError: Error(s) in loading state_dict for SpectralTemporalTransformer:
-	Missing key(s) in state_dict: "query_embed", "graph_to_query.weight", "graph_to_query.bias". 
