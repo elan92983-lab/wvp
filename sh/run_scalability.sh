@@ -24,6 +24,7 @@ CFG_NAME=${configs[$SLURM_ARRAY_TASK_ID]}
 SAMPLES_PER_CONFIG=${SAMPLES_PER_CONFIG:-}
 MAX_LAYERS=${MAX_LAYERS:-40}
 SEED=${SEED:-$SLURM_ARRAY_TASK_ID}
+MAX_SIM_QUBITS=${MAX_SIM_QUBITS:-12}  # do not attempt dense simulation above this N
 
 echo "Task $SLURM_ARRAY_TASK_ID running config: $CFG_NAME"
 
@@ -34,4 +35,5 @@ python -u scripts/generate_scalability_data.py \
     --output_dir data/scalability_test \
     --max_layers $MAX_LAYERS \
     ${SAMPLES_PER_CONFIG:+--samples $SAMPLES_PER_CONFIG} \
-    --seed $SEED
+    --seed $SEED \
+    --max_sim_qubits $MAX_SIM_QUBITS
