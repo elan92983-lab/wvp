@@ -1,0 +1,14 @@
+% 05_related_work.tex
+% 相关工作
+
+\subsection{变分量子优化}
+
+QAOA \cite{farhi2014qaoa} 是最广泛研究的变分量子算法。近年来，研究者探索了多种参数初始化和迁移策略，包括基于图神经网络的参数预测 \cite{joshi2022qaoa}。本文的方法可视为将这一思路拓展至 FALQON 框架。
+
+\subsection{基于反馈的量子控制}
+
+FALQON \cite{magann2022feedback} 及其变体 \cite{magann2022lyapunov} 提供了无需经典优化的量子控制方案。本文的神经网络方法与 FALQON 互补：前者提供快速初始化，后者可用于微调。
+
+\subsection{图的谱表示学习}
+
+谱图神经网络利用拉普拉斯特征向量进行节点嵌入。SignNet \cite{lim2023signnet} 解决了特征向量的符号模糊性问题，本文将其首次应用于量子优化参数预测。

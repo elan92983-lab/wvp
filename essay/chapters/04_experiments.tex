@@ -1,0 +1,97 @@
+% 04_experiments.tex
+% 实验部分
+
+\subsection{实验设置}
+\label{subsec:experimental_setup}
+
+\subsubsection{数据集}
+
+数据集包含 1000 个随机图样本，由两类图混合构成：
+\begin{itemize}
+    \item \textbf{Erdős-Rényi 图}（约 50\%）：边概率 $p=0.6$，节点数 $n \in [6, 13]$
+    \item \textbf{随机 3-正则图}（约 50\%）：每节点度数固定为 3
+\end{itemize}
+每个样本包含 $P=40$ 层的 FALQON 参数序列，由经典模拟器以 $\alpha=1.0$ 生成。数据按 9:1 划分为训练集与测试集。
+
+\subsubsection{评估指标}
+
+\begin{itemize}
+    \item \textbf{皮尔逊相关系数 (Corr)}：$\text{Corr}(\hat{\bm{\beta}}, \bm{\beta}) \in [-1, 1]$
+    \item \textbf{平均绝对误差 (MAE)}：$\frac{1}{P}\sum_t |\hat{\beta}_t - \beta_t|$
+    \item \textbf{均方根误差 (RMSE)}
+\end{itemize}
+
+\subsubsection{样本分类}
+
+根据参数序列后半段方差，将样本分为两类：
+\begin{equation}
+\text{样本类型} = \begin{cases}
+\text{收敛型} & \text{if } \text{Var}(\beta_{P/2:P}) \leq 0.1 \\
+\text{振荡型} & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\subsection{主要结果}
+\label{subsec:main_results}
+
+表 \ref{tab:main_results} 展示了模型在测试集上的整体性能及分类表现。
+
+\begin{table}[htbp]
+\centering
+\caption{谱-时序 Transformer 的测试集性能}
+\label{tab:main_results}
+\begin{tabular}{lcccc}
+\toprule
+样本类型 & 占比 & MAE $\downarrow$ & Corr $\uparrow$ & 最佳/最差 Corr \\
+\midrule
+收敛型 & 30\% & 0.215 & \textbf{0.917} & 0.997 / 0.804 \\
+振荡型 & 70\% & 0.458 & 0.801 & 0.946 / 0.616 \\
+\midrule
+\textbf{总体} & 100\% & 0.314 & \textbf{0.885} & — \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{关键发现}
+\begin{enumerate}
+    \item 模型在收敛型样本上表现优异（Corr = 0.917），最佳样本几乎完美拟合（Corr = 0.997）。
+    \item 振荡型样本的后段高频振荡难以准确预测，但主要趋势仍被捕捉（Corr > 0.8）。
+    \item 所有样本的初始"峰-谷"结构（Layer 0-5）均被准确拟合，这是决定优化方向的关键区间。
+\end{enumerate}
+
+\subsection{定性分析}
+\label{subsec:qualitative}
+
+图 \ref{fig:case_study} 展示了四个典型样本的预测结果。
+
+% 此处插入图片，需要准备对应的 figures 目录
+
+\subsection{消融实验}
+\label{subsec:ablation}
+
+表 \ref{tab:ablation} 展示了各组件对模型性能的贡献。
+
+\begin{table}[htbp]
+\centering
+\caption{消融实验结果}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+配置 & Corr & $\Delta$ \\
+\midrule
+完整模型 & 0.885 & — \\
+移除 SignNet & 0.821 & -0.064 \\
+移除 Scheduled Sampling & 0.847 & -0.038 \\
+移除时序梯度损失 & 0.869 & -0.016 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{理论分析：预测误差的鲁棒性}
+\label{subsec:robustness}
+
+\begin{proposition}[预测误差的鲁棒性]
+设学生模型预测 $\hat{\beta}_p = \beta_p + \epsilon_p$，若 $|\epsilon_p| < |\beta_p|$（即误差不改变符号），则能量仍单调下降。
+\end{proposition}
+
+这解释了为何即使存在预测误差，模型输出的参数序列仍能有效驱动优化。

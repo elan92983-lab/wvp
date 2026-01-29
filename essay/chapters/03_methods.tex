@@ -1,0 +1,88 @@
+% 03_methods.tex
+% 方法部分
+
+本节详细介绍谱-时序 Transformer 的架构设计和训练策略。
+
+\subsection{问题形式化}
+\label{subsec:problem_formulation}
+
+给定图 $G$ 的拉普拉斯谱 $(\Lambda, U)$，目标是预测 FALQON 参数序列 $\bm{\beta} = (\beta_0, \beta_1, \, \ldots, \, \beta_{P-1})$。我们将此建模为条件序列生成问题：
+\begin{equation}
+p(\bm{\beta} | G) = \prod_{t=0}^{P-1} p(\beta_t | \beta_{<t}, G)
+\end{equation}
+
+\subsection{模型架构}
+\label{subsec:architecture}
+
+如图 \ref{fig:architecture} 所示，谱-时序 Transformer 包含三个核心模块。
+
+\subsubsection{符号不变谱编码器（SignNet）}
+\label{subsec:signnet}
+
+为解决特征向量的符号模糊性，我们采用 SignNet 进行预处理：
+\begin{equation}
+h_i = \rho\left( \phi(u_i) + \phi(-u_i) \right)
+\end{equation}
+其中 $\phi: \mathbb{R}^n \to \mathbb{R}^d$ 为 MLP，$\rho: \mathbb{R}^d \to \mathbb{R}^d$ 为聚合层。该设计保证 $h_i = h_{-i}$，消除符号歧义。
+
+特征值通过独立的 MLP 编码后与 SignNet 输出融合：
+\begin{equation}
+m_i = \text{Fusion}\left( \text{MLP}(\lambda_i), h_i \right)
+\end{equation}
+得到 $M$ 个谱模态的表示 $\{m_i\}_{i=1}^M$，作为 Transformer 解码器的 Memory。
+
+\subsubsection{时序解码器}
+
+采用标准 Transformer Decoder \cite{vaswani2017attention}，Query 由时间步的正弦位置编码和前一步预测值的嵌入组成：
+\begin{equation}
+q_t = \text{PE}(t) + \text{Embed}(\beta_{t-1}) + e_{\text{query}}
+\end{equation}
+其中 $e_{\text{query}}$ 为可学习的查询嵌入。
+
+解码器通过交叉注意力查询谱模态信息：
+\begin{equation}
+\text{CrossAttn}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d}} \right) V
+\end{equation}
+其中 $K, V$ 来自谱编码器输出，$Q$ 来自时序查询。
+
+\subsubsection{输出头}
+
+解码器输出经 MLP 映射为标量预测：
+\begin{equation}
+\hat{\beta}_t = \text{MLP}(\text{Decoder}(q_t, M))
+\end{equation}
+
+\subsection{训练策略}
+\label{subsec:training}
+
+\subsubsection{Scheduled Sampling}
+
+为缓解训练（使用真实 $\beta_{t-1}$）与推理（使用预测 $\hat{\beta}_{t-1}$）的不一致，我们采用 Scheduled Sampling \cite{bengio2015scheduled}：
+\begin{equation}
+\tilde{\beta}_{t-1} = \begin{cases}
+\beta_{t-1}^{\text{true}} & \text{w.p. } 1 - \epsilon \\
+\hat{\beta}_{t-1} & \text{w.p. } \epsilon
+\end{cases}
+\end{equation}
+其中 $\epsilon$ 从 0 线性增长至 0.3。
+
+\subsubsection{损失函数}
+
+总损失由三部分组成：
+\begin{equation}
+\mathcal{L} = \mathcal{L}_{\text{MSE}} + \lambda_1 \mathcal{L}_{\text{temporal}} + \lambda_2 \mathcal{L}_{\text{tail}}
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{加权 MSE}：后段时间步赋予更高权重
+    \begin{equation}
+    \mathcal{L}_{\text{MSE}} = \frac{1}{P} \sum_{t=0}^{P-1} w_t (\hat{\beta}_t - \beta_t)^2, \quad w_t = 1 + \frac{t}{P}
+    \end{equation}
+    
+    \item \textbf{时序梯度损失}：鼓励学习变化趋势
+    \begin{equation}
+    \mathcal{L}_{\text{temporal}} = \frac{1}{P-1} \sum_{t=1}^{P-1} \left( \Delta\hat{\beta}_t - \Delta\beta_t \right)^2
+    \end{equation}
+    
+    \item \textbf{尾部方差损失}：约束后段的动态范围
+\end{itemize}

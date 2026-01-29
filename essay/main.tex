@@ -14,12 +14,21 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{siunitx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% --- 定理环境 ---
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{remark}[theorem]{注记}
 
 % --- 样式设置 ---
 \setlist[itemize]{label=-}
-\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
 
-% --- 代码与命令行展示 ---
+% --- 代码展示 ---
 \lstset{
     basicstyle=\ttfamily\small,
     breaklines=true,
@@ -30,8 +39,11 @@
 }
 
 % --- 论文元数据 ---
-\title{\Large \textbf{基于谱-时序动力学的非变分量子控制：零次推理的物理信息算子学习框架}}
-\author{潘立扬}
+\title{\Large \textbf{神经网络驱动的零次推理量子优化：\\基于谱-时序 Transformer 的 FALQON 参数预测}}
+\author{
+    潘立扬 \\
+    \texttt{your-email@example.com}
+}
 \date{\today}
 
 \begin{document}
@@ -39,23 +51,99 @@
 \maketitle
 
 \begin{abstract}
-在嘈杂中型量子（NISQ）时代，变分量子算法（VQA）的实际应用受限于经典优化回路的高昂开销与复杂的能量景观。尽管基于反馈的量子优化算法（FALQON）通过引入确定性的李雅普诺夫（Lyapunov）控制律成功规避了非凸优化难题，但其代价是将“优化瓶颈”转化为“测量瓶颈”：每一层电路参数的生成都需要在量子硬件上进行昂贵的期望值测量。
+基于反馈的量子优化算法（FALQON）通过李雅普诺夫控制律消除了变分量子算法中的经典优化循环，但其逐层测量机制导致 $O(P^2)$ 的累积电路深度和严重的噪声累积。本文提出一种"教师-学生"零次推理框架，利用谱-时序 Transformer 直接从问题图的拉普拉斯谱预测完整的控制参数序列 $\{\beta_t\}_{t=0}^{P-1}$。我们的方法结合符号不变网络（SignNet）处理特征向量的符号模糊性，并采用自回归训练策略缓解推理阶段的误差累积。在包含 1000 个随机图的数据集上，模型在收敛型样本上达到 0.917 的平均相关系数，证明了神经网络预测量子控制参数的可行性。本文还从量子李雅普诺夫理论角度分析了预测误差对收敛性的影响，为物理信息神经网络在量子优化中的应用提供了理论支撑。
 
-本研究报告旨在构建一个“教师--学生”（Teacher-Student）零次推理框架，利用深度神经网络直接从问题哈密顿量的图结构预测最优控制参数轨迹，从而完全消除在线反馈测量的时间成本。为了响应“丰富故事性”与“引入时间序列”的研究需求，本文结合 QuACK（量子电路交替控制库普曼学习） 与 PALQO（物理信息神经网络加速大规模量子优化） 的理论成果，提出了一种全新的视角：将 FALQON 参数序列视为由图谱统计驱动的非线性动力系统的时间序列观测。
-
-通过引入库普曼算子（Koopman Operator）理论，我们将参数轨迹的生成理解为潜在无限维线性空间中的状态演化，这为使用基于注意力机制的序列模型（Transformer）提供了坚实的数学基础。同时，借鉴物理信息神经网络（PINN）的思想，我们提出了一种无需经典“教师”数据的自监督训练协议，直接利用 FALQON 的反馈律构建物理损失函数（Physics-Informed Loss），从而突破大规模系统训练数据的获取瓶颈。本文将从理论推导、架构设计到物理泛化机制进行详尽阐述，论证该框架如何利用随机矩阵理论中的 Kesten-McKay 分布实现跨规模的参数泛化。
+\textbf{关键词}：量子优化、FALQON、Transformer、谱图神经网络、零次推理
 \end{abstract}
 
-\input{chapters/introduction}
-\input{chapters/theory}
-·\input{chapters/dataset}
-\input{chapters/implementation}
-\input{chapters/evaluation}
-\input{chapters/transformer_architecture}
-\input{chapters/physics_analysis}
-\input{chapters/theoretical_depth}
-\input{chapters/innovation}
-\input{chapters/experiments}
-\input{chapters/conclusion}
+% ============================================================
+% 第一章：引言
+% ============================================================
+\section{引言}
+\label{sec:introduction}
+\input{chapters/01_introduction}
+
+% ============================================================
+% 第二章：预备知识
+% ============================================================
+\section{预备知识}
+\label{sec:preliminaries}
+\input{chapters/02_preliminaries}
+
+% ============================================================
+% 第三章：方法
+% ============================================================
+\section{方法}
+\label{sec:methods}
+\input{chapters/03_methods}
+
+% ============================================================
+% 第四章：实验
+% ============================================================
+\section{实验}
+\label{sec:experiments}
+\input{chapters/04_experiments}
+
+% ============================================================
+% 第五章：相关工作
+% ============================================================
+\section{相关工作}
+\label{sec:related_work}
+\input{chapters/05_related_work}
+
+% ============================================================
+% 第六章：结论
+% ============================================================
+\section{结论与未来工作}
+\label{sec:conclusion}
+\input{chapters/06_conclusion}
+
+% ============================================================
+% 参考文献
+% ============================================================
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{magann2022feedback}
+Magann, A.B., Arenz, C., Grace, M.D., Ho, T.S., Kosut, R.L., McClean, J.R., Rabitz, H.A. and Sarovar, M., 2022.
+Feedback-based quantum optimization.
+\textit{Physical Review Letters}, 129(25), p.250502.
+
+\bibitem{magann2022lyapunov}
+Magann, A.B., Grace, M.D., Rabitz, H.A. and Sarovar, M., 2022.
+Lyapunov-control-inspired strategies for quantum combinatorial optimization.
+\textit{Physical Review A}, 106(6), p.062414.
+
+\bibitem{lim2023signnet}
+Lim, D., Robinson, J., Zhao, L., Smidt, T., Sra, S., Maron, H. and Jegelka, S., 2023.
+Sign and basis invariant networks for spectral graph representation learning.
+\textit{International Conference on Learning Representations (ICLR)}.
+
+\bibitem{vaswani2017attention}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.N., Kaiser, Ł. and Polosukhin, I., 2017.
+Attention is all you need.
+\textit{Advances in Neural Information Processing Systems}, 30.
+
+\bibitem{joshi2022qaoa}
+Joshi, C., et al., 2022.
+Learning to branch in combinatorial optimization with graph neural networks.
+\textit{ICLR Workshop on AI for Science}.
+
+\bibitem{farhi2014qaoa}
+Farhi, E., Goldstone, J. and Gutmann, S., 2014.
+A quantum approximate optimization algorithm.
+\textit{arXiv preprint arXiv:1411.4028}.
+
+\bibitem{bengio2015scheduled}
+Bengio, S., Vinyals, O., Jaitly, N. and Shazeer, N., 2015.
+Scheduled sampling for sequence prediction with recurrent neural networks.
+\textit{Advances in Neural Information Processing Systems}, 28.
+
+\bibitem{kesten1959symmetric}
+Kesten, H., 1959.
+Symmetric random walks on groups.
+\textit{Transactions of the American Mathematical Society}, 92(2), pp.336-354.
+
+\end{thebibliography}
 
 \end{document}

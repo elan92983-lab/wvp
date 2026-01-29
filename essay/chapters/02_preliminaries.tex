@@ -1,0 +1,53 @@
+% 02_preliminaries.tex
+% 预备知识
+
+本节介绍 FALQON 算法的理论基础和图的谱表示，为后续方法论述奠定基础。
+
+\subsection{FALQON 算法}
+\label{subsec:falqon}
+
+考虑组合优化问题的目标函数编码为问题哈密顿量 $H_P$，驱动哈密顿量取为横场 $H_D = \sum_{i=1}^n X_i$。FALQON 的目标是最小化成本函数：
+\begin{equation}
+C(t) = \langle \psi(t) | H_P | \psi(t) \rangle
+\end{equation}
+
+\begin{theorem}[FALQON 收敛性 \cite{magann2022lyapunov}]
+\label{thm:falqon_convergence}
+定义反馈控制律：
+\begin{equation}
+\beta(t) = -\alpha \cdot \langle \psi(t) | i[H_D, H_P] | \psi(t) \rangle, \quad \alpha > 0
+\end{equation}
+则成本函数满足 $\frac{dC}{dt} \leq 0$，即系统能量单调非递增。
+\end{theorem}
+
+\begin{proof}
+根据薛定谔方程，成本函数的时间导数为：
+\begin{equation}
+\frac{dC}{dt} = i\beta(t) \langle \psi | [H_D, H_P] | \psi \rangle
+\end{equation}
+代入反馈律，由于 $\langle i[H_D, H_P] \rangle$ 为实数，得：
+\begin{equation}
+\frac{dC}{dt} = -\alpha \left( \langle i[H_D, H_P] \rangle \right)^2 \leq 0 \qquad \qed
+\end{equation}
+\end{proof}
+
+在离散实现中，状态演化为：
+\begin{equation}
+|\psi_{p+1}\rangle = e^{-i\beta_p H_D} e^{-i H_P \Delta t} |\psi_p\rangle
+\end{equation}
+其中 $\beta_p = -\alpha \langle \psi_p | i[H_D, H_P] | \psi_p \rangle$。
+
+\subsection{图的拉普拉斯谱}
+\label{subsec:graph_spectrum}
+
+给定无向图 $G = (V, E)$，其归一化拉普拉斯矩阵定义为：
+\begin{equation}
+L = I - D^{-1/2} A D^{-1/2}
+\end{equation}
+其中 $A$ 为邻接矩阵，$D$ 为度矩阵。$L$ 的特征分解 $L = U \Lambda U^T$ 给出：
+\begin{itemize}
+    \item \textbf{特征值} $\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n$：编码图的全局连通性
+    \item \textbf{特征向量} $\{u_i\}_{i=1}^n$：提供节点的谱坐标
+\end{itemize}
+
+\paragraph{符号模糊性问题} 特征向量存在固有的符号歧义：若 $u$ 是 $L$ 的特征向量，则 $-u$ 也是。这对神经网络学习造成困难，我们采用 SignNet \cite{lim2023signnet} 解决此问题（详见 \ref{subsec:signnet} 节）。

@@ -1,0 +1,22 @@
+% 01_introduction.tex
+% 引言部分 - 不包含 \section 命令，由 main.tex 统一管理
+
+在嘈杂中型量子（NISQ）时代，变分量子算法（VQA）被广泛认为是通向实用量子优势的最可行路径之一。其中，量子近似优化算法（QAOA）\cite{farhi2014qaoa} 在解决组合优化问题（如 MaxCut、MaxSAT）方面展现出巨大潜力。然而，QAOA 的实际部署面临严峻挑战：经典参数优化循环需要在高维非凸能量景观中寻找最优参数 $\bm{\gamma}^*, \bm{\beta}^*$，极易陷入局部极小值，且在大规模系统中面临"贫瘠高原"（Barren Plateau）现象。
+
+基于反馈的量子优化算法（Feedback-based ALgorithm for Quantum OptimizatioN, FALQON）\cite{magann2022feedback} 提供了一种替代方案：利用量子李雅普诺夫控制理论，通过实时测量反馈自动确定每层参数，从而\textbf{完全消除经典优化循环}。然而，FALQON 引入了新的计算瓶颈——\textbf{测量开销}：为计算第 $p+1$ 层参数 $\beta_{p+1}$，必须先制备深度为 $p$ 的量子态并测量对易子期望值，导致总累积电路深度达 $O(P^2)$。
+
+\paragraph{本文贡献} 我们提出一种"教师-学生"零次推理框架，核心思想是：
+\begin{quote}
+\textit{用神经网络一次性预测完整的控制参数序列 $\{\beta_t\}_{t=0}^{P-1}$，从而将 $O(P^2)$ 的累积测量开销降为 $O(P)$ 的单次电路执行。}
+\end{quote}
+
+具体而言，本文的主要贡献包括：
+\begin{enumerate}
+    \item \textbf{架构设计}：提出谱-时序 Transformer（Spectral-Temporal Transformer），结合符号不变网络（SignNet）\cite{lim2023signnet} 处理图的拉普拉斯谱特征，利用 Transformer 解码器捕捉参数序列的时序依赖。
+    
+    \item \textbf{训练策略}：引入 Scheduled Sampling \cite{bengio2015scheduled} 缓解自回归模型的训练-推理不一致问题，并设计针对难样本的加权损失函数。
+    
+    \item \textbf{系统性评估}：在包含 1000 个随机图的数据集上进行全面实验，\textbf{首次}按动力学特性将样本分类为"收敛型"与"振荡型"，揭示了模型的适用边界。
+    
+    \item \textbf{理论分析}：从李雅普诺夫稳定性角度证明，只要预测误差不改变控制参数的符号，系统仍能收敛至低能态，为神经网络预测的鲁棒性提供理论保障。
+\end{enumerate}

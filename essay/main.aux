@@ -1,111 +1,81 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand*\HyPL@Entry[1]{}
-\citation{ref9}
-\citation{ref11}
+\citation{farhi2014qaoa}
+\citation{magann2022feedback}
+\citation{lim2023signnet}
+\citation{bengio2015scheduled}
 \HyPL@Entry{0<</S/D>>}
-\@writefile{toc}{\contentsline {section}{\numberline {1}引言与背景综述}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}理论推导与算法框架}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}反馈动力学的李雅普诺夫导出}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{与实现的一致性}{2}{section*.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}FALQON 的动力学方程组 (ODE)}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}库普曼算子理论与序列可预测性}{3}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}图结构的哈密顿量编码}{3}{subsection.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Cut 与能量的换算}{3}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}数据集构建与可复现实验流水线}{3}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}教师数据生成：并行分片与合并}{3}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}数据格式与 Padding}{3}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}模型实现与训练细节}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Transformer 学生：全局建模}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}GNN 基线：局部消息传递}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}并行评估：Transformer vs. GNN vs. Classical}{4}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}评估流程}{4}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Slurm 数组并行与结果汇总}{4}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}实验统计结果与讨论}{4}{subsection.5.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 训练/评估数据集（4--10 节点随机图）上的 AR 统计结果}}{5}{table.caption.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}引言}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{引言}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{本文贡献}{1}{section*.1}\protected@file@percent }
+\citation{magann2022lyapunov}
+\citation{lim2023signnet}
+\@writefile{toc}{\contentsline {section}{\numberline {2}预备知识}{2}{section.2}\protected@file@percent }
+\newlabel{sec:preliminaries}{{2}{2}{预备知识}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}FALQON 算法}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{subsec:falqon}{{2.1}{2}{FALQON 算法}{subsection.2.1}{}}
+\newlabel{thm:falqon_convergence}{{2.1}{2}{FALQON 收敛性 \cite {magann2022lyapunov}}{theorem.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}图的拉普拉斯谱}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{subsec:graph_spectrum}{{2.2}{2}{图的拉普拉斯谱}{subsection.2.2}{}}
+\citation{vaswani2017attention}
+\citation{bengio2015scheduled}
+\@writefile{toc}{\contentsline {paragraph}{符号模糊性问题}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}方法}{3}{section.3}\protected@file@percent }
+\newlabel{sec:methods}{{3}{3}{方法}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}问题形式化}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{subsec:problem_formulation}{{3.1}{3}{问题形式化}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}模型架构}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{subsec:architecture}{{3.2}{3}{模型架构}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}符号不变谱编码器（SignNet）}{3}{subsubsection.3.2.1}\protected@file@percent }
+\newlabel{subsec:signnet}{{3.2.1}{3}{符号不变谱编码器（SignNet）}{subsubsection.3.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}时序解码器}{3}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}输出头}{3}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}训练策略}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{subsec:training}{{3.3}{4}{训练策略}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Scheduled Sampling}{4}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}损失函数}{4}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}实验}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{实验}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}实验设置}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{subsec:experimental_setup}{{4.1}{4}{实验设置}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}数据集}{4}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}评估指标}{4}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}样本分类}{5}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}主要结果}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{subsec:main_results}{{4.2}{5}{主要结果}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 谱-时序 Transformer 的测试集性能}}{5}{table.caption.3}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:dataset_results}{{1}{5}{训练/评估数据集（4--10 节点随机图）上的 AR 统计结果}{table.caption.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Transformer 模型架构与创新点}{5}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}输入特征嵌入与谱位置编码}{5}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}编码器结构与注意力机制}{5}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}预测头与输出}{5}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}方法论分析：为何 Transfomer 优于 GNN 捕捉宏观谱统计}{5}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}物理分析：泛化能力与跨规模稳健性}{6}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}谱密度与泛化基础}{6}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}近似比分析与 12 节点外推示例}{6}{subsection.7.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 示例：Transformer 在训练域内与 12 节点外推测试上的 AR 统计（含 Min/Max）}}{6}{table.caption.4}\protected@file@percent }
-\newlabel{tab:extrap_12_results}{{2}{6}{示例：Transformer 在训练域内与 12 节点外推测试上的 AR 统计（含 Min/Max）}{table.caption.4}{}}
-\@writefile{toc}{\contentsline {paragraph}{Transformer vs. GNN 对比（同口径 AR，分片示例）}{6}{section*.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Transformer / GNN / Classical 的近似比（AR）对比（单次评估分片统计）}}{6}{table.caption.6}\protected@file@percent }
-\newlabel{tab:ar_compare_part}{{3}{6}{Transformer / GNN / Classical 的近似比（AR）对比（单次评估分片统计）}{table.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}大规模随机正则图上的预测曲线聚类现象}{6}{subsection.7.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 随机 3-正则图（$N=24$）上预测的 $\beta $ 曲线聚类结果。图中展示各簇均值曲线（为突出细微差异，绘图时对早期极端尖峰步骤做了缩放/截取）。可见在固定分布下，预测曲线会集中到少数几类“共同轮廓”。}}{7}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:regular_curve_cluster}{{1}{7}{随机 3-正则图（$N=24$）上预测的 $\beta $ 曲线聚类结果。图中展示各簇均值曲线（为突出细微差异，绘图时对早期极端尖峰步骤做了缩放/截取）。可见在固定分布下，预测曲线会集中到少数几类“共同轮廓”。}{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 对预测的 $\beta $ 曲线做 PCA 降维后的散点图（颜色表示聚类标签）。聚类在低维嵌入空间中依然可分，说明曲线差异具有低维结构。}}{7}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:regular_curve_pca}{{2}{7}{对预测的 $\beta $ 曲线做 PCA 降维后的散点图（颜色表示聚类标签）。聚类在低维嵌入空间中依然可分，说明曲线差异具有低维结构。}{figure.caption.8}{}}
-\citation{ref10}
-\citation{ref11}
-\@writefile{toc}{\contentsline {paragraph}{理论洞察：Kesten-McKay 定律与轨迹普适性}{8}{section*.9}\protected@file@percent }
-\newlabel{eq:kesten_mckay}{{11}{8}{理论洞察：Kesten-McKay 定律与轨迹普适性}{equation.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 随机 3-正则图（$N=24$）的缩放邻接矩阵谱密度（去除最大特征值后）与 Wigner 半圆律参考曲线的对照。谱密度在 bulk 区域呈稳定形态，为“预测曲线聚类”的随机矩阵解释提供直觉支撑。}}{8}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:regular_spectrum_semicircle}{{3}{8}{随机 3-正则图（$N=24$）的缩放邻接矩阵谱密度（去除最大特征值后）与 Wigner 半圆律参考曲线的对照。谱密度在 bulk 区域呈稳定形态，为“预测曲线聚类”的随机矩阵解释提供直觉支撑。}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}提升理论深度：从经验拟合到物理定律}{8}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}量子李雅普诺夫控制（QLC）的收敛性分析}{8}{subsection.8.1}\protected@file@percent }
-\citation{ref2}
-\citation{ref13}
-\citation{ref12}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 预测的 $\beta $ 参数序列（红虚线）与经典 FALQON 真实序列（蓝实线）的对比轨迹。}}{9}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:prediction_result}{{4}{9}{预测的 $\beta $ 参数序列（红虚线）与经典 FALQON 真实序列（蓝实线）的对比轨迹。}{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}局部子图同构与参数可迁移性}{9}{subsection.8.2}\protected@file@percent }
-\citation{ref8}
-\@writefile{toc}{\contentsline {section}{\numberline {9}充实内容与创新点建议：架构演进路线}{10}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}创新点一：引入符号不变网络（SignNet/BasisNet）}{10}{subsection.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}创新点二：物理信息驱动的无监督微调（Physics-Informed Fine-tuning）}{10}{subsection.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}创新点三：通用谱控制器（Universal Spectral Controller）}{10}{subsection.9.3}\protected@file@percent }
-\citation{ref4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}创新点四：噪声感知的鲁棒推理（Noise-Resilient Inference）}{11}{subsection.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}实验结果与分析}{11}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}实验设置}{11}{subsection.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.1}数据集构成}{11}{subsubsection.10.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.2}评估指标}{11}{subsubsection.10.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1.3}样本分类标准}{12}{subsubsection.10.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}主要实验结果}{12}{subsection.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.1}整体性能}{12}{subsubsection.10.2.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 谱-时序 Transformer 在测试集上的整体性能}}{12}{table.caption.12}\protected@file@percent }
-\newlabel{tab:overall_results}{{4}{12}{谱-时序 Transformer 在测试集上的整体性能}{table.caption.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2.2}分类性能对比}{12}{subsubsection.10.2.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 模型在收敛型与振荡型样本上的分类性能对比}}{12}{table.caption.13}\protected@file@percent }
-\newlabel{tab:classified_results}{{5}{12}{模型在收敛型与振荡型样本上的分类性能对比}{table.caption.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}定性分析：典型案例}{12}{subsection.10.3}\protected@file@percent }
-\citation{ref10}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 典型样本的预测轨迹对比。灰色实线为 FALQON 真实值，红色虚线为模型预测值。两幅图均标注了 MAE、RMSE、Corr 与 DTW 指标。}}{13}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:case_study}{{5}{13}{典型样本的预测轨迹对比。灰色实线为 FALQON 真实值，红色虚线为模型预测值。两幅图均标注了 MAE、RMSE、Corr 与 DTW 指标。}{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}物理意义讨论}{13}{subsection.10.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.4.1}为何收敛型样本更易预测？}{13}{subsubsection.10.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.4.2}振荡型样本的挑战}{13}{subsubsection.10.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.4.3}对实际应用的影响}{13}{subsubsection.10.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}与基线方法对比}{13}{subsection.10.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 谱-时序 Transformer 与 GNN 基线的性能对比}}{14}{table.caption.15}\protected@file@percent }
-\newlabel{tab:baseline_comparison}{{6}{14}{谱-时序 Transformer 与 GNN 基线的性能对比}{table.caption.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.6}局限性与未来工作}{14}{subsection.10.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.6.1}当前方法的局限性}{14}{subsubsection.10.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.6.2}未来改进方向}{14}{subsubsection.10.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {11}结论}{14}{section.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}主要贡献}{14}{subsection.11.1}\protected@file@percent }
-\bibcite{ref1}{1}
-\bibcite{ref2}{2}
-\bibcite{ref3}{3}
-\bibcite{ref4}{4}
-\bibcite{ref5}{5}
-\bibcite{ref6}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}核心发现}{15}{subsection.11.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}实践意义}{15}{subsection.11.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}未来展望}{15}{subsection.11.4}\protected@file@percent }
-\bibcite{ref7}{7}
-\bibcite{ref8}{8}
-\bibcite{ref9}{9}
-\bibcite{ref10}{10}
-\bibcite{ref11}{11}
-\bibcite{ref12}{12}
-\bibcite{ref13}{13}
-\gdef \@abspage@last{16}
+\newlabel{tab:main_results}{{1}{5}{谱-时序 Transformer 的测试集性能}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{关键发现}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}定性分析}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{subsec:qualitative}{{4.3}{5}{定性分析}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}消融实验}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{subsec:ablation}{{4.4}{5}{消融实验}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 消融实验结果}}{5}{table.caption.5}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{5}{消融实验结果}{table.caption.5}{}}
+\citation{farhi2014qaoa}
+\citation{joshi2022qaoa}
+\citation{magann2022feedback}
+\citation{magann2022lyapunov}
+\citation{lim2023signnet}
+\bibstyle{plain}
+\bibcite{magann2022feedback}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}理论分析：预测误差的鲁棒性}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{subsec:robustness}{{4.5}{6}{理论分析：预测误差的鲁棒性}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}相关工作}{6}{section.5}\protected@file@percent }
+\newlabel{sec:related_work}{{5}{6}{相关工作}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}变分量子优化}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}基于反馈的量子控制}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}图的谱表示学习}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}结论与未来工作}{6}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{6}{结论与未来工作}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{未来工作}{6}{section*.6}\protected@file@percent }
+\bibcite{magann2022lyapunov}{2}
+\bibcite{lim2023signnet}{3}
+\bibcite{vaswani2017attention}{4}
+\bibcite{joshi2022qaoa}{5}
+\bibcite{farhi2014qaoa}{6}
+\bibcite{bengio2015scheduled}{7}
+\bibcite{kesten1959symmetric}{8}
+\gdef \@abspage@last{7}
