@@ -27,4 +27,14 @@ Methodology：重点论述为什么 Sequence Transformer 的全局感受野（Gl
 Theoretical Insight：引用随机矩阵理论（Kesten-McKay Law），解释参数曲线在 3-正则图上呈现普适性（Common Profile）的原因 。
 +2
 
-下一步立即行动建议：
+
+
+
+需要根本性地改变方法：
+
+使用更强的序列模型：将 Transformer 换成 Mamba 或 RWKV（更擅长长序列）
+分两阶段预测：
+阶段1：预测 β 序列的包络线（整体趋势）
+阶段2：预测细节振荡
+引入物理约束：利用量子力学的能量守恒等约束
+但这些改动工作量很大，可能超出当前项目范围。

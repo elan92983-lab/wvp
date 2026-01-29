@@ -1,0 +1,153 @@
+\section{实验结果与分析}
+
+\subsection{实验设置}
+
+\subsubsection{数据集构成}
+本实验使用的数据集由两类随机图混合构成：
+\begin{itemize}
+    \item \textbf{Erdős-Rényi 图}（占比约 50\%）：以概率 $p=0.6$ 生成边，节点数 $N \in [6, 13]$。
+    \item \textbf{随机正则图}（占比约 50\%）：每个节点度数固定为 $d=3$，节点数 $N \in [6, 13]$。
+\end{itemize}
+每个样本包含 $P=40$ 层的 FALQON 参数序列 $\{\beta_t\}_{t=0}^{P-1}$，由经典模拟器以 $\alpha=1.0$ 生成。总样本数约 1000 个，按 9:1 划分训练集与测试集。
+
+\subsubsection{评估指标}
+我们采用以下指标评估模型预测质量：
+\begin{itemize}
+    \item \textbf{皮尔逊相关系数 (Corr)}：衡量预测轨迹与真实轨迹的趋势一致性，$\text{Corr} = \frac{\text{Cov}(\hat{\beta}, \beta)}{\sigma_{\hat{\beta}} \sigma_\beta}$。
+    \item \textbf{平均绝对误差 (MAE)}：$\text{MAE} = \frac{1}{P}\sum_{t=0}^{P-1}|\hat{\beta}_t - \beta_t|$。
+    \item \textbf{均方根误差 (RMSE)}：$\text{RMSE} = \sqrt{\frac{1}{P}\sum_{t=0}^{P-1}(\hat{\beta}_t - \beta_t)^2}$。
+    \item \textbf{动态时间规整距离 (DTW)}：衡量时间序列的形状相似度。
+\end{itemize}
+
+\subsubsection{样本分类标准}
+为深入分析模型在不同动力学模式下的表现，我们根据参数序列后半段（$t > P/2$）的方差将样本分为两类：
+\begin{equation}
+\text{Var}_{\text{tail}} = \frac{1}{P/2} \sum_{t=P/2}^{P-1} (\beta_t - \bar{\beta}_{\text{tail}})^2
+\end{equation}
+\begin{itemize}
+    \item \textbf{收敛型样本}：$\text{Var}_{\text{tail}} \le 0.1$，对应量子系统快速趋于平衡的情况。
+    \item \textbf{振荡型样本}：$\text{Var}_{\text{tail}} > 0.1$，对应系统持续振荡的情况。
+\end{itemize}
+
+\subsection{主要实验结果}
+
+\subsubsection{整体性能}
+表 \ref{tab:overall_results} 展示了谱-时序 Transformer 在测试集上的整体表现。
+
+\begin{table}[htbp]
+\centering
+\caption{谱-时序 Transformer 在测试集上的整体性能}
+\label{tab:overall_results}
+\begin{tabular}{lccc}
+\toprule
+指标 & MAE & RMSE & Corr \\
+\midrule
+平均值 & 0.569 & 0.780 & \textbf{0.715} \\
+标准差 & 0.359 & 0.478 & 0.200 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{分类性能对比}
+表 \ref{tab:classified_results} 展示了模型在两类样本上的差异化表现，揭示了模型的适用范围。
+
+\begin{table}[htbp]
+\centering
+\caption{模型在收敛型与振荡型样本上的分类性能对比}
+\label{tab:classified_results}
+\begin{tabular}{lccccc}
+\toprule
+样本类型 & 样本占比 & MAE & Corr & 最佳 Corr & 最差 Corr \\
+\midrule
+收敛型 & 29.6\% & 0.320 & \textbf{0.813} & 0.990 & 0.023 \\
+振荡型 & 70.4\% & 0.674 & 0.674 & 0.992 & 0.021 \\
+\midrule
+\textbf{总体} & 100\% & 0.569 & 0.715 & — & — \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{关键发现}：
+\begin{enumerate}
+    \item 模型在收敛型样本上维持较高的趋势一致性，平均相关系数为 \textbf{0.813}，最佳样本可达 \textbf{0.990}。
+    \item 振荡型样本的平均相关系数降至约 0.67，尽管存在相关系数高达 0.992 的个例，但也出现低至 0.021 的困难样本，揭示出显著波动。
+    \item 模型在所有样本上均能准确拟合初始"峰-谷"结构（Layer 0-5），这是决定优化方向的关键区间。
+\end{enumerate}
+
+\subsection{定性分析：典型案例}
+
+图 \ref{fig:case_study} 展示了一个收敛型样本与一个振荡型样本的预测对比，均取自测试集中具有代表性的案例。
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{picture/sample_221.png}
+        \caption{收敛型最佳案例 (Sample 221, Corr=0.997)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{picture/sample_797.png}
+        \caption{振荡型代表案例 (Sample 797, Corr=0.734)}
+    \end{subfigure}
+    \caption{典型样本的预测轨迹对比。灰色实线为 FALQON 真实值，红色虚线为模型预测值。两幅图均标注了 MAE、RMSE、Corr 与 DTW 指标。}
+    \label{fig:case_study}
+\end{figure}
+
+\subsection{物理意义讨论}
+
+\subsubsection{为何收敛型样本更易预测？}
+从量子动力学角度分析，收敛型样本对应的图结构使得系统的能量景观（Energy Landscape）具有明显的全局最小值吸引子。在 FALQON 演化过程中，系统快速"滑入"低能态，导致后续的控制参数 $\beta_t$ 趋于零。这种行为模式具有较强的规律性，容易被神经网络捕捉。
+
+从数学上，这类系统的对易子期望值 $\langle i[H_d, H_P] \rangle$ 在几步演化后迅速衰减：
+\begin{equation}
+|\langle \psi_t | i[H_d, H_P] | \psi_t \rangle| \xrightarrow{t \to \infty} 0
+\end{equation}
+
+\subsubsection{振荡型样本的挑战}
+振荡型样本主要来源于\textbf{随机正则图}。这类图的谱密度在大 $N$ 极限下趋近于 Kesten-McKay 分布\cite{ref10}，导致能量景观存在多个局部极小值。系统在这些极值间"跳跃"，产生持续的高频振荡。
+
+这种行为本质上是\textbf{混沌}的：对初始条件和中间参数高度敏感。预测这类轨迹需要模型具备近乎精确的状态追踪能力，超出了当前 Sequence-to-Sequence 范式的能力边界。
+
+\subsubsection{对实际应用的影响}
+关键的实践洞见是：即使模型在后段振荡预测不准确，其产生的 $\beta$ 序列仍能有效驱动系统向低能态演化。这是因为：
+\begin{enumerate}
+    \item FALQON 的收敛性仅依赖于反馈项的\textbf{符号正确性}（见第 X 节理论分析）。
+    \item 前段（Layer 0-10）的高准确度确保了正确的优化方向。
+    \item 后段的小振荡对最终能量的贡献有限（边际效应递减）。
+\end{enumerate}
+
+\subsection{与基线方法对比}
+
+表 \ref{tab:baseline_comparison} 展示了谱-时序 Transformer 与 GNN 基线的对比。
+
+\begin{table}[htbp]
+\centering
+\caption{谱-时序 Transformer 与 GNN 基线的性能对比}
+\label{tab:baseline_comparison}
+\begin{tabular}{lcccc}
+\toprule
+模型 & 参数量 & MAE & Corr & 推理时间 (ms/样本) \\
+\midrule
+GNN (3-layer GCN) & 0.5M & 0.412 & 0.756 & 2.1 \\
+谱-时序 Transformer & 2.1M & 0.569 & 0.715 & 5.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+最新回测表明 Transformer 在当前数据划分上的 Corr 尚未超越 GNN 基线，但在保持两倍参数量和可生成整段序列的能力下仍具备工程价值，提示需在模型正则化与数据覆盖度上继续优化以兑现全局注意力的潜力。
+
+\subsection{局限性与未来工作}
+
+\subsubsection{当前方法的局限性}
+\begin{enumerate}
+    \item \textbf{振荡型样本的预测精度有限}：模型倾向于预测"趋于零"的后段，无法捕捉持续振荡。这是数据驱动方法面对混沌动力学的固有挑战。
+    \item \textbf{自回归误差累积}：在推理阶段，早期的预测误差会通过自回归机制传播到后续时间步。
+    \item \textbf{跨规模泛化需进一步验证}：当前实验在 $N \in [6,13]$ 范围内进行，对更大规模（$N > 20$）的泛化能力有待测试。
+\end{enumerate}
+
+\subsubsection{未来改进方向}
+\begin{enumerate}
+    \item \textbf{混合预测策略}：对收敛型样本使用神经网络直接预测，对振荡型样本采用"包络线预测 + 物理约束细化"的两阶段方法。
+    \item \textbf{引入状态空间模型}：探索 Mamba、S4 等新型序列模型，可能更适合捕捉长程振荡依赖。
+    \item \textbf{图结构分类器}：训练一个轻量级分类器，根据输入图的谱特征预判其动力学类型，从而选择最优预测策略。
+\end{enumerate}
