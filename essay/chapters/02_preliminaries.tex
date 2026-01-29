@@ -2,8 +2,99 @@
 % 预备知识
 
 本节介绍 FALQON 算法的理论基础和图的谱表示，为后续方法论述奠定基础。
-
 \subsection{FALQON 算法}
+\label{subsec:falqon}
+
+考虑组合优化问题的目标函数编码为问题哈密顿量 $H_P$，驱动哈密顿量取为横场 $H_D = \sum_{i=1}^n X_i$。FALQON 的目标是最小化成本函数：
+\begin{equation}
+C(t) = \langle \psi(t) | H_P | \psi(t) \rangle
+\end{equation}
+
+\begin{theorem}[FALQON 收敛性 \cite{magann2022lyapunov}]
+\label{thm:falqon_convergence}
+定义反馈控制律：
+\begin{equation}
+\beta(t) = -\alpha \cdot \langle \psi(t) | i[H_D, H_P] | \psi(t) \rangle, \quad \alpha > 0
+\end{equation}
+则成本函数满足 $\frac{dC}{dt} \leq 0$，即系统能量单调非递增。
+\end{theorem}
+
+\begin{proof}
+根据薛定谔方程，成本函数的时间导数为：
+\begin{equation}
+\frac{dC}{dt} = i\beta(t) \langle \psi | [H_D, H_P] | \psi \rangle
+\end{equation}
+代入反馈律，由于 $H_D, H_P$ 均为厄米算符，$\langle i[H_D, H_P] \rangle$ 为实数，得：
+\begin{equation}
+\frac{dC}{dt} = -\alpha \left( \langle i[H_D, H_P] \rangle \right)^2 \leq 0 \qquad \qed
+\end{equation}
+\end{proof}
+
+在离散实现中，状态演化为：
+\begin{equation}
+|\psi_{p+1}\rangle = e^{-i\beta_p H_D} e^{-i H_P \Delta t} |\psi_p\rangle
+\end{equation}
+其中 $\beta_p = -\alpha \langle \psi_p | i[H_D, H_P] | \psi_p \rangle$。
+
+\subsection{图的拉普拉斯谱}
+\label{subsec:graph_spectrum}
+
+给定无向图 $G = (V, E)$，其归一化拉普拉斯矩阵定义为：
+\begin{equation}
+L = I - D^{-1/2} A D^{-1/2}
+\end{equation}
+其中 $A$ 为邻接矩阵，$D$ 为度矩阵。$L$ 的特征分解 $L = U \Lambda U^T$ 给出：
+\begin{itemize}
+    \item \textbf{特征值} $\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n$：编码图的全局连通性。特别地，$\lambda_2$（Fiedler 值）反映图的代数连通度。
+    \item \textbf{特征向量} $\{u_i\}_{i=1}^n$：提供节点的谱坐标，编码图的几何结构。
+\end{itemize}
+
+\paragraph{符号模糊性问题} 特征向量存在固有的符号歧义：若 $u$ 是 $L$ 的特征向量，则 $-u$ 也是。这对神经网络学习造成困难，我们采用 SignNet \cite{lim2023signnet} 解决此问题。
+
+\paragraph{谱密度的渐近行为} 
+对于大规模随机图，谱密度趋于确定性分布：
+\begin{itemize}
+    \item \textbf{Erdős-Rényi 图}：谱密度收敛于 Wigner 半圆律
+    \item \textbf{$d$-正则图}：谱密度收敛于 Kesten-McKay 分布 \cite{kesten1959symmetric}
+\end{itemize}
+这一收敛性质是模型能够跨规模泛化的理论基础。
+
+\subsection{参数集中现象}
+\label{subsec:concentration}
+
+在变分量子算法文献中，参数集中（Parameter Concentration）是一个重要发现：对于给定的电路层数和图类型，最优参数在 $N \to \infty$ 时集中在特定值附近。
+
+\begin{proposition}[QAOA 参数集中性]
+对于 $d$-正则图上的 MaxCut 问题，QAOA 的最优参数 $(\gamma^*, \beta^*)$ 在 $N \to \infty$ 时以高概率收敛于确定性函数。
+\end{proposition}
+
+这一现象源于大数定律：目标函数是大量局部项的和，其能量景观在热力学极限下趋于稳定。本文将论证 FALQON 的参数轨迹也表现出类似的集中现象。
+
+\subsection{量子噪声模型}
+\label{subsec:noise_model}
+
+在 NISQ 硬件上，量子计算受到多种噪声源的影响。本文考虑三种主要噪声：
+
+\paragraph{测量散粒噪声（Shot Noise）}
+有限采样次数导致期望值估计存在统计误差：
+\begin{equation}
+\hat{O} = \langle O \rangle + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \sigma^2/N_{\text{shots}})
+\end{equation}
+
+\paragraph{退相干（Decoherence）}
+量子态与环境相互作用导致相干性丢失。在简化模型中，我们用振幅衰减描述：
+\begin{equation}
+|\psi\rangle \to e^{-\gamma t} |\psi\rangle + \text{noise}
+\end{equation}
+
+\paragraph{门误差（Gate Error）}
+量子门操作不完美，可建模为随机 Pauli 错误：
+\begin{equation}
+U \to (1-p)U + p \cdot E
+\end{equation}
+其中 $E$ 为错误操作，$p$ 为错误概率。
+
+在 FALQON 中，这些噪声通过反馈机制逐层累积，导致控制轨迹偏离理想路径。本文将证明，神经网络预测可以规避这种噪声累积。\subsection{FALQON 算法}
 \label{subsec:falqon}
 
 考虑组合优化问题的目标函数编码为问题哈密顿量 $H_P$，驱动哈密顿量取为横场 $H_D = \sum_{i=1}^n X_i$。FALQON 的目标是最小化成本函数：

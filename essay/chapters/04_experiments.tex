@@ -6,14 +6,57 @@
 
 \subsubsection{数据集}
 
-数据集包含 1000 个随机图样本，由两类图混合构成：
+\paragraph{训练数据集}
+训练数据集包含约 1000 个随机图样本，由两类图混合构成：
 \begin{itemize}
-    \item \textbf{Erdős-Rényi 图}（约 50\%）：边概率 $p=0.6$，节点数 $n \in [6, 13]$
+    \item \textbf{Erdős-Rényi 图}（约 50\%）：边概率 $p=0.5$，节点数 $n \in [6, 13]$
     \item \textbf{随机 3-正则图}（约 50\%）：每节点度数固定为 3
 \end{itemize}
 每个样本包含 $P=40$ 层的 FALQON 参数序列，由经典模拟器以 $\alpha=1.0$ 生成。数据按 9:1 划分为训练集与测试集。
 
+\paragraph{跨规模测试数据集}
+为验证模型的量子比特数扩展性，我们生成了四组测试数据：
+\begin{itemize}
+    \item \textbf{域内}：$N \in [6, 13]$，100 个样本
+    \item \textbf{轻度外推}：$N \in [14, 17]$，80 个样本
+    \item \textbf{强外推}：$N \in [18, 22]$，60 个样本
+    \item \textbf{极端外推}：$N \in [23, 28]$，40 个样本
+\end{itemize}
+对于 $N > 12$ 的大图，由于精确量子模拟的内存限制（$2^N$ 维希尔伯特空间），我们使用基于谱特性的合成轨迹作为参考。
+
+\paragraph{噪声测试数据集}
+为评估噪声鲁棒性，我们在 $N \in [6, 10]$ 的小图上生成了五组不同噪声级别的数据：
+\begin{itemize}
+    \item \textbf{无噪声}：$\sigma_{\text{shot}}=0, \gamma=0, p_{\text{gate}}=0$
+    \item \textbf{低噪声}：$\sigma_{\text{shot}}=0.05, \gamma=0.01, p_{\text{gate}}=0.001$
+    \item \textbf{中等噪声}：$\sigma_{\text{shot}}=0.1, \gamma=0.02, p_{\text{gate}}=0.005$
+    \item \textbf{高噪声}：$\sigma_{\text{shot}}=0.2, \gamma=0.05, p_{\text{gate}}=0.01$
+    \item \textbf{极端噪声}：$\sigma_{\text{shot}}=0.3, \gamma=0.1, p_{\text{gate}}=0.02$
+\end{itemize}
+每组包含 50 个样本，同时记录干净轨迹和噪声轨迹。
+
 \subsubsection{评估指标}
+
+\begin{itemize}
+    \item \textbf{皮尔逊相关系数 (Corr)}：$\text{Corr}(\hat{\bm{\beta}}, \bm{\beta}) \in [-1, 1]$，衡量预测与真实轨迹的趋势一致性
+    \item \textbf{平均绝对误差 (MAE)}：$\frac{1}{P}\sum_t |\hat{\beta}_t - \beta_t|$
+    \item \textbf{均方根误差 (RMSE)}：$\sqrt{\frac{1}{P}\sum_t (\hat{\beta}_t - \beta_t)^2}$
+\end{itemize}
+
+\subsubsection{样本分类标准}
+
+根据参数序列后半段方差，将样本分为两类：
+\begin{equation}
+\text{样本类型} = \begin{cases}
+\text{收敛型} & \text{if } \text{Var}(\beta_{P/2:P}) \leq 0.1 \\
+\text{振荡型} & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\subsection{域内性能评估}
+\label{subsec:in_domain_results}
+
+表 \ref{tab:main_results} 展示了模型在域内测试集上的整体性能及分类表现。
 
 \begin{itemize}
     \item \textbf{皮尔逊相关系数 (Corr)}：$\text{Corr}(\hat{\bm{\beta}}, \bm{\beta}) \in [-1, 1]$
