@@ -6,38 +6,6 @@ import matplotlib.pyplot as plt
 from scipy.stats import entropy, wasserstein_distance
 from scipy.special import ellipk
 import os
-import matplotlib.font_manager as fm
-
-def ensure_cjk_font():
-    candidates = [
-        'Noto Sans CJK SC', 'Noto Sans CJK JP', 'Noto Sans CJK KR', 'SimHei',
-        'WenQuanYi Micro Hei', 'Microsoft YaHei', 'PingFang SC', 'AR PL KaitiM GB'
-    ]
-    for f in fm.fontManager.ttflist:
-        try:
-            if any(name in f.name for name in candidates):
-                plt.rcParams['font.sans-serif'] = [f.name]
-                plt.rcParams['axes.unicode_minus'] = False
-                return
-        except Exception:
-            continue
-    local_font = os.path.join('assets', 'fonts', 'NotoSansSC-Regular.otf')
-    if os.path.exists(local_font):
-        try:
-            fm.fontManager.addfont(local_font)
-            name = fm.FontProperties(fname=local_font).get_name()
-            plt.rcParams['font.sans-serif'] = [name]
-            plt.rcParams['axes.unicode_minus'] = False
-            print(f"Using local font: {name}")
-            return
-        except Exception as e:
-            print(f"Failed to register local font: {e}")
-    plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
-    plt.rcParams['axes.unicode_minus'] = False
-    print("Warning: no CJK font found on system; Chinese labels may not render. Install 'fonts-noto-cjk' or similar.")
-
-# apply font settings early
-ensure_cjk_font()
 
 def compute_spectral_histogram(evals_list, bins=50, range_limit=(0, 2)):
     """计算特征值直方图"""

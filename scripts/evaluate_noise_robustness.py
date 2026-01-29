@@ -12,40 +12,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.models.spectral_transformer import SpectralTemporalTransformer
 from src.data_utils.dataset import SpectralDataset
 
-# Ensure CJK font for Chinese tick labels
-import matplotlib.font_manager as fm
-
-def ensure_cjk_font():
-    candidates = [
-        'Noto Sans CJK SC', 'Noto Sans CJK JP', 'Noto Sans CJK KR', 'SimHei',
-        'WenQuanYi Micro Hei', 'Microsoft YaHei', 'PingFang SC', 'AR PL KaitiM GB'
-    ]
-    for f in fm.fontManager.ttflist:
-        try:
-            if any(name in f.name for name in candidates):
-                plt.rcParams['font.sans-serif'] = [f.name]
-                plt.rcParams['axes.unicode_minus'] = False
-                return
-        except Exception:
-            continue
-    local_font = os.path.join('assets', 'fonts', 'NotoSansSC-Regular.otf')
-    if os.path.exists(local_font):
-        try:
-            fm.fontManager.addfont(local_font)
-            name = fm.FontProperties(fname=local_font).get_name()
-            plt.rcParams['font.sans-serif'] = [name]
-            plt.rcParams['axes.unicode_minus'] = False
-            print(f"Using local font: {name}")
-            return
-        except Exception as e:
-            print(f"Failed to register local font: {e}")
-    plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
-    plt.rcParams['axes.unicode_minus'] = False
-    print("Warning: no CJK font found on system; Chinese labels may not render. Install 'fonts-noto-cjk' or similar.")
-
-# apply font settings early
-ensure_cjk_font()
-
 
 def load_noisy_data(path, beta_mean, beta_std, max_nodes=20, max_seq_len=40):
     """加载噪声测试数据"""
@@ -176,13 +142,13 @@ def main():
         print(f"Warning: model.load_state_dict failed: {e}. Retrying with strict=False.")
         model.load_state_dict(torch.load("models/spectral_transformer_finetuned.pth", map_location=device), strict=False)
     
-    # 噪声级别
+    # Noise levels (English labels)
     noise_levels = [
-        ("no_noise", "无噪声"),
-        ("low_noise", "低噪声"),
-        ("medium_noise", "中等噪声"),
-        ("high_noise", "高噪声"),
-        ("extreme_noise", "极端噪声"),
+        ("no_noise", "No Noise"),
+        ("low_noise", "Low Noise"),
+        ("medium_noise", "Medium Noise"),
+        ("high_noise", "High Noise"),
+        ("extreme_noise", "Extreme Noise"),
     ]
     
     summary = []

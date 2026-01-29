@@ -1,0 +1,6 @@
+Task 3 running noise config: high_noise
+
+==================================================
+Generating high_noise (Shot=0.2, Decoh=0.05, Gate=0.01)
+==================================================
+Saved 50 samples to data/noise_test/high_noise.npz

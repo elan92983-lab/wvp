@@ -8,41 +8,6 @@ import os
 import sys
 from collections import defaultdict
 
-# Ensure CJK font for Chinese tick labels
-import matplotlib.font_manager as fm
-
-def ensure_cjk_font():
-    candidates = [
-        'Noto Sans CJK SC', 'Noto Sans CJK JP', 'Noto Sans CJK KR', 'SimHei',
-        'WenQuanYi Micro Hei', 'Microsoft YaHei', 'PingFang SC', 'AR PL KaitiM GB'
-    ]
-    for f in fm.fontManager.ttflist:
-        try:
-            if any(name in f.name for name in candidates):
-                plt.rcParams['font.sans-serif'] = [f.name]
-                plt.rcParams['axes.unicode_minus'] = False
-                return
-        except Exception:
-            continue
-    # Try local bundled font
-    local_font = os.path.join('assets', 'fonts', 'NotoSansSC-Regular.otf')
-    if os.path.exists(local_font):
-        try:
-            fm.fontManager.addfont(local_font)
-            name = fm.FontProperties(fname=local_font).get_name()
-            plt.rcParams['font.sans-serif'] = [name]
-            plt.rcParams['axes.unicode_minus'] = False
-            print(f"Using local font: {name}")
-            return
-        except Exception as e:
-            print(f"Failed to register local font: {e}")
-    plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
-    plt.rcParams['axes.unicode_minus'] = False
-    print("Warning: no CJK font found on system; Chinese labels may not render. Install 'fonts-noto-cjk' or similar.")
-
-# apply font settings early
-ensure_cjk_font()
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.models.spectral_transformer import SpectralTemporalTransformer
 from src.data_utils.dataset import SpectralDataset
@@ -155,12 +120,12 @@ def main():
         print(f"Warning: model.load_state_dict failed: {e}. Retrying with strict=False.")
         model.load_state_dict(torch.load("models/spectral_transformer_finetuned.pth", map_location=device), strict=False)
     
-    # 测试数据集
+    # Test datasets (English labels)
     test_sets = [
-        ("域内 (6-13)", "data/scalability_test/in_domain.npz"),
-        ("轻度外推 (14-17)", "data/scalability_test/mild_extrap.npz"),
-        ("强外推 (18-22)", "data/scalability_test/strong_extrap.npz"),
-        ("极端外推 (23-28)", "data/scalability_test/extreme_extrap.npz"),
+        ("In-domain (6-13)", "data/scalability_test/in_domain.npz"),
+        ("Mild extrapolation (14-17)", "data/scalability_test/mild_extrap.npz"),
+        ("Strong extrapolation (18-22)", "data/scalability_test/strong_extrap.npz"),
+        ("Extreme extrapolation (23-28)", "data/scalability_test/extreme_extrap.npz"),
     ]
     
     all_results = {}

@@ -1,0 +1,87 @@
+Task 1 running config: mild_extrap
+Running: python scripts/generate_scalability_data.py --config mild_extrap --output_dir data/scalability_test --max_layers 40 --seed 1 --samples 80
+
+==================================================
+Generating mild_extrap dataset (N ∈ (14, 17))
+==================================================
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=16 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Skipping dense simulation for N=17 (> 12); using synthetic fallback.
+Skipping dense simulation for N=15 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+Skipping dense simulation for N=18 (> 12); using synthetic fallback.
+Saved 80 samples to data/scalability_test/mild_extrap.npz

@@ -1,0 +1,708 @@
+Task 0 running config: in_domain
+Running: python scripts/generate_scalability_data.py --config in_domain --output_dir data/scalability_test --max_layers 40 --seed 0 --samples 80
+
+==================================================
+Generating in_domain dataset (N ∈ (6, 13))
+==================================================
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -4.0661, Energy = -0.2274
+  层数 10: Beta =  0.2992, Energy =  0.3906
+  层数 15: Beta = -0.9630, Energy =  0.4353
+  层数 20: Beta =  0.5754, Energy =  0.5157
+  层数 25: Beta =  0.2890, Energy =  0.5568
+  层数 30: Beta = -0.5791, Energy =  0.0153
+  层数 35: Beta =  0.2845, Energy =  0.3638
+  层数 39: Beta =  0.1144, Energy =  0.4421
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.3907, Energy =  1.3162
+  层数 10: Beta = -2.5245, Energy =  1.4596
+  层数 15: Beta =  0.6561, Energy = -0.4151
+  层数 20: Beta = -1.7588, Energy =  0.6681
+  层数 25: Beta =  4.5123, Energy =  0.2793
+  层数 30: Beta = -2.0368, Energy = -0.3640
+  层数 35: Beta =  1.2749, Energy =  0.3044
+  层数 39: Beta =  3.0991, Energy = -1.0387
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.0031, Energy = -0.2476
+  层数 10: Beta =  0.4169, Energy = -0.3601
+  层数 15: Beta =  0.6339, Energy =  0.1723
+  层数 20: Beta = -0.1724, Energy = -0.0815
+  层数 25: Beta = -0.2899, Energy =  0.1512
+  层数 30: Beta =  0.3009, Energy =  0.1131
+  层数 35: Beta = -0.4656, Energy = -0.0155
+  层数 39: Beta =  0.2209, Energy =  0.3081
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.8103, Energy =  0.7000
+  层数 10: Beta = -1.1892, Energy =  0.3257
+  层数 15: Beta =  0.3252, Energy =  0.3152
+  层数 20: Beta = -0.7866, Energy =  0.6444
+  层数 25: Beta =  0.3688, Energy =  0.1838
+  层数 30: Beta =  0.1392, Energy =  0.1459
+  层数 35: Beta =  0.1953, Energy = -0.0730
+  层数 39: Beta = -0.7392, Energy =  0.0669
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.2841, Energy =  0.1231
+  层数 10: Beta =  0.3364, Energy =  0.1029
+  层数 15: Beta = -0.0620, Energy =  0.2734
+  层数 20: Beta = -0.2929, Energy =  0.1689
+  层数 25: Beta =  0.1341, Energy =  0.1630
+  层数 30: Beta = -0.7718, Energy =  0.0642
+  层数 35: Beta =  0.5551, Energy =  0.0864
+  层数 39: Beta =  0.2294, Energy =  0.0772
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  1.2522, Energy = -0.3126
+  层数 10: Beta =  1.4029, Energy =  0.5532
+  层数 15: Beta = -0.5116, Energy = -0.9779
+  层数 20: Beta = -2.1629, Energy = -0.2606
+  层数 25: Beta =  0.7413, Energy =  0.9695
+  层数 30: Beta =  2.0127, Energy =  0.7675
+  层数 35: Beta = -0.0191, Energy = -0.0299
+  层数 39: Beta =  1.3650, Energy =  0.8408
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.4035, Energy =  0.2222
+  层数 10: Beta =  0.3930, Energy =  0.0230
+  层数 15: Beta = -0.3029, Energy =  0.0097
+  层数 20: Beta = -0.4384, Energy =  0.0254
+  层数 25: Beta = -0.4010, Energy =  0.4325
+  层数 30: Beta =  0.2212, Energy =  0.1726
+  层数 35: Beta = -0.2351, Energy = -0.1910
+  层数 39: Beta = -0.2822, Energy = -0.1604
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.9367, Energy =  1.7073
+  层数 10: Beta =  0.4480, Energy = -1.0618
+  层数 15: Beta = -0.1439, Energy = -0.4277
+  层数 20: Beta =  1.7615, Energy = -0.2550
+  层数 25: Beta = -0.9771, Energy =  0.2132
+  层数 30: Beta = -0.5842, Energy =  0.4458
+  层数 35: Beta =  0.2709, Energy =  0.4653
+  层数 39: Beta = -0.0911, Energy =  0.5169
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.8695, Energy = -0.2671
+  层数 10: Beta = -0.7515, Energy =  0.8443
+  层数 15: Beta =  1.7544, Energy = -0.3404
+  层数 20: Beta = -1.7077, Energy = -1.1646
+  层数 25: Beta = -1.1608, Energy = -0.3051
+  层数 30: Beta =  5.3134, Energy =  0.2363
+  层数 35: Beta =  4.8499, Energy = -0.1620
+  层数 39: Beta =  0.4220, Energy =  1.0767
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  3.1584, Energy =  0.2186
+  层数 10: Beta =  0.7707, Energy =  0.1482
+  层数 15: Beta = -0.7354, Energy =  0.3994
+  层数 20: Beta = -0.2254, Energy =  0.0438
+  层数 25: Beta = -0.0262, Energy =  0.4039
+  层数 30: Beta =  0.2963, Energy =  0.5273
+  层数 35: Beta = -0.3207, Energy = -0.5823
+  层数 39: Beta =  0.5223, Energy = -0.2639
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.6212, Energy =  0.1612
+  层数 10: Beta = -0.1455, Energy =  0.1258
+  层数 15: Beta =  0.1126, Energy =  0.1626
+  层数 20: Beta =  0.5039, Energy = -0.0873
+  层数 25: Beta =  0.3383, Energy = -0.0045
+  层数 30: Beta = -0.1156, Energy =  0.0171
+  层数 35: Beta = -0.0411, Energy =  0.0238
+  层数 39: Beta =  0.0226, Energy = -0.0291
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.2578, Energy =  0.0847
+  层数 10: Beta =  1.2742, Energy = -0.0791
+  层数 15: Beta = -0.6316, Energy = -0.0501
+  层数 20: Beta = -2.2755, Energy =  0.2957
+  层数 25: Beta =  0.1849, Energy =  0.4239
+  层数 30: Beta = -0.9695, Energy = -0.9026
+  层数 35: Beta = -0.4848, Energy =  0.5156
+  层数 39: Beta =  1.2115, Energy = -0.1465
+开始 FALQON 演化 (n_qubits=9, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.0278, Energy =  0.4362
+  层数 10: Beta = -0.0644, Energy =  0.0322
+  层数 15: Beta =  0.7753, Energy =  0.2307
+  层数 20: Beta = -0.0382, Energy =  0.0246
+  层数 25: Beta =  0.1573, Energy =  0.0188
+  层数 30: Beta = -0.1960, Energy =  0.0342
+  层数 35: Beta =  0.7834, Energy =  0.1047
+  层数 39: Beta =  0.2261, Energy =  0.1324
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.2512, Energy = -0.0504
+  层数 10: Beta =  0.3800, Energy =  0.1597
+  层数 15: Beta = -0.1032, Energy =  0.0973
+  层数 20: Beta = -0.0310, Energy =  0.1303
+  层数 25: Beta = -0.1483, Energy =  0.1664
+  层数 30: Beta = -0.0112, Energy =  0.1476
+  层数 35: Beta =  0.0358, Energy =  0.1682
+  层数 39: Beta =  0.1740, Energy =  0.1393
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.6266, Energy =  0.2899
+  层数 10: Beta =  0.3507, Energy =  0.1297
+  层数 15: Beta =  0.0870, Energy =  0.0950
+  层数 20: Beta = -0.1996, Energy =  0.1094
+  层数 25: Beta =  0.2013, Energy =  0.0809
+  层数 30: Beta = -0.0041, Energy =  0.0735
+  层数 35: Beta =  0.0839, Energy =  0.1204
+  层数 39: Beta =  0.0284, Energy =  0.1256
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.2522, Energy = -0.3126
+  层数 10: Beta =  1.4029, Energy =  0.5532
+  层数 15: Beta = -0.5116, Energy = -0.9779
+  层数 20: Beta = -2.1361, Energy = -0.2819
+  层数 25: Beta =  1.1609, Energy =  0.5052
+  层数 30: Beta =  1.3707, Energy =  0.7295
+  层数 35: Beta =  1.2320, Energy =  0.3692
+  层数 39: Beta = -3.6019, Energy =  0.9444
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.3351, Energy =  1.1620
+  层数 10: Beta =  0.8137, Energy =  0.1937
+  层数 15: Beta = -0.2632, Energy =  0.4567
+  层数 20: Beta = -2.1958, Energy =  0.7151
+  层数 25: Beta =  0.8308, Energy =  1.0005
+  层数 30: Beta =  2.0312, Energy =  0.7267
+  层数 35: Beta =  1.4881, Energy =  0.0206
+  层数 39: Beta =  0.4889, Energy =  0.6627
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.7097, Energy =  0.6813
+  层数 10: Beta = -0.1053, Energy =  0.3961
+  层数 15: Beta =  0.4517, Energy =  0.2964
+  层数 20: Beta =  0.2069, Energy = -0.2525
+  层数 25: Beta =  0.8516, Energy = -0.1821
+  层数 30: Beta =  0.6250, Energy = -0.2681
+  层数 35: Beta = -1.0270, Energy = -0.1820
+  层数 39: Beta =  0.9988, Energy = -0.0320
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.1966, Energy =  0.3159
+  层数 10: Beta =  0.0889, Energy = -0.0857
+  层数 15: Beta = -0.0599, Energy =  0.1829
+  层数 20: Beta = -0.2557, Energy =  0.1560
+  层数 25: Beta =  0.5970, Energy = -0.0089
+  层数 30: Beta = -0.3271, Energy =  0.1219
+  层数 35: Beta = -0.5720, Energy = -0.0086
+  层数 39: Beta =  0.1914, Energy = -0.0328
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.7506, Energy =  0.0329
+  层数 10: Beta =  0.1327, Energy =  0.1277
+  层数 15: Beta =  0.0983, Energy =  0.1583
+  层数 20: Beta = -0.2273, Energy =  0.1215
+  层数 25: Beta = -0.0459, Energy =  0.2025
+  层数 30: Beta =  0.3744, Energy =  0.1361
+  层数 35: Beta = -0.1402, Energy =  0.1663
+  层数 39: Beta = -0.0214, Energy =  0.1497
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -2.2183, Energy = -0.7362
+  层数 10: Beta =  0.0603, Energy =  0.6413
+  层数 15: Beta = -0.9283, Energy =  0.5495
+  层数 20: Beta = -0.7500, Energy =  0.6193
+  层数 25: Beta = -0.1320, Energy =  0.3994
+  层数 30: Beta =  0.3227, Energy = -0.1544
+  层数 35: Beta =  0.8111, Energy =  0.0485
+  层数 39: Beta =  0.0272, Energy =  0.1049
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -4.0661, Energy = -0.2274
+  层数 10: Beta =  0.2992, Energy =  0.3906
+  层数 15: Beta = -0.9630, Energy =  0.4353
+  层数 20: Beta =  0.5754, Energy =  0.5157
+  层数 25: Beta =  0.2890, Energy =  0.5568
+  层数 30: Beta = -0.5791, Energy =  0.0153
+  层数 35: Beta =  0.2846, Energy =  0.3638
+  层数 39: Beta =  0.1143, Energy =  0.4422
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.3239, Energy =  0.0991
+  层数 10: Beta =  1.0823, Energy =  0.0709
+  层数 15: Beta = -0.0342, Energy =  0.2808
+  层数 20: Beta = -0.1587, Energy =  0.2197
+  层数 25: Beta = -0.2111, Energy =  0.3955
+  层数 30: Beta =  0.4147, Energy =  0.3729
+  层数 35: Beta = -0.1220, Energy =  0.3558
+  层数 39: Beta = -0.0708, Energy =  0.3846
+开始 FALQON 演化 (n_qubits=7, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -1.4883, Energy =  0.5673
+  层数 10: Beta =  0.2546, Energy = -0.0693
+  层数 15: Beta =  0.6320, Energy =  0.0970
+  层数 20: Beta =  0.8345, Energy = -0.0403
+  层数 25: Beta = -0.5148, Energy = -0.1772
+  层数 30: Beta = -0.7450, Energy = -0.1124
+  层数 35: Beta =  0.4156, Energy = -0.0407
+  层数 39: Beta =  0.6697, Energy = -0.2171
+开始 FALQON 演化 (n_qubits=7, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.2154, Energy = -0.0305
+  层数 10: Beta =  1.5426, Energy =  0.6593
+  层数 15: Beta =  0.4181, Energy =  0.2339
+  层数 20: Beta = -0.3915, Energy =  0.0369
+  层数 25: Beta =  0.2595, Energy =  0.1499
+  层数 30: Beta = -0.0166, Energy = -0.0948
+  层数 35: Beta = -0.7987, Energy = -0.0529
+  层数 39: Beta =  0.8539, Energy = -0.1761
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.0169, Energy =  0.0569
+  层数 10: Beta =  0.0912, Energy =  0.1036
+  层数 15: Beta = -0.0694, Energy =  0.1081
+  层数 20: Beta = -0.1237, Energy = -0.0478
+  层数 25: Beta =  0.2896, Energy =  0.0239
+  层数 30: Beta =  0.4339, Energy =  0.0208
+  层数 35: Beta =  0.0632, Energy = -0.1089
+  层数 39: Beta = -0.2287, Energy = -0.0169
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.7065, Energy =  0.3858
+  层数 10: Beta =  0.1098, Energy =  0.3266
+  层数 15: Beta = -0.0586, Energy =  0.4698
+  层数 20: Beta =  0.5559, Energy =  0.2459
+  层数 25: Beta = -0.2829, Energy =  0.2604
+  层数 30: Beta = -0.1651, Energy =  0.0549
+  层数 35: Beta = -0.6618, Energy =  0.1289
+  层数 39: Beta =  0.3727, Energy =  0.3446
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.2522, Energy = -0.3126
+  层数 10: Beta =  1.4029, Energy =  0.5532
+  层数 15: Beta = -0.5116, Energy = -0.9779
+  层数 20: Beta = -2.1568, Energy = -0.2657
+  层数 25: Beta =  0.3408, Energy =  0.9427
+  层数 30: Beta =  3.1094, Energy = -0.7536
+  层数 35: Beta =  0.0465, Energy =  0.8914
+  层数 39: Beta =  0.5246, Energy =  1.7159
+开始 FALQON 演化 (n_qubits=9, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.2529, Energy = -0.4026
+  层数 10: Beta =  0.1008, Energy =  0.0593
+  层数 15: Beta =  0.4478, Energy =  0.2328
+  层数 20: Beta =  0.0281, Energy = -0.1706
+  层数 25: Beta =  0.1239, Energy = -0.0330
+  层数 30: Beta = -0.0485, Energy = -0.0823
+  层数 35: Beta =  0.2478, Energy =  0.0571
+  层数 39: Beta = -0.7049, Energy = -0.0189
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.3351, Energy =  1.1620
+  层数 10: Beta =  0.8137, Energy =  0.1937
+  层数 15: Beta = -0.2632, Energy =  0.4567
+  层数 20: Beta = -2.1958, Energy =  0.7151
+  层数 25: Beta =  0.8308, Energy =  1.0005
+  层数 30: Beta =  1.9850, Energy =  0.6903
+  层数 35: Beta =  1.0153, Energy =  0.5129
+  层数 39: Beta =  1.1195, Energy =  0.0278
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.3420, Energy =  0.0704
+  层数 10: Beta = -0.0212, Energy = -0.0582
+  层数 15: Beta = -0.0955, Energy = -0.0039
+  层数 20: Beta =  0.1188, Energy =  0.0198
+  层数 25: Beta = -0.1205, Energy =  0.1300
+  层数 30: Beta = -0.3760, Energy =  0.0335
+  层数 35: Beta = -0.1906, Energy =  0.0251
+  层数 39: Beta = -0.1990, Energy =  0.1644
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -3.3739, Energy =  0.8479
+  层数 10: Beta =  0.5335, Energy =  0.0301
+  层数 15: Beta =  0.9776, Energy =  0.0548
+  层数 20: Beta = -0.3401, Energy =  0.0523
+  层数 25: Beta = -0.9435, Energy =  0.1446
+  层数 30: Beta =  0.8379, Energy = -0.4349
+  层数 35: Beta = -0.1551, Energy = -0.0169
+  层数 39: Beta =  0.8068, Energy =  0.2958
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.2181, Energy = -0.3519
+  层数 10: Beta = -0.0426, Energy =  0.0103
+  层数 15: Beta =  0.1486, Energy =  0.0346
+  层数 20: Beta =  0.1152, Energy =  0.0819
+  层数 25: Beta = -0.2473, Energy =  0.1411
+  层数 30: Beta =  0.1415, Energy =  0.1447
+  层数 35: Beta =  0.3180, Energy =  0.1675
+  层数 39: Beta = -0.1923, Energy =  0.1730
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  3.1584, Energy =  0.2186
+  层数 10: Beta =  0.7707, Energy =  0.1482
+  层数 15: Beta = -0.7354, Energy =  0.3994
+  层数 20: Beta = -0.2254, Energy =  0.0438
+  层数 25: Beta = -0.0262, Energy =  0.4039
+  层数 30: Beta =  0.2963, Energy =  0.5273
+  层数 35: Beta = -0.3389, Energy = -0.5815
+  层数 39: Beta =  0.2859, Energy = -0.3890
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.2948, Energy =  0.0468
+  层数 10: Beta =  0.2424, Energy =  0.2968
+  层数 15: Beta =  0.2599, Energy =  0.1016
+  层数 20: Beta =  0.0747, Energy =  0.0360
+  层数 25: Beta =  0.0591, Energy =  0.1140
+  层数 30: Beta =  0.0508, Energy =  0.0613
+  层数 35: Beta = -0.1013, Energy =  0.0635
+  层数 39: Beta =  0.2360, Energy =  0.0433
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=9, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  0.3813, Energy = -0.0354
+  层数 10: Beta =  0.2505, Energy =  0.1277
+  层数 15: Beta =  0.2662, Energy =  0.1582
+  层数 20: Beta = -0.7971, Energy =  0.1750
+  层数 25: Beta =  0.4896, Energy = -0.0557
+  层数 30: Beta = -0.2897, Energy =  0.0201
+  层数 35: Beta = -0.1498, Energy =  0.1336
+  层数 39: Beta =  0.2940, Energy =  0.0809
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.8400, Energy = -0.2300
+  层数 10: Beta = -2.0055, Energy = -0.1696
+  层数 15: Beta =  0.4098, Energy =  0.6662
+  层数 20: Beta =  2.4135, Energy = -0.8993
+  层数 25: Beta = -1.5418, Energy =  1.0055
+  层数 30: Beta = -2.0441, Energy =  1.0996
+  层数 35: Beta = -0.1143, Energy =  1.1544
+  层数 39: Beta =  1.2451, Energy =  0.6300
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  3.1584, Energy =  0.2186
+  层数 10: Beta =  0.7707, Energy =  0.1482
+  层数 15: Beta = -0.7354, Energy =  0.3994
+  层数 20: Beta = -0.2254, Energy =  0.0438
+  层数 25: Beta = -0.0262, Energy =  0.4039
+  层数 30: Beta =  0.2963, Energy =  0.5273
+  层数 35: Beta = -0.3247, Energy = -0.5821
+  层数 39: Beta =  0.5468, Energy = -0.2764
+开始 FALQON 演化 (n_qubits=9, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.0810, Energy = -0.2250
+  层数 10: Beta = -0.1992, Energy =  0.2107
+  层数 15: Beta = -0.2355, Energy =  0.2830
+  层数 20: Beta = -0.0371, Energy =  0.0305
+  层数 25: Beta = -0.0910, Energy =  0.0612
+  层数 30: Beta =  0.1775, Energy =  0.0731
+  层数 35: Beta = -0.0646, Energy =  0.1786
+  层数 39: Beta = -0.0343, Energy =  0.3429
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.2210, Energy = -0.0196
+  层数 10: Beta = -1.9075, Energy = -0.7049
+  层数 15: Beta =  0.5484, Energy =  0.1785
+  层数 20: Beta = -0.0099, Energy =  0.2469
+  层数 25: Beta =  0.2175, Energy =  0.2730
+  层数 30: Beta = -0.2058, Energy =  0.2919
+  层数 35: Beta =  0.0576, Energy =  0.3338
+  层数 39: Beta =  0.0815, Energy =  0.3379
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.7619, Energy = -0.5642
+  层数 10: Beta =  1.5551, Energy =  0.6001
+  层数 15: Beta = -0.5396, Energy = -0.2863
+  层数 20: Beta = -0.3757, Energy =  0.4242
+  层数 25: Beta =  0.7712, Energy =  0.0054
+  层数 30: Beta =  0.4327, Energy = -0.0057
+  层数 35: Beta = -0.5209, Energy =  0.2705
+  层数 39: Beta =  0.7048, Energy =  0.0218
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.1994, Energy = -0.0231
+  层数 10: Beta =  1.4904, Energy = -0.9117
+  层数 15: Beta = -0.8155, Energy =  0.2017
+  层数 20: Beta =  0.3059, Energy =  0.0528
+  层数 25: Beta =  0.0740, Energy =  0.1239
+  层数 30: Beta = -0.0284, Energy =  0.1125
+  层数 35: Beta = -0.1911, Energy =  0.1074
+  层数 39: Beta =  0.0999, Energy =  0.1205
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.0024, Energy =  0.0082
+  层数 10: Beta =  0.4965, Energy = -0.0448
+  层数 15: Beta = -0.9351, Energy =  0.1877
+  层数 20: Beta = -0.4156, Energy = -0.1253
+  层数 25: Beta =  0.0177, Energy =  0.0062
+  层数 30: Beta = -0.1588, Energy =  0.0356
+  层数 35: Beta =  0.0341, Energy =  0.0563
+  层数 39: Beta = -0.2049, Energy =  0.0391
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+Skipping dense simulation for N=14 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  0.1845, Energy =  0.2471
+  层数 10: Beta = -0.2388, Energy = -0.4621
+  层数 15: Beta = -0.6108, Energy =  0.7463
+  层数 20: Beta = -0.6949, Energy =  0.0582
+  层数 25: Beta =  1.2170, Energy =  0.7646
+  层数 30: Beta =  0.7706, Energy =  1.1151
+  层数 35: Beta =  0.2879, Energy =  0.6405
+  层数 39: Beta =  2.0967, Energy = -0.2763
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  2.4549, Energy =  0.5706
+  层数 10: Beta =  1.1705, Energy = -0.1283
+  层数 15: Beta = -0.1393, Energy = -0.0969
+  层数 20: Beta = -0.3956, Energy = -0.0936
+  层数 25: Beta =  0.4428, Energy =  0.1685
+  层数 30: Beta = -0.9344, Energy =  0.0254
+  层数 35: Beta =  0.5784, Energy =  0.2182
+  层数 39: Beta =  0.1171, Energy = -0.0591
+开始 FALQON 演化 (n_qubits=7, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  0.1652, Energy = -0.0447
+  层数 10: Beta =  0.8048, Energy =  0.2033
+  层数 15: Beta =  0.4551, Energy =  0.1157
+  层数 20: Beta =  1.3645, Energy =  0.1386
+  层数 25: Beta = -0.5447, Energy = -0.1087
+  层数 30: Beta =  0.3514, Energy =  0.1070
+  层数 35: Beta =  0.0878, Energy =  0.1894
+  层数 39: Beta =  0.0906, Energy =  0.2766
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  1.2522, Energy = -0.3126
+  层数 10: Beta =  1.4029, Energy =  0.5532
+  层数 15: Beta = -0.5116, Energy = -0.9779
+  层数 20: Beta = -2.1425, Energy = -0.2770
+  层数 25: Beta = -1.8559, Energy =  0.4969
+  层数 30: Beta = -0.4520, Energy = -0.4862
+  层数 35: Beta = -1.2743, Energy =  0.6102
+  层数 39: Beta =  2.5229, Energy =  1.1723
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -1.8214, Energy =  1.4707
+  层数 10: Beta =  1.1356, Energy =  0.2035
+  层数 15: Beta =  1.2674, Energy =  0.1302
+  层数 20: Beta = -0.3647, Energy = -0.0203
+  层数 25: Beta = -0.3991, Energy = -0.3000
+  层数 30: Beta =  1.0544, Energy =  0.1791
+  层数 35: Beta =  1.0321, Energy =  0.0159
+  层数 39: Beta = -0.1685, Energy = -0.1026
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  1.2522, Energy = -0.3126
+  层数 10: Beta =  1.4029, Energy =  0.5532
+  层数 15: Beta = -0.5116, Energy = -0.9779
+  层数 20: Beta = -2.1607, Energy = -0.2625
+  层数 25: Beta = -0.6611, Energy =  0.5091
+  层数 30: Beta =  3.9932, Energy = -0.7881
+  层数 35: Beta =  0.8630, Energy =  0.0231
+  层数 39: Beta =  0.5029, Energy =  1.7298
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.0102, Energy =  0.2045
+  层数 10: Beta =  0.4237, Energy =  0.4316
+  层数 15: Beta =  0.8433, Energy = -0.1928
+  层数 20: Beta = -2.5887, Energy =  1.1691
+  层数 25: Beta =  0.1812, Energy = -0.4216
+  层数 30: Beta =  0.6509, Energy = -0.1821
+  层数 35: Beta =  1.0462, Energy =  0.1366
+  层数 39: Beta =  0.7359, Energy =  0.6081
+开始 FALQON 演化 (n_qubits=7, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  2.0725, Energy = -0.2307
+  层数 10: Beta = -0.5717, Energy =  0.2356
+  层数 15: Beta =  1.2841, Energy =  0.1950
+  层数 20: Beta = -0.3434, Energy =  0.0404
+  层数 25: Beta = -0.9309, Energy =  0.3661
+  层数 30: Beta = -0.2398, Energy =  0.3454
+  层数 35: Beta =  0.1928, Energy = -0.1135
+  层数 39: Beta = -0.4883, Energy =  0.2143
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.1385, Energy =  0.1740
+  层数 10: Beta =  0.2611, Energy =  0.2490
+  层数 15: Beta =  0.0362, Energy =  0.1444
+  层数 20: Beta =  0.0565, Energy =  0.2209
+  层数 25: Beta =  0.9126, Energy =  0.1384
+  层数 30: Beta =  0.3069, Energy =  0.0069
+  层数 35: Beta =  0.0840, Energy =  0.0215
+  层数 39: Beta = -0.0947, Energy =  0.0265
+开始 FALQON 演化 (n_qubits=7, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  0.6942, Energy =  0.4654
+  层数 10: Beta = -0.2522, Energy = -0.4036
+  层数 15: Beta =  0.3090, Energy =  0.1837
+  层数 20: Beta = -0.0822, Energy =  0.4520
+  层数 25: Beta =  0.7909, Energy =  0.2806
+  层数 30: Beta =  0.3616, Energy =  0.0913
+  层数 35: Beta = -0.3166, Energy =  0.3199
+  层数 39: Beta = -0.0304, Energy =  0.2685
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  1.1998, Energy =  0.1921
+  层数 10: Beta = -0.1419, Energy =  0.2457
+  层数 15: Beta =  0.3156, Energy =  0.4558
+  层数 20: Beta = -0.6909, Energy =  0.3783
+  层数 25: Beta =  0.4969, Energy =  0.4857
+  层数 30: Beta = -1.2337, Energy =  0.6335
+  层数 35: Beta = -0.8566, Energy =  0.0381
+  层数 39: Beta =  1.0945, Energy = -0.2712
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.2066, Energy = -0.1975
+  层数 10: Beta = -0.3192, Energy = -0.0281
+  层数 15: Beta =  0.1617, Energy = -0.0214
+  层数 20: Beta =  0.2598, Energy =  0.0705
+  层数 25: Beta = -0.0286, Energy =  0.0568
+  层数 30: Beta =  0.0095, Energy =  0.1273
+  层数 35: Beta = -0.0713, Energy =  0.1594
+  层数 39: Beta = -0.0360, Energy =  0.0019
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.0102, Energy =  0.2045
+  层数 10: Beta =  0.4237, Energy =  0.4316
+  层数 15: Beta =  0.8433, Energy = -0.1928
+  层数 20: Beta = -2.5887, Energy =  1.1691
+  层数 25: Beta =  0.1872, Energy = -0.4212
+  层数 30: Beta = -0.5126, Energy =  0.6038
+  层数 35: Beta = -1.1759, Energy = -0.0893
+  层数 39: Beta = -0.2328, Energy = -0.2171
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  1.8271, Energy =  0.0830
+  层数 10: Beta = -0.6191, Energy =  0.9603
+  层数 15: Beta =  0.5026, Energy =  0.5165
+  层数 20: Beta = -1.0252, Energy =  0.2615
+  层数 25: Beta =  1.4703, Energy =  0.4402
+  层数 30: Beta =  0.1537, Energy =  0.0433
+  层数 35: Beta =  0.3154, Energy =  0.1722
+  层数 39: Beta =  0.1470, Energy =  0.4859
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta =  0.6517, Energy =  0.2703
+  层数 10: Beta = -0.1518, Energy =  0.0986
+  层数 15: Beta =  0.3198, Energy = -0.1237
+  层数 20: Beta = -0.4139, Energy =  0.3175
+  层数 25: Beta =  0.6159, Energy =  0.0798
+  层数 30: Beta =  0.4025, Energy =  0.0927
+  层数 35: Beta =  0.0732, Energy =  0.0588
+  层数 39: Beta =  0.0678, Energy = -0.1621
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -0.0744, Energy = -0.0136
+  层数 10: Beta = -1.9782, Energy =  1.4128
+  层数 15: Beta =  0.8257, Energy = -0.0162
+  层数 20: Beta =  0.1201, Energy =  0.0145
+  层数 25: Beta = -1.0773, Energy =  0.3424
+  层数 30: Beta =  0.6920, Energy =  0.3794
+  层数 35: Beta = -0.6545, Energy =  0.1953
+  层数 39: Beta = -1.5102, Energy =  0.1120
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  3.1584, Energy =  0.2186
+  层数 10: Beta =  0.7707, Energy =  0.1482
+  层数 15: Beta = -0.7354, Energy =  0.3994
+  层数 20: Beta = -0.2254, Energy =  0.0438
+  层数 25: Beta = -0.0262, Energy =  0.4039
+  层数 30: Beta =  0.2962, Energy =  0.5273
+  层数 35: Beta = -0.3185, Energy = -0.5824
+  层数 39: Beta =  0.5030, Energy = -0.2605
+开始 FALQON 演化 (n_qubits=11, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.1734, Energy =  0.1045
+  层数 10: Beta = -0.0811, Energy =  0.1596
+  层数 15: Beta =  0.4781, Energy =  0.3045
+  层数 20: Beta =  0.0680, Energy =  0.2032
+  层数 25: Beta =  0.5532, Energy =  0.0291
+  层数 30: Beta = -0.1133, Energy = -0.0731
+  层数 35: Beta =  0.1148, Energy =  0.0105
+  层数 39: Beta = -0.3021, Energy =  0.0107
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.8865, Energy = -0.1849
+  层数 10: Beta =  0.0077, Energy = -0.0546
+  层数 15: Beta =  0.5286, Energy =  0.1850
+  层数 20: Beta = -0.2112, Energy =  0.1303
+  层数 25: Beta = -0.0154, Energy =  0.1458
+  层数 30: Beta =  0.2375, Energy =  0.1617
+  层数 35: Beta =  0.0216, Energy =  0.2205
+  层数 39: Beta =  0.1129, Energy =  0.2142
+Skipping dense simulation for N=13 (> 12); using synthetic fallback.
+开始 FALQON 演化 (n_qubits=9, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta = -0.2148, Energy = -0.0541
+  层数 10: Beta = -1.8547, Energy =  0.7833
+  层数 15: Beta = -0.6103, Energy =  0.2717
+  层数 20: Beta = -0.2052, Energy = -0.0272
+  层数 25: Beta = -0.0239, Energy =  0.0243
+  层数 30: Beta =  0.0159, Energy =  0.0195
+  层数 35: Beta = -0.2352, Energy = -0.1209
+  层数 39: Beta =  0.1550, Energy = -0.1211
+开始 FALQON 演化 (n_qubits=6, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  1.2522, Energy = -0.3126
+  层数 10: Beta =  1.4029, Energy =  0.5532
+  层数 15: Beta = -0.5116, Energy = -0.9779
+  层数 20: Beta = -2.1425, Energy = -0.2770
+  层数 25: Beta = -1.8559, Energy =  0.4969
+  层数 30: Beta = -0.4520, Energy = -0.4862
+  层数 35: Beta = -1.2743, Energy =  0.6102
+  层数 39: Beta =  2.5229, Energy =  1.1723
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy =  0.0000
+  层数  5: Beta = -4.0661, Energy = -0.2274
+  层数 10: Beta =  0.2992, Energy =  0.3906
+  层数 15: Beta = -0.9630, Energy =  0.4353
+  层数 20: Beta =  0.5754, Energy =  0.5157
+  层数 25: Beta =  0.2890, Energy =  0.5568
+  层数 30: Beta = -0.5790, Energy =  0.0154
+  层数 35: Beta =  0.2854, Energy =  0.3635
+  层数 39: Beta =  0.1137, Energy =  0.4425
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.1173, Energy = -0.0335
+  层数 10: Beta =  0.3415, Energy =  0.0060
+  层数 15: Beta =  0.1455, Energy =  0.0218
+  层数 20: Beta = -0.3364, Energy =  0.0344
+  层数 25: Beta = -0.0705, Energy =  0.0406
+  层数 30: Beta =  0.4797, Energy = -0.0658
+  层数 35: Beta = -0.4602, Energy =  0.0541
+  层数 39: Beta = -0.2684, Energy = -0.0273
+开始 FALQON 演化 (n_qubits=12, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.9314, Energy = -0.2093
+  层数 10: Beta = -0.3240, Energy =  0.1726
+  层数 15: Beta =  0.1857, Energy =  0.2169
+  层数 20: Beta = -0.2343, Energy =  0.2150
+  层数 25: Beta = -0.0186, Energy =  0.2795
+  层数 30: Beta =  0.1711, Energy =  0.2620
+  层数 35: Beta = -0.1108, Energy =  0.2729
+  层数 39: Beta = -0.0625, Energy =  0.2808
+开始 FALQON 演化 (n_qubits=8, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.7198, Energy = -0.5670
+  层数 10: Beta =  0.8638, Energy = -0.2393
+  层数 15: Beta = -1.0922, Energy =  0.1719
+  层数 20: Beta = -0.3041, Energy =  0.4280
+  层数 25: Beta =  0.0969, Energy =  0.1592
+  层数 30: Beta = -0.3057, Energy =  0.1833
+  层数 35: Beta = -0.3181, Energy =  0.4375
+  层数 39: Beta =  0.8033, Energy =  0.0570
+开始 FALQON 演化 (n_qubits=10, alpha=1.0)...
+  层数  0: Beta = -0.0000, Energy = -0.0000
+  层数  5: Beta =  0.1758, Energy = -0.1432
+  层数 10: Beta =  0.2851, Energy =  0.2996
+  层数 15: Beta = -0.7367, Energy =  0.0076
+  层数 20: Beta =  0.0826, Energy =  0.0908
+  层数 25: Beta = -0.2247, Energy =  0.1520
+  层数 30: Beta =  0.1007, Energy =  0.1582
+  层数 35: Beta =  0.2820, Energy =  0.1839
+  层数 39: Beta =  0.3369, Energy =  0.0539
+Saved 80 samples to data/scalability_test/in_domain.npz

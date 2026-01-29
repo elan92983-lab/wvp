@@ -1,0 +1,6 @@
+Task 1 running noise config: low_noise
+
+==================================================
+Generating low_noise (Shot=0.05, Decoh=0.01, Gate=0.001)
+==================================================
+Saved 50 samples to data/noise_test/low_noise.npz

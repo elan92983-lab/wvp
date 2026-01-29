@@ -1,0 +1,6 @@
+Task 0 running noise config: no_noise
+
+==================================================
+Generating no_noise (Shot=0.0, Decoh=0.0, Gate=0.0)
+==================================================
+Saved 50 samples to data/noise_test/no_noise.npz

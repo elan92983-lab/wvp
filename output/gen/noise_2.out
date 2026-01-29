@@ -1,0 +1,6 @@
+Task 2 running noise config: medium_noise
+
+==================================================
+Generating medium_noise (Shot=0.1, Decoh=0.02, Gate=0.005)
+==================================================
+Saved 50 samples to data/noise_test/medium_noise.npz

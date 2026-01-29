@@ -1,0 +1,6 @@
+Task 4 running noise config: extreme_noise
+
+==================================================
+Generating extreme_noise (Shot=0.3, Decoh=0.1, Gate=0.02)
+==================================================
+Saved 50 samples to data/noise_test/extreme_noise.npz

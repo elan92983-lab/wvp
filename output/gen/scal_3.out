@@ -1,0 +1,87 @@
+Task 3 running config: extreme_extrap
+Running: python scripts/generate_scalability_data.py --config extreme_extrap --output_dir data/scalability_test --max_layers 40 --seed 3 --samples 80
+
+==================================================
+Generating extreme_extrap dataset (N ∈ (23, 28))
+==================================================
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=27 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=27 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=27 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=27 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=23 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Skipping dense simulation for N=28 (> 12); using synthetic fallback.
+Skipping dense simulation for N=26 (> 12); using synthetic fallback.
+Skipping dense simulation for N=25 (> 12); using synthetic fallback.
+Skipping dense simulation for N=24 (> 12); using synthetic fallback.
+Saved 80 samples to data/scalability_test/extreme_extrap.npz
