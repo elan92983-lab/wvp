@@ -39,6 +39,64 @@ Figure \ref{fig:case_study} shows four representative predictions.
   \label{fig:case_study}
 \end{figure}
 
+\subsection{Cross-scale Generalization Results}
+\label{subsec:cross_scale_results}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{../essay/figures/corr_vs_n.png}
+  \caption{Prediction correlation (Corr) vs. graph size $N$. Each point is a test sample; colors indicate graph type (ER or 3-regular).}
+  \label{fig:scal_corr}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{../essay/figures/boxplot_by_range.png}
+  \caption{Distribution of correlation coefficients for different scale ranges (In-domain, Mild/Strong/Extreme extrapolation). Boxes show median and IQR.}
+  \label{fig:scal_box}
+\end{figure}
+
+\subsection{Noise Robustness Results}
+\label{subsec:noise_results}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{../essay/figures/noise_robustness_comparison.png}
+  \caption{Comparison of correlation with the clean reference across noise levels: Neural Network (ours) vs. Noisy FALQON.}
+  \label{fig:noise_comp}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{../essay/figures/nn_advantage_curve.png}
+  \caption{Neural network advantage (Corr$_{NN}$ - Corr$_{NoisyFALQON}$) as a function of noise level.}
+  \label{fig:noise_adv}
+\end{figure}
+
+\subsection{Spectral Density Analysis}
+\label{subsec:spectral_analysis}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{../essay/figures/spectral_density_by_n.png}
+  \caption{Empirical spectral density evolution across different graph sizes (comparison with Wigner semicircle approximation).}
+  \label{fig:spectral_density}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{../essay/figures/kl_divergence_matrix.png}
+  \caption{KL divergence matrix between spectral histograms at different graph sizes.}
+  \label{fig:kl_matrix}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{../essay/figures/convergence_to_semicircle.png}
+  \caption{Wasserstein distance between empirical spectral density and semicircle law as a function of graph size.}
+  \label{fig:convergence}
+\end{figure}
+
 \subsection{Ablation}
 Table \ref{tab:ablation} shows the contribution of components.
 
