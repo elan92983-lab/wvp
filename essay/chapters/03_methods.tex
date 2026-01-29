@@ -16,6 +16,13 @@ p(\bm{\beta} | G) = \prod_{t=0}^{P-1} p(\beta_t | \beta_{<t}, G)
 
 如图 \ref{fig:architecture} 所示，谱-时序 Transformer 包含三个核心模块。
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/transformer_architecture.png}
+  \caption{谱-时序 Transformer 的总体架构示意}
+  \label{fig:architecture}
+\end{figure}
+
 \subsubsection{符号不变谱编码器（SignNet）}
 \label{subsec:signnet}
 
