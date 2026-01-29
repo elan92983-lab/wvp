@@ -69,99 +69,123 @@
 \newlabel{subsec:complexity}{{3.5}{8}{复杂度分析}{subsection.3.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}模型架构}{8}{subsection.3.6}\protected@file@percent }
 \newlabel{subsec:architecture}{{3.6}{8}{模型架构}{subsection.3.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 谱-时序 Transformer 的总体架构示意}}{8}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:architecture}{{1}{8}{谱-时序 Transformer 的总体架构示意}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}符号不变谱编码器（SignNet）}{8}{subsubsection.3.6.1}\protected@file@percent }
-\newlabel{subsec:signnet}{{3.6.1}{8}{符号不变谱编码器（SignNet）}{subsubsection.3.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 谱-时序 Transformer 的总体架构示意。左侧为谱编码器模块，将图的拉普拉斯特征值和特征向量编码为谱模态表示；右侧为时序解码器模块，通过交叉注意力机制生成控制参数序列。}}{8}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{8}{谱-时序 Transformer 的总体架构示意。左侧为谱编码器模块，将图的拉普拉斯特征值和特征向量编码为谱模态表示；右侧为时序解码器模块，通过交叉注意力机制生成控制参数序列。}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{谱编码路径（图左侧）}{8}{section*.14}\protected@file@percent }
 \citation{vaswani2017attention}
 \citation{bengio2015scheduled}
+\@writefile{toc}{\contentsline {paragraph}{时序解码路径（图右侧）}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{设计动机}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}符号不变谱编码器（SignNet）}{9}{subsubsection.3.6.1}\protected@file@percent }
+\newlabel{subsec:signnet}{{3.6.1}{9}{符号不变谱编码器（SignNet）}{subsubsection.3.6.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}时序解码器}{9}{subsubsection.3.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3}输出头}{9}{subsubsection.3.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}训练策略}{9}{subsection.3.7}\protected@file@percent }
-\newlabel{subsec:training}{{3.7}{9}{训练策略}{subsection.3.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}Scheduled Sampling}{9}{subsubsection.3.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.2}损失函数}{9}{subsubsection.3.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}训练策略}{10}{subsection.3.7}\protected@file@percent }
+\newlabel{subsec:training}{{3.7}{10}{训练策略}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}Scheduled Sampling}{10}{subsubsection.3.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.2}损失函数}{10}{subsubsection.3.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}实验}{10}{section.4}\protected@file@percent }
 \newlabel{sec:experiments}{{4}{10}{实验}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}实验设置}{10}{subsection.4.1}\protected@file@percent }
 \newlabel{subsec:experimental_setup}{{4.1}{10}{实验设置}{subsection.4.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}数据集}{10}{subsubsection.4.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{训练数据集}{10}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{跨规模测试数据集}{10}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{噪声测试数据集}{10}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}评估指标}{10}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{训练数据集}{10}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{跨规模测试数据集}{10}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{噪声测试数据集}{11}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}评估指标}{11}{subsubsection.4.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}样本分类标准}{11}{subsubsection.4.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}域内性能评估}{11}{subsection.4.2}\protected@file@percent }
 \newlabel{subsec:in_domain_results}{{4.2}{11}{域内性能评估}{subsection.4.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}样本分类}{11}{subsubsection.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}主要结果}{11}{subsection.4.3}\protected@file@percent }
-\newlabel{subsec:main_results}{{4.3}{11}{主要结果}{subsection.4.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 谱-时序 Transformer 的测试集性能}}{11}{table.caption.17}\protected@file@percent }
-\newlabel{tab:main_results}{{2}{11}{谱-时序 Transformer 的测试集性能}{table.caption.17}{}}
-\@writefile{toc}{\contentsline {paragraph}{关键发现}{11}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}定性分析}{11}{subsection.4.4}\protected@file@percent }
-\newlabel{subsec:qualitative}{{4.4}{11}{定性分析}{subsection.4.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 四个典型样本的预测结果示例（2x2 case study）}}{12}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:case_study}{{2}{12}{四个典型样本的预测结果示例（2x2 case study）}{figure.caption.19}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Prediction correlation (Corr) vs. graph size $N$. Each point is a test sample; colors indicate graph type (ER or 3-regular).}}{12}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:scal_corr}{{3}{12}{Prediction correlation (Corr) vs. graph size $N$. Each point is a test sample; colors indicate graph type (ER or 3-regular)}{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Distribution of correlation coefficients for different scale ranges (In-domain, Mild/Strong/Extreme extrapolation). Boxes show median and IQR.}}{13}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:scal_box}{{4}{13}{Distribution of correlation coefficients for different scale ranges (In-domain, Mild/Strong/Extreme extrapolation). Boxes show median and IQR}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}主要结果}{12}{subsection.4.3}\protected@file@percent }
+\newlabel{subsec:main_results}{{4.3}{12}{主要结果}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 谱-时序 Transformer 的测试集性能}}{12}{table.caption.20}\protected@file@percent }
+\newlabel{tab:main_results}{{2}{12}{谱-时序 Transformer 的测试集性能}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{关键发现}{12}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}定性分析}{12}{subsection.4.4}\protected@file@percent }
+\newlabel{subsec:qualitative}{{4.4}{12}{定性分析}{subsection.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 四个典型样本的预测结果示例（2x2 case study）}}{12}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:case_study}{{2}{12}{四个典型样本的预测结果示例（2x2 case study）}{figure.caption.22}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-scale Generalization Results}{13}{subsection.4.5}\protected@file@percent }
 \newlabel{subsec:cross_scale_results}{{4.5}{13}{Cross-scale Generalization Results}{subsection.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Noise Robustness Results}{13}{subsection.4.6}\protected@file@percent }
-\newlabel{subsec:noise_results}{{4.6}{13}{Noise Robustness Results}{subsection.4.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison of correlation with the clean reference across noise levels: Neural Network (ours) vs. Noisy FALQON.}}{13}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:noise_comp}{{5}{13}{Comparison of correlation with the clean reference across noise levels: Neural Network (ours) vs. Noisy FALQON}{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Spectral Density Analysis}{13}{subsection.4.7}\protected@file@percent }
-\newlabel{subsec:spectral_analysis}{{4.7}{13}{Spectral Density Analysis}{subsection.4.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}消融实验}{13}{subsection.4.8}\protected@file@percent }
-\newlabel{subsec:ablation}{{4.8}{13}{消融实验}{subsection.4.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Neural network advantage (Corr$_{NN}$ - Corr$_{NoisyFALQON}$) as a function of noise level.}}{14}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:noise_adv}{{6}{14}{Neural network advantage (Corr$_{NN}$ - Corr$_{NoisyFALQON}$) as a function of noise level}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Empirical spectral density evolution across different graph sizes (comparison with Wigner semicircle approximation).}}{14}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:spectral_density}{{7}{14}{Empirical spectral density evolution across different graph sizes (comparison with Wigner semicircle approximation)}{figure.caption.24}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 消融实验结果}}{14}{table.caption.27}\protected@file@percent }
-\newlabel{tab:ablation}{{3}{14}{消融实验结果}{table.caption.27}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces KL divergence matrix between spectral histograms at different graph sizes.}}{15}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:kl_matrix}{{8}{15}{KL divergence matrix between spectral histograms at different graph sizes}{figure.caption.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Wasserstein distance between empirical spectral density and semicircle law as a function of graph size.}}{15}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:convergence}{{9}{15}{Wasserstein distance between empirical spectral density and semicircle law as a function of graph size}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 预测相关系数随图规模 $N$ 的变化散点图。蓝点表示 Erdős-Rényi (ER) 图，红点表示 3-正则图。水平虚线标记 Corr = 0.8 的阈值，垂直虚线分隔训练域（$N \leq 13$）与外推域。}}{13}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:scalability_scatter}{{3}{13}{预测相关系数随图规模 $N$ 的变化散点图。蓝点表示 Erdős-Rényi (ER) 图，红点表示 3-正则图。水平虚线标记 Corr = 0.8 的阈值，垂直虚线分隔训练域（$N \leq 13$）与外推域。}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{总体趋势：渐进衰减而非急剧崩溃}{13}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{图类型的显著差异}{13}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{方差增大现象}{13}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{阈值线的意义}{13}{section*.27}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 不同规模范围的预测性能箱线图。箱体表示四分位距（IQR），中线为中位数，须线延伸至 1.5 倍 IQR，圆点为离群值。}}{14}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:scalability_boxplot}{{4}{14}{不同规模范围的预测性能箱线图。箱体表示四分位距（IQR），中线为中位数，须线延伸至 1.5 倍 IQR，圆点为离群值。}{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{中位数的平缓下降}{14}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{四分位距的扩大}{14}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{离群值分析}{14}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{实用性解读}{14}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Noise Robustness Results}{15}{subsection.4.6}\protected@file@percent }
+\newlabel{subsec:noise_results}{{4.6}{15}{Noise Robustness Results}{subsection.4.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 不同噪声级别下神经网络预测与噪声 FALQON 执行的性能对比。蓝色柱为神经网络预测与干净参考的相关系数，橙色柱为噪声 FALQON 与干净参考的相关系数。柱顶数字标注具体数值。}}{15}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:noise_comparison}{{5}{15}{不同噪声级别下神经网络预测与噪声 FALQON 执行的性能对比。蓝色柱为神经网络预测与干净参考的相关系数，橙色柱为噪声 FALQON 与干净参考的相关系数。柱顶数字标注具体数值。}{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{交叉点：方法适用性的分界线}{15}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{优势的单调递增}{15}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{神经网络的"恒定性能"特征}{16}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{对 NISQ 应用的启示}{16}{section*.37}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Neural network advantage (Corr$_{NN}$ - Corr$_{NoisyFALQON}$) as a function of noise level.}}{16}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:noise_adv}{{6}{16}{Neural network advantage (Corr$_{NN}$ - Corr$_{NoisyFALQON}$) as a function of noise level}{figure.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Spectral Density Analysis}{16}{subsection.4.7}\protected@file@percent }
+\newlabel{subsec:spectral_analysis}{{4.7}{16}{Spectral Density Analysis}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{向理论极限的收敛}{16}{section*.40}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 不同图规模 $N$ 下归一化拉普拉斯特征值的密度直方图。每个子图对应一个 $N$ 值，红色虚线为理论 Wigner 半圆律 $\rho (\lambda ) = \frac  {2}{\pi }\sqrt  {1 - (\lambda - 1)^2}$（标准化至单位面积）。}}{17}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:spectral_density}{{7}{17}{不同图规模 $N$ 下归一化拉普拉斯特征值的密度直方图。每个子图对应一个 $N$ 值，红色虚线为理论 Wigner 半圆律 $\rho (\lambda ) = \frac {2}{\pi }\sqrt {1 - (\lambda - 1)^2}$（标准化至单位面积）。}{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {paragraph}{分布形态的相似性}{17}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KL 散度的定量分析}{17}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{对注意力机制的影响}{17}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ER 图 vs 正则图的差异}{18}{section*.44}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces KL divergence matrix between spectral histograms at different graph sizes.}}{18}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:kl_matrix}{{8}{18}{KL divergence matrix between spectral histograms at different graph sizes}{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}消融实验}{18}{subsection.4.8}\protected@file@percent }
+\newlabel{subsec:ablation}{{4.8}{18}{消融实验}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 消融实验结果}}{18}{table.caption.47}\protected@file@percent }
+\newlabel{tab:ablation}{{3}{18}{消融实验结果}{table.caption.47}{}}
 \citation{farhi2014qaoa}
 \citation{joshi2022qaoa}
 \citation{magann2022feedback}
 \citation{magann2022lyapunov}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Wasserstein distance between empirical spectral density and semicircle law as a function of graph size.}}{19}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:convergence}{{9}{19}{Wasserstein distance between empirical spectral density and semicircle law as a function of graph size}{figure.caption.46}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}理论分析：预测误差的鲁棒性}{19}{subsection.4.9}\protected@file@percent }
+\newlabel{subsec:robustness}{{4.9}{19}{理论分析：预测误差的鲁棒性}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}相关工作}{19}{section.5}\protected@file@percent }
+\newlabel{sec:related_work}{{5}{19}{相关工作}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}变分量子优化}{19}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}基于反馈的量子控制}{19}{subsection.5.2}\protected@file@percent }
 \citation{lim2023signnet}
 \citation{farhi2014qaoa}
 \citation{joshi2022qaoa}
 \citation{magann2022feedback}
 \citation{magann2022lyapunov}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}理论分析：预测误差的鲁棒性}{16}{subsection.4.9}\protected@file@percent }
-\newlabel{subsec:robustness}{{4.9}{16}{理论分析：预测误差的鲁棒性}{subsection.4.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}相关工作}{16}{section.5}\protected@file@percent }
-\newlabel{sec:related_work}{{5}{16}{相关工作}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}变分量子优化}{16}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}基于反馈的量子控制}{16}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}图的谱表示学习}{16}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}物理信息神经网络}{16}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}变分量子优化}{16}{subsection.5.5}\protected@file@percent }
 \citation{lim2023signnet}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}基于反馈的量子控制}{17}{subsection.5.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}图的谱表示学习}{17}{subsection.5.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}结论与未来工作}{17}{section.6}\protected@file@percent }
-\newlabel{sec:conclusion}{{6}{17}{结论与未来工作}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}主要贡献总结}{17}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}局限性}{17}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}图的谱表示学习}{20}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}物理信息神经网络}{20}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}变分量子优化}{20}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}基于反馈的量子控制}{20}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}图的谱表示学习}{20}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}结论与未来工作}{20}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{20}{结论与未来工作}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}主要贡献总结}{20}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}局限性}{21}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}未来工作}{21}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}结语}{21}{subsection.6.4}\protected@file@percent }
 \bibstyle{plain}
 \bibcite{magann2022feedback}{1}
 \bibcite{magann2022lyapunov}{2}
 \bibcite{lim2023signnet}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}未来工作}{18}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}结语}{18}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{未来工作}{18}{section*.28}\protected@file@percent }
 \bibcite{vaswani2017attention}{4}
 \bibcite{joshi2022qaoa}{5}
 \bibcite{farhi2014qaoa}{6}
 \bibcite{bengio2015scheduled}{7}
 \bibcite{kesten1959symmetric}{8}
-\gdef \@abspage@last{19}
+\bibcite{brandao2018concentration}{9}
+\bibcite{streif2020training}{10}
+\bibcite{wigner1958distribution}{11}
+\bibcite{mckay1981expected}{12}
+\@writefile{toc}{\contentsline {paragraph}{未来工作}{22}{section*.48}\protected@file@percent }
+\gdef \@abspage@last{23}

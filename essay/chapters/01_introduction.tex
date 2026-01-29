@@ -36,6 +36,13 @@ QAOA 的参数优化需要在高维非凸能量景观中寻找最优参数 $\bm{
     \item \textbf{复杂度分析}：给出了完整的量子/经典复杂度权衡分析，证明用 $O(N^3)$ 的经典预处理换取 $O(1)$ 的量子测量是高度划算的策略。
 \end{enumerate}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/Gemini_Generated_Image_tazrz7tazrz7tazr.png}
+    \caption{图 0：传统 FALQON 循环与 Neural-FALQON（本文方法）的对比示意图。左图为逐层测量反馈的 FALQON 流程，右图为本文提出的零次推理框架，通过谱-时序 Transformer 一次性预测参数序列并减少量子端开销。}
+    \label{fig:workflow_comparison}
+\end{figure}
+
 具体而言，本文的主要贡献包括：
 \begin{enumerate}
     \item \textbf{架构设计}：提出谱-时序 Transformer（Spectral-Temporal Transformer），结合符号不变网络（SignNet）\cite{lim2023signnet} 处理图的拉普拉斯谱特征，利用 Transformer 解码器捕捉参数序列的时序依赖。
