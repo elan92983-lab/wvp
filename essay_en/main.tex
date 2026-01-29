@@ -1,0 +1,89 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{abstract}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{siunitx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% Listings
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single,
+  rulecolor=\color{black!20},
+  backgroundcolor=\color{black!2},
+}
+
+\title{Neural Zero-Shot Inference for Quantum Optimization: \ Spectral-Temporal Transformer for FALQON Parameter Prediction}
+\author{Liyang Pan}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Feedback-based quantum optimization (FALQON) removes the classical optimization loop of variational quantum algorithms by applying a Lyapunov-inspired feedback control, but its layer-wise measurement procedure results in an $O(P^2)$ cumulative circuit depth and severe noise accumulation. We propose a "teacher-student" zero-shot inference framework that uses a Spectral-Temporal Transformer to predict the full control parameter trajectory $\{\beta_t\}_{t=0}^{P-1}$ directly from the graph Laplacian spectrum of the problem instance. Our method uses SignNet to resolve eigenvector sign ambiguity and an autoregressive training schedule with scheduled sampling to mitigate error accumulation at inference time. On a dataset of 1000 random graphs, the model achieves a Pearson correlation of 0.917 on convergent instances, demonstrating the feasibility of neural parameter prediction for quantum control. We also analyze the effect of prediction error on Lyapunov convergence to establish theoretical robustness guarantees.
+
+\textbf{Keywords}: quantum optimization, FALQON, Transformer, spectral graph networks, zero-shot inference
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{chapters/01_introduction}
+
+\section{Preliminaries}
+\label{sec:preliminaries}
+\input{chapters/02_preliminaries}
+
+\section{Methods}
+\label{sec:methods}
+\input{chapters/03_methods}
+
+\section{Experiments}
+\label{sec:experiments}
+\input{chapters/04_experiments}
+
+\section{Related Work}
+\label{sec:related_work}
+\input{chapters/05_related_work}
+
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+\input{chapters/06_conclusion}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+\bibitem{magann2022feedback} Magann, A.B., et al., 2022. Feedback-based quantum optimization. Phys. Rev. Lett., 129(25), p.250502.
+\bibitem{magann2022lyapunov} Magann, A.B., Grace, M.D., Rabitz, H.A. and Sarovar, M., 2022. Lyapunov-control-inspired strategies for quantum combinatorial optimization. Phys. Rev. A, 106(6), p.062414.
+\bibitem{lim2023signnet} Lim, D., Robinson, J., Zhao, L., Smidt, T., Sra, S., Maron, H. and Jegelka, S., 2023. Sign and basis invariant networks for spectral graph representation learning. ICLR.
+\bibitem{vaswani2017attention} Vaswani, A., et al., 2017. Attention is all you need. NeurIPS 30.
+\bibitem{joshi2022qaoa} Joshi, C., et al., 2022. Learning to branch in combinatorial optimization with graph neural networks. ICLR Workshop on AI for Science.
+\bibitem{farhi2014qaoa} Farhi, E., Goldstone, J. and Gutmann, S., 2014. A quantum approximate optimization algorithm. arXiv:1411.4028.
+\bibitem{bengio2015scheduled} Bengio, S., Vinyals, O., Jaitly, N. and Shazeer, N., 2015. Scheduled sampling for sequence prediction with recurrent neural networks. NeurIPS 28.
+\bibitem{kesten1959symmetric} Kesten, H., 1959. Symmetric random walks on groups. Trans. Amer. Math. Soc., 92(2), pp.336-354.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,30 @@
+% 02_preliminaries.tex (English)
+
+This section introduces the theoretical foundations of FALQON and the spectral representation of graphs.
+
+\subsection{FALQON}
+\label{subsec:falqon}
+
+Consider a combinatorial optimization problem encoded by a problem Hamiltonian $H_P$ and a driver Hamiltonian $H_D=\sum_{i=1}^n X_i$. FALQON seeks to minimize the cost function
+\begin{equation}
+C(t)=\langle\psi(t)|H_P|\psi(t)\rangle.
+\end{equation}
+
+\begin{theorem}[FALQON convergence \cite{magann2022lyapunov}]
+Define the feedback control law
+\begin{equation}
+\beta(t)=-\alpha\cdot\langle\psi(t)|i[H_D,H_P]|\psi(t)\rangle, \quad \alpha>0.
+\end{equation}
+Then the cost satisfies $\frac{dC}{dt}\le 0$, i.e., the system energy is non-increasing.
+\end{theorem}
+
+In discrete implementations, the state evolves as
+\begin{equation}
+|\psi_{p+1}\rangle=e^{-i\beta_p H_D}e^{-i H_P \Delta t}|\psi_p\rangle,
+\end{equation}
+with $\beta_p=-\alpha\langle\psi_p|i[H_D,H_P]|\psi_p\rangle$.
+
+\subsection{Graph Laplacian Spectrum}
+\label{subsec:graph_spectrum}
+
+For an undirected graph $G=(V,E)$, the normalized Laplacian is $L=I-D^{-1/2}AD^{-1/2}$, with eigendecomposition $L=U\Lambda U^\top$. Eigenvalues $\lambda_1\le\lambda_2\le\cdots\le\lambda_n$ capture global connectivity, while eigenvectors $\{u_i\}$ provide spectral coordinates. Eigenvectors suffer from sign ambiguity; we adopt SignNet-style processing to remove this ambiguity (see Section \ref{subsec:signnet}).

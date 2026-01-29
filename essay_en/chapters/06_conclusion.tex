@@ -1,0 +1,15 @@
+% 06_conclusion.tex (English)
+
+We introduced a Spectral-Temporal Transformer for predicting FALQON control parameters in a teacher-student zero-shot framework. Key findings:
+\begin{enumerate}
+  \item Feasibility: On convergent samples the model achieves Corr = 0.917, validating neural prediction of quantum control parameters.
+  \item Limitations: Oscillatory samples (often from regular graphs) exhibit high-frequency behavior that is harder to predict.
+  \item Theoretical guarantee: Lyapunov analysis shows that as long as prediction errors do not flip control signs, the system remains convergent.
+\end{enumerate}
+
+\paragraph{Future Work}
+\begin{itemize}
+  \item Scale tests to larger graphs ($n>20$) to examine cross-size generalization.
+  \item Explore hybrid strategies that combine neural predictions with physics-based refinement.
+  \item Evaluate performance on noisy quantum hardware models.
+\end{itemize}

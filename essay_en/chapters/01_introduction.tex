@@ -1,0 +1,15 @@
+% 01_introduction.tex (English)
+
+In the noisy intermediate-scale quantum (NISQ) era, variational quantum algorithms (VQAs) are considered one of the most promising paths toward practical quantum advantage. The Quantum Approximate Optimization Algorithm (QAOA) \cite{farhi2014qaoa} has shown strong potential for combinatorial optimization tasks (e.g., MaxCut). However, practical deployment of QAOA faces significant challenges: the classical parameter optimization loop must search a high-dimensional nonconvex energy landscape for optimal parameters $\bm{\gamma}^*, \bm{\beta}^*$, which is prone to local minima and barren plateaus.
+
+Feedback-based quantum optimization (FALQON) \cite{magann2022feedback} offers an alternative by applying Lyapunov-inspired feedback control laws to determine layer parameters, thereby eliminating the classical optimization loop. Nonetheless, FALQON introduces a different bottleneck: a large measurement overhead. To compute the parameter for layer $p+1$, one must prepare and measure the depth-$p$ state, causing an $O(P^2)$ cumulative circuit depth.
+
+Paragraph: Contributions
+
+We propose a "teacher-student" zero-shot inference framework that predicts the entire control parameter trajectory $\{\beta_t\}_{t=0}^{P-1}$ in one shot using a Spectral-Temporal Transformer conditioned on the graph Laplacian spectrum. Our contributions are:
+\begin{enumerate}
+  \item Architecture: Spectral-Temporal Transformer that combines SignNet-style spectral encoders with a Transformer decoder to model temporal dependencies.
+  \item Training: Scheduled sampling to mitigate train-test mismatch, and a weighted loss emphasizing later time steps.
+  \item Empirical Evaluation: On 1000 random graphs, we categorize samples into convergent and oscillatory dynamics and report strong performance on convergent instances.
+  \item Theoretical Analysis: Lyapunov-based analysis showing robustness when prediction errors do not flip the control signs.
+\end{enumerate}
