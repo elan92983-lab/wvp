@@ -150,10 +150,26 @@ Transformer 的 Softmax 注意力是对所有谱模态归一化的：
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\linewidth]{figures/transformer_architecture.png}
-  \caption{谱-时序 Transformer 的总体架构示意}
+  \includegraphics[width=0.95\linewidth]{figures/transformer_architecture.png}
+  \caption{谱-时序 Transformer 的总体架构示意。左侧为谱编码器模块，将图的拉普拉斯特征值和特征向量编码为谱模态表示；右侧为时序解码器模块，通过交叉注意力机制生成控制参数序列。}
   \label{fig:architecture}
 \end{figure}
+
+图 \ref{fig:architecture} 展示了谱-时序 Transformer 的完整数据流。整个架构体现了"谱域编码、时域解码"的设计哲学：
+
+\paragraph{谱编码路径（图左侧）}
+输入图 $G$ 首先经过拉普拉斯分解，得到特征值 $\{\lambda_i\}$ 和特征向量 $\{u_i\}$。特征向量通过 SignNet 消除符号模糊性，特征值通过独立的 MLP 编码。两者融合后形成 $M$ 个谱模态表示 $\{m_i\}_{i=1}^M$，构成 Transformer 解码器的 Memory。此外，我们引入可学习的图全局 token，聚合所有谱模态的信息，提供图级的上下文表示。
+
+\paragraph{时序解码路径（图右侧）}
+解码器采用自回归结构。每个时间步 $t$ 的 Query 由三部分组成：可学习的基础嵌入、正弦位置编码（编码时间步信息）以及前一步预测值的嵌入（提供历史上下文）。Query 通过多头交叉注意力机制查询 Memory，"询问"当前时刻应关注哪些谱模态。最终，解码器输出经 MLP 映射为标量预测 $\hat{\beta}_t$。
+
+\paragraph{设计动机}
+这种架构的核心优势在于：
+\begin{enumerate}
+    \item \textbf{全局感受野}：不同于 GNN 的局部消息传递，谱特征天然包含图的全局信息（如 Fiedler 值编码整体连通性），单层注意力即可捕捉全局拓扑。
+    \item \textbf{时序建模}：Transformer 解码器的自回归结构天然适合序列生成，因果掩码确保了生成的合法性。
+    \item \textbf{尺寸不变性}：谱特征归一化到 $[0,2]$ 区间，Softmax 注意力对模态数量进行归一化，使模型能够处理不同大小的图。
+\end{enumerate}
 
 \subsubsection{符号不变谱编码器（SignNet）}
 \label{subsec:signnet}
